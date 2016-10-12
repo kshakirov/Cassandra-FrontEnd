@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/styles.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="angularFrontendApp">
+  <div class="wrapper">
+
+    <div class="page">
+      <div class="header-container">
+        <div class="meta-header">
+          <strong>
+            US &amp; International Sales: +1.760.476.1444        </strong>
+          <a href="mailto:sales@turbointernational.com">
+            sales@turbointernational.com        </a>
+
+          <ul class="links" >
+            <li class="first"><a href="/#/customer/account/" title="My Account">My Account</a></li>
+            <li><a href="/#/customer/account/wishlist/" title="My Wishlist (-)">My Wishlist (7 items)</a></li>
+            <li><a href="/#/customer/cart/" title="My Cart (-)" class="top-link-cart">My Cart (5 items)</a></li>
+            <li><a href="/#/customer/checkout/" title="Checkout" class="top-link-checkout">Checkout</a></li>
+            <li class=" last"><a href="/customer/account/logout/" title="Log Out">Log Out</a></li>
+          </ul>    </div>
+        <div class="header">
+          <h1 class="logo">
+            <strong>
+              Turbo International            </strong>
+            <a href="/#/" title="Turbo International" class="logo">
+              <img src="http://localhost/skin/frontend/base/default/images/ti-logo_100x77.jpg" alt="Turbo International">
+            </a>
+          </h1>
+
+          <h2 class="logo">
+            Quality Replacement<br>
+            Turbocharger Parts        </h2>
+
+          <p class="welcome-msg">
+            <label for="custom-currency-selector" style="font-weight: bold;">Currency</label>
+            <select onchange="window.location.href=this.value" name="custom-currency-selector" id="custom-currency-selector" style="margin-right: 5px;">
+              <option value="http://localhost/directory/currency/switch/currency/GBP/uenc/aHR0cDovL2xvY2FsaG9zdDo4MDg4Lw,,/">
+                GBP            </option>
+              <option value="http://localhost/directory/currency/switch/currency/EUR/uenc/aHR0cDovL2xvY2FsaG9zdDo4MDg4Lw,,/">
+                EUR            </option>
+              <option value="http://localhost/directory/currency/switch/currency/USD/uenc/aHR0cDovL2xvY2FsaG9zdDo4MDg4Lw,,/" selected="SELECTED">
+                USD            </option>
+            </select>
+            Welcome, Kirill Jr Shakirov!                    </p>
+          <form  class="ng-pristine ng-valid ng-scope ng-valid-maxlength">
+            <div class="form-search">
+              <input type="text" name="" value="" class="input-text ng-pristine ng-untouched ng-valid ng-valid-maxlength" maxlength="" ng-model="query" ng-keypress="searchByEnterClick($event, query)" placeholder="Part Number…">
+              <button ng-click="search_in_all_fields(query)" type="button" title="Search" class="button">
+            <span>
+                Search            </span>
+              </button>
+
+
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div ng-include="'views/navigation.html'"></div>
+      <div ng-view=""></div>
+      <div class="footer-container">
+        <div ng-include="'views/footer.html'"></div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

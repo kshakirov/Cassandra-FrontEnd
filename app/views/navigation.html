@@ -1,0 +1,62 @@
+<div class="nav-container" >
+  <ul id="nav" ng-init="getCurrency('<?php echo Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol(); ?>')">
+    <li ng-init="initManufacturers()">
+      <a href="">Manufacturer</a>
+      <ul>
+        <li ng-repeat="manufacturer in manufacturers" ng-mouseleave="unToggleList($index)" class="">
+          <a href=""
+             ng-click="createBreadcrumb('Manufacturer', manufacturer[0])" ng-mouseover="toggleList($index)"  >{{manufacturer[0]}}</a>
+          <ul ng-class="getClass($index)">
+            <li ng-repeat="part in parts"  ng-class="getComponentListItemClass(part)">
+              <a  ng-click="createBreadcrumb('Manufacturer', manufacturer[0] + ' / ' + part[0])"
+                  href="{{createHttpLink('#/manufacturer/' + manufacturer[1]  + '/parttype/' + part[1] + '/parts')}}">{{part[0]}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li ng-init="initComponentsSubMenus()" >
+      <a href="">Component</a>
+      <ul>
+        <li ng-repeat="part in stdParts" ng-class="getComponentListItemClass(part)">
+          <a ng-click="createBreadcrumb('Component', part[0])"
+             href="{{createHttpLink('#/parttype/' + part[1] + '/parts/standard' )}}" >
+            {{part[0]}}
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li ng-init=init()>
+      <a href="">Critical Dimensions</a>
+      <ul>
+        <li ng-repeat="part in criticalParts">
+          <a
+            ng-click="createBreadcrumb('Critical Dimensions', part[0])"
+            href="{{createHttpLink('#/parttype/' + part[1]  + '/parts/critical')}}" >
+            {{part[0]}}
+          </a>
+        </li>
+
+      </ul>
+    </li>
+
+
+    <li><a href="{{createHttpLink('#/application')}}">Applications</a></li>
+    <li><a
+      href="{{createHttpLink('#/clearance/1')}}">
+      Clearance
+    </a>
+    </li>
+    <li>
+      <a
+        ng-click="createBreadcrumb('Catalog')"
+        ng-href="{{createHttpLink('#/parts')}}">
+        Catalog
+      </a>
+    </li>
+    <li><a href="{{createHttpLink('#/about-us')}}">About Us</a></li>
+    <li><a href="{{createHttpLink('#/contact-us')}}">Contact Us</a></li>
+    <li><a href="/customer/account/login">Login</a></li>
+  </ul>
+</div>

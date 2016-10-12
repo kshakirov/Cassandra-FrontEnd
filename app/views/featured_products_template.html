@@ -1,0 +1,123 @@
+<div class="std">
+    <p>
+        <style type="text/css">
+            td {
+                padding-right: 10px;
+            }
+
+            td:last-of-type {
+                padding-right: 0;
+            }
+        </style>
+    <h3>
+        Featured Products </h3>
+
+    <table border="0" cellspacing="0" ng-init="init_featured_products()">
+        <tbody>
+
+        <tr class="odd">
+            <td ng-repeat="featured in featureds">
+
+                <a href="{{featured.url}}" title="">
+                    <img class="product-img"
+                         ng-src="{{featured.image_url}}"
+                         alt="" width="215" height="165" spinkit-image-preloader='wave-spinner'>
+                </a>
+
+                <p class="featuredName">{{featured.part_type}}</p>
+
+                <p ng-if="isTurboModelVisible(featured)" class="featuredTypeModel" text-clamp="3"
+                   data-span="Model:"
+                   style="">
+                     <span
+                             class="caption">Model:
+                </span>
+                    {{featured.turbo_model}}
+                </p>
+
+
+                <p ng-if="isTurboTypeVisible(featured)" class="featuredTypeModel" text-clamp="3"
+                   data-span="Type:"
+                   style="">
+                     <span
+                             class="caption">Type:
+                </span>
+                    {{featured.turbo_type}}
+                </p>
+
+
+                <p ng-if="isTurboModelVisible(featured)"  class="featuredTypeModel" text-clamp="3"
+                        data-span=" Where Used:"
+                        style="">
+                <span
+                        class="caption"> Where Used:
+                </span>
+                    {{featured.where_used}}
+                </p>
+
+
+                <p ng-if="isTurboTypeVisible(featured)" class="featuredTypeModel" text-clamp="3"
+                   data-span="Description:"
+                   style="">
+                     <span
+                             class="caption">Description:
+                </span>
+                    {{featured.description}}
+                </p>
+
+
+                <p class="featuredItem">
+                <span
+                        class="caption">OE Ref:
+                </span> {{featured.oe_ref_urls}}
+                </p>
+
+                <p class="featuredItem">
+                <span class="caption">
+                    TI Part:
+                </span> {{featured.name}}
+                </p>
+                <div class="detail">
+                    <a href="{{featured.url}}" title="details">
+                        Product Detail
+                    </a>
+
+                    <div ng-if="featured.price=='login'" class="detail">
+
+                        <a
+                                href="/customer/account/login/"
+                        >Login
+                        </a> for price<br>
+
+                    </div>
+
+
+                    <div ng-if="featured.price!='login'" class="price-box">
+                        <span class="regular-price">
+                            <span class="price">
+                               {{featured.price | currency}}
+                            </span>
+                        </span>
+
+                    </div>
+                               <button
+                                    ng-if="featured.price!='login'"
+                                    type="button"
+                                    class="button btn-cart"
+                                    ng-click="addToCart(featured.id)">
+                                    <span>
+                                        <span>
+                                             Add to Cart
+                                        </span>
+                                    </span>
+                            </button>
+
+                </div>
+
+            </td>
+        </tr>
+
+        </tbody>
+
+    </table>
+</div>

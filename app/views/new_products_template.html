@@ -1,0 +1,125 @@
+<div class="std">
+    <p><style type="text/css">
+        td {
+            padding-right: 10px;
+        }
+
+        td:last-of-type {
+            padding-right: 0;
+        }
+    </style>
+    <h3>
+        New Products </h3>
+    <table border="0" cellspacing="0" ng-init="init_new_products()">
+        <tbody>
+
+        <tr class="odd">
+            <td ng-repeat="neww in news">
+
+                <a href="{{neww.url}}" title="">
+                    <img class="product-img"
+                         ng-src="{{neww.image_url}}"
+                         alt="" width="215" height="165" spinkit-image-preloader='wave-spinner'>
+                </a>
+
+                <p class="featuredName">{{neww.part_type}}</p>
+
+                <p  ng-if="isTurboModelVisible(neww)" class="featuredTypeModel" text-clamp="3"
+                   data-span="Model:"
+                   style="">
+                <span
+                        class="caption">Model:
+                </span>
+                    {{neww.turbo_model}}
+                </p>
+
+
+                <p  ng-if="isTurboModelVisible(neww)" class="featuredTypeModel" text-clamp="3"
+                    data-span=" Where Used:"
+                    style="">
+                <span
+                        class="caption"> Where Used:
+                </span>
+                    {{neww.where_used}}
+                </p>
+
+
+                <p ng-if="isTurboTypeVisible(neww)" class="featuredTypeModel" text-clamp="3"
+                   data-span="Type:"
+                   style="">
+                     <span
+                             class="caption">Type:
+                </span>
+                    {{neww.turbo_type}}
+                </p>
+
+
+                <p ng-if="isTurboTypeVisible(neww)" class="featuredTypeModel" text-clamp="3"
+                   data-span="Description:"
+                   style="">
+                     <span
+                             class="caption">Description:
+                </span>
+                    {{neww.description}}
+                </p>
+
+
+
+                <p class="featuredItem">
+                <span
+                        class="caption">OE Ref:
+                </span> {{neww.oe_ref_urls}}
+                </p>
+
+
+
+                <p class="featuredItem">
+                <span class="caption">
+                    TI Part:
+                </span> {{neww.name}}
+                </p>
+
+                <div class="detail">
+                    <a href="{{neww.url}}" title="details">
+                        Product Detail
+                    </a>
+
+                    <div ng-if="neww.price=='login'" class="detail">
+
+                        <a
+                                href="/customer/account/login/"
+                        >Login
+                        </a> for price<br>
+
+                    </div>
+
+
+                    <div ng-if="neww.price!='login'" class="price-box">
+                        <span class="regular-price">
+                            <span class="price">
+                               {{neww.price | currency}}
+                            </span>
+                        </span>
+
+                    </div>
+                    <button
+                            ng-if="neww.price!='login'"
+                            type="button"
+                            class="button btn-cart"
+                            ng-click="addToCart(neww.id)">
+                                    <span>
+                                        <span>
+                                             Add to Cart
+                                        </span>
+                                    </span>
+                    </button>
+
+                </div>
+
+
+            </td>
+        </tr>
+
+        </tbody>
+
+    </table>
