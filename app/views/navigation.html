@@ -9,7 +9,7 @@
           <ul ng-class="getClass($index)">
             <li ng-repeat="part in parts"  ng-class="getComponentListItemClass(part)">
               <a  ng-click="createBreadcrumb('Manufacturer', manufacturer[0] + ' / ' + part[0])"
-                  href="{{createHttpLink('#/manufacturer/' + manufacturer[1]  + '/parttype/' + part[1] + '/parts')}}">{{part[0]}}</a>
+                  ng-href="#/manufacturer/{{manufacturer[1] }}/parttype/{{part[1]}}/parts">{{part[0]}}</a>
             </li>
           </ul>
         </li>
@@ -20,7 +20,7 @@
       <ul>
         <li ng-repeat="part in stdParts" ng-class="getComponentListItemClass(part)">
           <a ng-click="createBreadcrumb('Component', part[0])"
-             href="{{createHttpLink('#/parttype/' + part[1] + '/parts/standard' )}}" >
+             ng-href="/#/parttype/{{part[1]}}/parts/standard" >
             {{part[0]}}
           </a>
         </li>
@@ -33,7 +33,7 @@
         <li ng-repeat="part in criticalParts">
           <a
             ng-click="createBreadcrumb('Critical Dimensions', part[0])"
-            href="{{createHttpLink('#/parttype/' + part[1]  + '/parts/critical')}}" >
+            ng-href="/#/parttype/{{part[1]}}/parts/critical" >
             {{part[0]}}
           </a>
         </li>
@@ -44,19 +44,19 @@
 
     <li><a href="{{createHttpLink('#/application')}}">Applications</a></li>
     <li><a
-      href="{{createHttpLink('#/clearance/1')}}">
+      href="/#/clearance/1">
       Clearance
     </a>
     </li>
     <li>
       <a
         ng-click="createBreadcrumb('Catalog')"
-        ng-href="{{createHttpLink('#/parts')}}">
+        href="/#/parts">
         Catalog
       </a>
     </li>
-    <li><a href="{{createHttpLink('#/about-us')}}">About Us</a></li>
-    <li><a href="{{createHttpLink('#/contact-us')}}">Contact Us</a></li>
+    <li><a href="/#/about-us">About Us</a></li>
+    <li><a href="/#/contact-us">Contact Us</a></li>
     <li><a href="/customer/account/login">Login</a></li>
   </ul>
 </div>

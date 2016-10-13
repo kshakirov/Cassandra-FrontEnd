@@ -1,0 +1,151 @@
+p.featuredItem {
+    height: 20px;
+    text-after-overflow: "...";
+    text-align: left;
+}
+p.featuredTypeModel {
+    /*height: 40px;*/
+    max-width: 215px;
+    /*text-align: left;*/
+    /*overflow: hidden; !* Обрезаем все, что не помещается в область *!*/
+    /*text-overflow: ellipsis;*/
+}
+
+p.featuredName {
+    height: 10px;
+    text-align: left;
+}
+
+span.caption{
+    font-weight: bold;
+}
+
+div.detail{
+    text-align: left;
+}
+
+div.turbo{
+    height: 40px;
+}
+
+td.featureProduct{
+    padding-right: 5px;
+}
+td.featureProduct:last-of-type {
+    padding-right: 0;
+}
+
+p.newTypeModel {
+    max-width: 180px;
+}
+li.componentSection { border-bottom: 3px solid #E41E00; }
+
+
+.tabs-nav {padding: 10px 0 0; list-style: none;}
+.tabs-nav li {display: inline;}
+.tabs-nav a {
+    display:inline-block;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    font-size: 13px;
+    color: #fff;
+    background: rgba(228,30,0, 0.95);
+}
+
+.tabs-nav .active {
+    background: #fff;
+    color: rgba(20, 144, 64, 0.7);
+    border-bottom: 1px solid #fff;
+    margin-bottom: -1px;
+}
+
+.tab-content {
+    border: 0 solid #ddd;
+    padding: 20px;
+    height: auto;
+}
+
+
+.vertical-text {
+    transform: rotate(90deg);
+    transform-origin: left top 0;
+}
+
+
+.selected {
+    background-color: red;
+}
+
+.selected2 {
+    background-color: blue;
+}
+
+
+.btn_pagination {
+    background: #CCDAE3;
+    background-image: -webkit-linear-gradient(top, #D7D9DB, #858F96);
+    background-image: -moz-linear-gradient(top, #D7D9DB, #858F96);
+    background-iSmage: -ms-linear-gradient(top, #D7D9DB, #858F96);
+    background-image: -o-linear-gradient(top, #D7D9DB, #858F96);
+    background-image: linear-gradient(to bottom, #D7D9DB, #858F96);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 10px;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+}
+
+
+.btn_pagination:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+
+
+th.rotate {
+    /* Something you can count on */
+    height: 140px;
+    white-space: nowrap;
+}
+
+th.rotate > div {
+    transform:
+        /* Magic Numbers */
+            translate(1px, 51px)
+                /* 45 is really 360 - 45 */
+            rotate(270deg);
+    width: 7px;
+}
+th.rotate > div > span {
+    /*border-bottom: 1px solid #ccc;*/
+    /*padding: 5px 10px;*/
+}
+
+.legend {
+    float: left;
+    height: auto;
+    width: 400px;
+    padding-left: 40px;
+    padding-top: 10px
+}
+
+.critical {
+    height: auto;
+    float: left;
+    width: 440px;
+    padding-top: 10px
+}
+.compared {
+    padding: 20px;
+}
