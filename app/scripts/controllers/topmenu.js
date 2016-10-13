@@ -13,7 +13,10 @@ magento_module.controller("Menus", function ($scope, $http,
     }
     var backend_path = '/frontend/menu/';
     /*********************SCOPE ************************************/
-    $scope.init = function () {
+
+    $scope.menu = {critical: false, component: false, manufacturer: false};
+
+      $scope.init = function () {
         return $http.get(backend_path + 'part').then(function (promise) {
             usSpinnerService.spin('spinner-1');
             $rootScope.criticalParts = promise.data;
@@ -72,5 +75,16 @@ magento_module.controller("Menus", function ($scope, $http,
         })
     }
 
-  
+  $scope.getMouseOverAction = function (menu_item) {
+    $scope.menu[menu_item] = true;
+  }
+  $scope.getMouseOutAction = function (menu_item) {
+    $scope.menu[menu_item] = false;
+  }
+  $scope.getOverClass = function (menu_item, style) {
+      if( $scope.menu[menu_item])
+        return style
+  }
+
+
 })

@@ -27,9 +27,9 @@
       </ul>
     </li>
 
-    <li ng-init=init()>
-      <a href="">Critical Dimensions</a>
-      <ul>
+    <li ng-init=init()  ng-mouseover="getMouseOverAction('critical')" ng-class="getOverClass('critical', 'over')" >
+      <a ng-mouseover="getMouseOverAction('critical')" ng-class="getOverClass('critical', 'over')" href="">Critical Dimensions</a>
+      <ul ng-mouseover="getMouseOverAction('critical')" ng-class="getOverClass('critical', 'shown-sub')" ng-mouseleave="getMouseOutAction('critical')">
         <li ng-repeat="part in criticalParts">
           <a
             ng-click="createBreadcrumb('Critical Dimensions', part[0])"
@@ -42,7 +42,7 @@
     </li>
 
 
-    <li><a href="{{createHttpLink('#/application')}}">Applications</a></li>
+    <li><a href="/#/application">Applications</a></li>
     <li><a
       href="/#/clearance/1">
       Clearance
