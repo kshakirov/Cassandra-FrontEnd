@@ -1,5 +1,5 @@
 <div class="nav-container" >
-  <ul id="nav" ng-init="getCurrency('<?php echo Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol(); ?>')">
+  <ul id="nav"  ng-controller="Menus" ng-init="getCurrency()">
     <li ng-init="initManufacturers()">
       <a href="">Manufacturer</a>
       <ul>
