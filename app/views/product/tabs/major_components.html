@@ -1,0 +1,26 @@
+<div  class="box-collateral">
+    <table width="545px" ng-table="majorComponentsTableParams" template-pagination="custom/pager" class="data-table" show-filter="true">
+        <tr ng-repeat="bom in $data">
+            <td title="'Part Type'"  sortable="'part_type'">
+                {{bom.part_type}}
+            </td>
+            <td title="'Part'"  sortable="'oe_part_number_sort_field'">
+                <a  href="#/part/sku/{{bom.oe_sku}}">{{bom.oe_part_number}}</a>
+            </td>
+
+            <td title="'TI Part'"  sortable="'part_number'">
+                <a  href="#/part/sku/{{bom.sku}}">{{bom.part_number}}</a>
+            </td>
+            <td title="'Interch Part'"  sortable="'interchanges'">
+                <span ng-bind-html='bom.interchanges | parts_array_2_urls'></span>
+            </td>
+
+            <td title="'Price'"  sortable="'prices'">
+                <span  ng-bind-html="bom.prices | ti_price_filter"> </span>
+            </td>
+        </tr>
+        <tr ng-if="$data.length == 0">
+            <td colspan="7" style="text-align: center"><b>No Results</b></td>
+        </tr>
+    </table>
+</div>

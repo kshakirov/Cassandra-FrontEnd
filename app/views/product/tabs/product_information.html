@@ -1,0 +1,90 @@
+<div class="box-collateral">
+    <h2>Product Information</h2>
+    <table class="data-table" id="product-information-specs-table">
+        <colgroup>
+            <col width="25%">
+            <col>
+        </colgroup>
+        <tbody>
+        <tr class="first odd">
+            <th class="label">Part Type</th>
+            <td class="data last">{{product.part_type}}</td>
+        </tr>
+        <tr class="even">
+            <th class="label">Manufacturer</th>
+            <td class="data last">{{product.manufacturer}}</td>
+        </tr>
+        <tr class="odd">
+            <th class="label">Part Number</th>
+            <td class="data last">{{product.part_number}}</td>
+        </tr>
+        <tr class="even">
+            <th class="label">Name</th>
+            <td class="data last">{{product.name}}</td>
+        </tr>
+        <tr class="last odd">
+            <th class="label">Description</th>
+            <td class="data last">{{product.description}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="box-collateral box-additional">
+    <h2>Additional Information</h2>
+    <table class="data-table" id="product-information-additional-table">
+        <tbody>
+        <tr class="odd">
+            <th width="25%" class="label">
+                Turbo Type
+            </th>
+            <td class="data last">
+                {{product.turbo_type | int_array_or_string}}
+            </td>
+        </tr>
+
+        <tr class="even">
+            <th class="label">
+                Turbo Model
+            </th>
+            <td class="data last">
+                {{product.turbo_model | int_array_or_string}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div ng-if="isCriticalPart()">
+        <div class="critical" >
+            <h2>Critical Dimensions</h2>
+            <table class="data-table" id="product-information-critical-table">
+                <tbody>
+                <tr ng-repeat="item in product.critical" ng-class-odd="'odd'" ng-class-even="'even'">
+                    <th class="label">
+                        {{item | critical_units }}
+                    </th>
+
+                    <td class="data last">
+                        <span ng-if="item.decimal" ng-bind-html='item | tolerance'></span>
+                        <span ng-if="!item.decimal" ng-bind-html="item | critical_integer"></span>
+
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="legend">
+            <div ng-include="'views/product/tabs/legends.html?id=1'"></div>
+        </div>
+    </div>
+    <div ng-if="!isCriticalPart()">
+        <div ng-if="is_turbo()" class="box-collateral box-additional">
+            <h2>Service Kits</h2>
+            <div ng-include="'views/product/tabs/service_kits.html'"></div>
+        </div>
+
+        <div>
+            <div ng-include="'views/product/tabs/legends.html'"></div>
+        </div>
+    </div>
+</div>

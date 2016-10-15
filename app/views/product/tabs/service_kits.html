@@ -1,0 +1,22 @@
+<div class="box-collateral">
+    <!--<h1>Service Kits</h1>-->
+    <table ng-table="serviceKitsTableParams" template-pagination="custom/pager" class="data-table" show-filter="true">
+        <tr ng-repeat="sk in $data">
+            <td title="'Cartridge OE Part #'" filter="{ partNumber: 'text'}" sortable="'part_number'">
+                <a href="/#/part/sku/{{sk.sku}}">{{sk.part_number}}</a>
+            </td>
+            <td title="'TI Part'" filter="{ ti_part_number: 'text'}" sortable="'ti_part_number'">
+                <a href="/#/part/sku/{{sk.tiSku}}">{{sk.ti_part_number}}</a>
+            </td>
+            <td title="'Description'" filter="{ description: 'text'}" sortable="'description'">
+                {{sk.description}}
+            </td>
+            <td title="'Price'" filter="{ prices: 'text'}" sortable="'prices'">
+                <span  ng-bind-html="sk.prices | ti_price_filter"> </span>
+            </td>
+        </tr>
+        <tr ng-if="$data.length == 0">
+            <td colspan="7" style="text-align: center"><b>No Results</b></td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,14 @@
+<!--<h1>Interchangeable Parts</h1>-->
+<table ng-table="interchangeTableParams" template-pagination="custom/pager" class="table data-table" show-filter="true">
+    <tr ng-repeat="interchange in $data">
+        <td title="'ID'" filter="{ id: 'number'}" sortable="'id'">
+            <a href="/#/part/sku/{{interchange.id}}">{{interchange.part_number}}</a></td>
+        <td title="'Description'" filter="{ description: 'text'}" sortable="'description'">
+            {{interchange.description}}</td>
+        <td title="'Manufacturer'" filter="{ manufacturer: 'text'}" sortable="'manufacturer'">
+            {{interchange.manufacturer}}</td>
+    </tr>
+    <tr ng-if="$data.length == 0">
+        <td colspan="7" style="text-align: center"><b>No Results</b></td>
+    </tr>
+</table>

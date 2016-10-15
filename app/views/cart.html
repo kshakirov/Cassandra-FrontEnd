@@ -1,0 +1,41 @@
+<div class="block block-cart" ng-controller="CartController" ng-init="init()" >
+    <div ng-if="false">
+    <div class="block-title">
+        <strong><span>My Cart</span></strong>
+    </div>
+    <div class="block-content">
+        <div class="summary">
+            <p class="amount">There is <a href="/checkout/cart/">{{cart_wigdet.size}} item(s)</a> in your cart.</p>
+            <p class="subtotal">
+                <span class="label">Cart Subtotal:</span> <span class="price">{{cart_wigdet.subtotal}} {{cart_wigdet.currency}}</span>                                                </p>
+        </div>
+        <div class="actions">
+            <button type="button" title="Checkout" class="button" onclick="setLocation('/checkout/onepage/')"><span><span>Checkout</span></span></button>
+        </div>
+        <p class="block-subtitle">Recently added item(s)</p>
+        <ol id="cart-sidebar" class="mini-products-list">
+            <li class="item last odd" ng-repeat="item in cart_wigdet.items">
+                <a ng-href="/#/part/sku/{{item.sku}}"
+                   title=""
+                   class="product-image">
+                    <img ng-src="/imageserver/product/{{item.sku}}/image/75/50" width="55" height="50" alt="">
+                </a>
+                <div class="product-details">
+                    <a href="/checkout/cart/delete/id/{{item.id}}" title="Remove This Item" onclick="return confirm('Are you sure you would like to remove this item from the shopping cart?');" class="btn-remove">Remove This Item</a>
+                    <a href="/checkout/cart/configure/id/{{item.id}}"  title="Edit item" class="btn-edit">Edit item</a>
+                    <p class="product-name"><a ng-href="/#/part/sku/{{item.sku}}"> {{item.name}}</a></p>
+                    <strong>{{item.qty}}</strong> x
+
+
+                    <span class="price">{{item.price}}</span>
+
+
+
+
+                </div>
+            </li>
+        </ol>
+        <script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+    </div>
+        </div>
+</div>

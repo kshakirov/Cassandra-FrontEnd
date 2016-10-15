@@ -1,0 +1,67 @@
+<div class="main-container col1-layout">
+    <div class="main">
+        <div class="page-title category-title">
+            <h4> Application /</h4>
+        </div>
+        <div class="category-products"
+             ng-controller="ApplicationController" ng-init="init()">
+            <div class="amfinder-horizontal">
+                <table>
+                    <tbody><tr>
+                        <td>
+                            <div class="dropdown-title">Make</div>
+                            <div class="dropdown-element">
+                                <select
+                                        ng-options="make as make for make in makes"
+                                        ng-model="make_selected"
+                                        ng-change="aggregateYearsByMake()"
+                                        style="width:120px">
+                                </select> &nbsp;
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown-title">Year</div>
+                            <div class="dropdown-element">
+                                <select
+                                        ng-options="year as year for year in years"
+                                        ng-model="year_selected"
+                                        ng-change="aggregateModelsByMakeAndYear()"
+                                        style="width:120px">
+                                </select> &nbsp;
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown-title">Model</div>
+                            <div class="dropdown-element">
+                                <select
+                                        ng-options="model as model for model in models"
+                                        ng-model="model_selected"
+
+                                        style="width:120px">
+
+                                </select> &nbsp;
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <br>
+                            <div class="amfinder-buttons" style="">
+                                <button
+                                        class="button"
+                                        ng-click="queryApplication()"
+                                        title="Find" >
+                                    <span><span>Find</span></span>
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody></table>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+

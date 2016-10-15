@@ -1,0 +1,85 @@
+<div class="main-container col1-layout" ng-controller="ProductController" ng-init="init()">
+    <div class="main">
+        <div class="product-view">
+            <div ng-if="cart_message" id="messages_product_view">
+                <ul class="messages">
+                    <li class="success-msg">
+                        <ul><li><span>{{cart_message}}</span></li></ul>
+                    </li>
+                </ul>
+            </div>
+            <div ng-if="compared_message" >
+                <ul class="messages">
+                    <li class="success-msg">
+                        <ul>
+                            <li>
+                                <span>{{compared_message}}</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="product-essential">
+                <div class="product-shop">
+                    <div class="product-price-add-to-box">
+
+                            <div ng-include="'views/product/tabs/product_add_to_box.html'"></div>
+                    </div>
+                    <div class="product-header-info">
+                        <div ng-include="'views/product/tabs/product_general_info.html'">
+                        </div>
+                        <h2 ng-if="is_turbo()">Major Components</h2>
+                        <div  ng-if="is_turbo()" ng-include="'views/product/tabs/major_components.html'"></div>
+                    </div>
+                </div>
+                <div class="product-img-box">
+                    <div ng-include="'views/product/tabs/product_image.html'"></div>
+
+                </div>
+                <div class="clearer"></div>
+                <div class="product-collateral">
+                    <ul class="tabs-nav">
+                        <li><a ng-click="tab=1" ng-class="{'active':tab==1}">Product</a></li>
+                        <li><a ng-click="tab=2" ng-class="{'active':tab==2}">Bill of Materials</a></li>
+                        <li><a ng-click="tab=3" ng-class="{'active':tab==3}">Application Detail</a></li>
+                        <li><a ng-click="tab=4" ng-class="{'active':tab==4}">Where used</a></li>
+                        <li><a ng-click="tab=5" ng-class="{'active':tab==5}">Kit Matrix</a></li>
+
+                        <li><a ng-click="tab=6" ng-class="{'active':tab==6}">Interchangeable Parts</a></li>
+                        <li><a ng-click="tab=7" ng-class="{'active':tab==7}">Sales Notes</a></li>
+                    </ul>
+
+                    <div class="tabs-container">
+                        <div class="tab-content" ng-show="tab==1">
+                            <div ng-include="'views/product/tabs/product_information.html?=1'"></div>
+                        </div>
+
+                        <div class="tab-content" ng-show="tab==2">
+                            <div ng-include="'views/product/tabs/bill_of_materials.html'"></div>
+                        </div>
+
+                        <div class="tab-content" ng-show="tab==3">
+                            <div ng-include="'views/product/tabs/application_detail.html'"></div>
+                        </div>
+
+                        <div class="tab-content" ng-show="tab==4">
+                            <div ng-include="'views/product/tabs/where_used.html?id=1'"></div>
+                        </div>
+                        <div class="tab-content" ng-show="tab==5">
+                            <div ng-include="'views/product/tabs/kit_matrix.html?id=5'"></div>
+                        </div>
+                        <div class="tab-content" ng-show="tab==6">
+                            <div ng-include="'views/product/tabs/interchangeable_parts.html'"></div>
+                        </div>
+                        <div class="tab-content" ng-show="tab==7">
+                            <div ng-include="'views/product/tabs/sales_notes.html'"></div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>

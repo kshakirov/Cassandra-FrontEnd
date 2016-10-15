@@ -1,0 +1,43 @@
+<table ng-if="listReady" class="data-table" id="products-list">
+    <tr ng-if="listReady">
+        <th ng-repeat="header in headers">{{header.name}}</th>
+        <th colspan="2" style="text-align: center">Price</th>
+    </tr>
+    <tbody>
+    <tr ng-repeat="row in rows" ng-class-odd="'odd'" ng-class-even="'even'">
+        <td ng-repeat="item in row track by $index">
+            <span ng-if="item.code=='ti_part'">
+                <a href="#/part/sku/{{item.value.ti_sku}}">{{item.value.ti_part_number | uppercase}}</a>
+            </span>
+            <span ng-if="item.code=='ti_chra'" ng-bind-html=" item.value | chra_2_links">
+
+            </span>
+            <span ng-if="item.code=='chra'" ng-bind-html=" item.value | chra_2_links"> </span>
+
+            <span ng-if="item.value[0].hasOwnProperty('code')">{{item.value[0].name | int_array_or_string}}</span>
+            <span ng-if="item.code=='oe_ref_urls'"><span ng-repeat="ref in item.value track by $index"><a
+                    ng-href="#/part/sku/{{ref.sku}}">{{ref.part_number | uppercase}}</a>{{$index | oe_ref_coma: item.value.length}}</span></span>
+
+            <span ng-if="item.value.hasOwnProperty('value')" ng-bind-html='item.value | tolerance'>
+
+            </span>
+
+            <span
+                    ng-if="item.code!='oe_ref_urls' && item.code!='ti_part' &&
+                    !item.value[0].hasOwnProperty('code') && !item.value.hasOwnProperty('value') &&
+                    item.code!='chra' && item.code!='ti_chra'">
+                        {{item.value}}
+            </span>
+            <div
+                    class="products-list-price"
+                    ng-if="item.hasOwnProperty('price') && item.price!='Unauthorized'">
+                <span class="price"  ng-bind-html="item.price  | ti_price_filter: row"></span>
+            </div>
+            <span
+                    ng-if="item.hasOwnProperty('price') && item.price=='Unauthorized'">
+                      <a href="/customer/account/login">Login</a>
+            </span>
+        </td>
+    </tr>
+    </tbody>
+</table>

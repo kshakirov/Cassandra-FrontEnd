@@ -1,0 +1,19 @@
+<div class="product-name">
+    <h1>{{product.name}}</h1>
+</div>
+<ul>
+    <li><strong>Part Type:</strong> {{product.part_type}}</li>
+    <li><strong>Manufacturer:</strong> {{product.manufacturer}}</li>
+    <li><strong>Part Number:</strong> {{product.part_number}}</li>
+    <li ng-if="product.ti_part_number">
+        <strong>Compatible TI Part:</strong>
+        <a ng-href="/#/part/sku/{{product.ti_part_sku}}">{{product.ti_part_number}}</a>
+    </li>
+    <li ng-if="is_cartride()"><strong>Turbo Serviced:</strong> <span ng-bind-html=tiServiced></span></li>
+    <li ng-if="is_turbo() || is_cartride()">
+        <strong>Turbo Type:</strong>{{product.turbo_type | int_array_or_string}}
+    </li>
+    <li ng-if="!is_turbo() && !is_cartride()">
+        <strong>Turbo Types:</strong>{{product.turbo_type | int_array_or_string}}
+    </li>
+</ul>

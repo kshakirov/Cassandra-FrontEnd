@@ -1,0 +1,95 @@
+<div class="toolbar" ng-if="listReady">
+    <div class="pager">
+        <p class="amount">
+
+
+            <strong>Items {{pagination.visible_items[0] + 1}} to {{pagination.visible_items[1]}} of
+                {{pagination.total}}</strong>
+
+        </p>
+
+        <div class="limiter">
+            <label>Show</label>
+            <select ng-change="setPageSize(pagination.per_page)" ng-model="pagination.per_page"
+                    ng-options="option for option in pageSizes">
+            </select> per 1 page
+        </div>
+        <div class="pages">
+            <strong>Page</strong>
+            <ol>
+
+                <li
+                        ng-if="pagination.current_page ==  -1">
+                    <a class="previous i-previous"
+                       href ng-click="next_previous(pagination.visible_pages, pagination.current_page)"
+                       title="Previous">
+                        <img
+                                src="images/pager_arrow_left.gif"
+                                alt="Previous"
+                                class="v-middle">
+                    </a>
+                </li>
+
+                <li ng-repeat="page in pagination.visible_pages"
+                    ng-class="{current:  page.page==pagination.current_page}">
+                    <a
+                            ng-if="page.page!=pagination.current_page "
+                            href
+                            ng-click="goToPage(page)">{{page.page}}
+                    </a>
+                    <span
+                            ng-if="page.page ==pagination.current_page  ">{{page.page}}
+                    </span>
+                </li>
+                <li ng-if="pagination.current_page > pagination.total_pages * 100">
+                    <a class="next i-next"
+                       href
+                       ng-click="next_previous(pagination.visible_pages, pagination.current_page)"
+                       title="Next">
+                        <img
+                                src="images/pager_arrow_right.gif"
+                                alt="Next"
+                                class="v-middle">
+                    </a>
+                </li>
+
+            </ol>
+        </div>
+
+
+    </div>
+
+    <div class="sorter" ng-if="data.sorter_selected">
+        <div class="sort-by">
+            <label>Sort By</label>
+            <select
+                    ng-model="data.sorter_selected"
+                    ng-change="sorterChanged(data.sorter_selected)"
+                    ng-options="option as option.name for option in sorters">
+
+            </select>
+
+            <a ng-if="!sortingAsc"
+               ng-click="sortingDirectionChanged('asc', data.sorter_selected)"
+               href=""
+               title="Set Ascending Direction'">
+
+                <img
+                        src="images/i_desc_arrow.gif"
+                        alt="'Set Ascending Direction"
+                        class="v-middle"/>
+            </a>
+
+            <a ng-if="sortingAsc"
+               href=""
+               ng-click="sortingDirectionChanged('desc', data.sorter_selected)"
+               title="Set Descending Direction">
+                <img
+                        src="images/i_asc_arrow.gif"
+                        alt="Set Descending Direction'"
+                        class="v-middle"/>
+            </a>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<!--<h1>Sales Notes</h1>-->
+<table ng-table="salesnotesTableParams" template-pagination="custom/pager" class="table data-table" show-filter="true">
+    <tr ng-repeat="note in $data">
+        <td title="'DATE'" filter="{ create_date: 'text'}" sortable="'create_date'">
+            {{note.create_date}}</td>
+        <td title="'NOTE'" filter="{ comment: 'text'}" sortable="'comment'">
+            {{note.comment}}</td>
+    </tr>
+    <tr ng-if="$data.length == 0">
+        <td colspan="7" style="text-align: center"><b>No Results</b></td>
+    </tr>
+    </table>

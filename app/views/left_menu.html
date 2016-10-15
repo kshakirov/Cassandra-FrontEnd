@@ -1,0 +1,85 @@
+<div class="block block-layered-nav" ng-controller="LeftMenu" ng-init="init()">
+    <div class="block-title">
+        <strong><span>Shop By</span></strong>
+    </div>
+    <div class="block-content">
+        <p class="block-subtitle">Currently Shopping by</p>
+        <div class="currently">
+            <ol>
+                <li ng-repeat="filter in current_filters" ng-if="!filter.hidden">
+                    <span class="label">
+                        {{filter.code}} :
+                    </span>
+                    <a
+                            href=""
+                            ng-click="removeFilterFromCurrentFilters(filter.code, current_filters)"
+                            class="btn-remove"
+                            title="Remove This Item">
+                    </a>
+                    {{filter.name}}
+
+                </li>
+
+            </ol>
+        </div>
+
+        <div class="actions">
+            <a href="" ng-click="removeAllFilters(current_filters)">Clear All</a>
+        </div>
+
+
+        <p class="block-subtitle">Part Number</p>
+
+        <form    ng-controller="SearchController">
+            <div class="form-search" style="margin:12px">
+                <input  type="text"
+                       value=""
+                       class="input-text"
+                       style="width: 100px;"
+                       ng-model="query"
+                       maxlength="" placeholder="Part Number&hellip;"/>
+                <button
+                        ng-click="search_in_all_fields(query)"
+                         title="Search" class="button">
+                            <span>
+                                <span>Search</span>
+                            </span>
+                </button>
+
+            </div>
+        </form>
+        <p class="block-subtitle">Shopping Options</p>
+
+        <dl id="narrow-by-list">
+            <span data-ng-repeat="filter in filters">
+                     <dt ng-if="filter.type=='int'">{{filter.name}}
+                     </dt>
+                <dd ng-if="filter.type=='int'">
+                    <ol>
+                        <li>
+                            <select data-ng-model="filter.selected"
+                                    data-ng-change="integerFilterChanged(filter.selected)"
+                                    class="amshopby-select amshopby-ajax-select">
+                                <option ng-repeat="option in filter.options  track by $index"  value="{{option}}">{{option.name}}</option>
+                            </select>
+                        </li>
+                    </ol>
+                </dd>
+            </span>
+            <span data-ng-repeat="filter in filters">
+                <dt ng-if="filter.type=='price'">{{filter.name}}
+                </dt>
+                <dd ng-if="filter.type=='price'">
+                    <rzslider
+                            rz-slider-model="filter.min"
+                            rz-slider-high="filter.max"
+                            rz-slider-options="filter.options">
+
+                    </rzslider
+                </dd>
+            </span>
+
+        </dl>
+        <script type="text/javascript">decorateDataList('narrow-by-list')</script>
+    </div>
+</div>

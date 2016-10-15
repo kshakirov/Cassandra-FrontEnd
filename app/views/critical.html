@@ -1,0 +1,38 @@
+<div class="main-container col2-left-layout">
+    <div class="main">
+
+        <div class="col-main">
+            <div  ng-controller="CriticalController"
+                  ng-init="initTable()">
+                <div class="page-title category-title">
+                    <div style="float:left;width:700px;height:40px">
+                        <h4>{{breadcrumb}} </h4>
+                    </div>
+                    <div ng-init="initButton()" style="float:left;width:100px;height:40px">
+                        <button
+                                id="i_button"
+                                class="btn"
+                                ng-click="toggleMesurements()"
+                                style="display: inline-block;"> {{unitsButton}}
+                        </button>
+                    </div>
+                </div>
+                <div class="category-products" >
+
+
+                    <div ng-include="'views/toolbar.html'"></div>
+                    <div ng-include="'views/table.html'"></div>
+                    <div ng-include="'views/toolbar.html'"></div>
+                </div>
+                <div><span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span></div>
+            </div>
+
+        </div>
+        <div class="col-left sidebar" >
+            <div ng-include="'views/left_menu.html'"></div>
+        </div>
+    </div>
+</div>
+
+
+
