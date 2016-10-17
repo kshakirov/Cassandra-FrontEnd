@@ -12,7 +12,7 @@ magento_module.controller("ByPartsProductTable", function ($scope, $rootScope,
     "http://www.turbointernational.com/media/bannerslider/d/e/design1.jpg"]
     $scope.data = {}
     $scope.sortingAsc = true;
-   
+
 
     function _get_stats() {
         var stats =  $cookies.getObject('stats');
@@ -20,7 +20,7 @@ magento_module.controller("ByPartsProductTable", function ($scope, $rootScope,
     }
 
     function init_headers(part_type) {
-        return $http.get('/elastic/critical/index/partsheaders?part_type=' + part_type).then(function (promise) {
+        return $http.get('/frontend/menu/standard/header?part_type=' + part_type).then(function (promise) {
             $scope.headers = promise.data;
             $scope.listReady = true;
             return part_type;
@@ -47,7 +47,7 @@ magento_module.controller("ByPartsProductTable", function ($scope, $rootScope,
             Pagination.render(promise);
         })
     }
-    
+
     $scope.sorterChanged = function (value) {
         $scope.data.sorter_selected = value;
         var query = ElasticQuery.getBySorting(value,
@@ -59,7 +59,7 @@ magento_module.controller("ByPartsProductTable", function ($scope, $rootScope,
     }
 
     function init_sorters(part_type) {
-        return $http.get('/elastic/critical/index/partssorters?part_type=' + part_type).then(function (promise) {
+        return $http.get('/frontend/menu/standard/sorter?part_type=' + part_type).then(function (promise) {
             $scope.sorters = promise.data;
             $scope.data.sorter_selected = $scope.sorters[0];
             return  $scope.data.sorter_selected;

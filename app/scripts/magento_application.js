@@ -9,7 +9,7 @@ magento_module.run(function($rootScope) {
 
 magento_module.service('ElasticSearch', function (esFactory) {
     function _get_hostname() {
-        var host = location.hostname;
+        var host = location.hostname + ":10000";
             return host
     }
     var hostname = _get_hostname();

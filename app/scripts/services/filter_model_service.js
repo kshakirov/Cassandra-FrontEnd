@@ -18,7 +18,7 @@ magento_module.service("FilterModel", function ($http) {
     }
 
     this.init_by_catalog_product_filters = function () {
-        return $http.get('/elastic/critical/index/catalogfilters').then(function (promise) {
+        return $http.get('frontend/menu/standard/filter').then(function (promise) {
             return promise.data;
         })
     }
