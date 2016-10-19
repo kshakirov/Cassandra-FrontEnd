@@ -15,10 +15,10 @@
         </li>
       </ul>
     </li>
-    <li ng-init="initComponentsSubMenus()" >
-      <a href="">Component</a>
-      <ul>
-        <li ng-repeat="part in stdParts" ng-class="getComponentListItemClass(part)">
+    <li ng-init="init()"  ng-mouseover="getMouseOverAction('component')" ng-class="getOverClass('component', 'over')"  ng-mouseleave="getMouseOutAction('component')">
+      <a ng-mouseover="getMouseOverAction('component')" ng-class="getOverClass('component', 'over')" href="">Component</a>
+      <ul ng-mouseover="getMouseOverAction('component')" ng-class="getOverClass('component', 'shown-sub')">
+        <li ng-repeat="part in criticalParts" >
           <a ng-click="createBreadcrumb('Component', part[0])"
              ng-href="/#/parttype/{{part[1]}}/parts/standard" >
             {{part[0]}}
@@ -27,7 +27,7 @@
       </ul>
     </li>
 
-    <li ng-init=init()  ng-mouseover="getMouseOverAction('critical')" ng-class="getOverClass('critical', 'over')" >
+    <li ng-init=init()  ng-mouseover="getMouseOverAction('critical')" ng-class="getOverClass('critical', 'over')"  ng-mouseleave="getMouseOutAction('critical')">
       <a ng-mouseover="getMouseOverAction('critical')" ng-class="getOverClass('critical', 'over')" href="">Critical Dimensions</a>
       <ul ng-mouseover="getMouseOverAction('critical')" ng-class="getOverClass('critical', 'shown-sub')" ng-mouseleave="getMouseOutAction('critical')">
         <li ng-repeat="part in criticalParts">
