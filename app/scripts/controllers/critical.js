@@ -11,7 +11,7 @@ magento_module.controller("CriticalController", function ($scope, $rootScope,
     $scope.headers = ['Ti', 'OE REF', 'Description', 'C/E DIA'];
     $scope.pageSizes = [5, 10, 25, 50, 100];
 
-    
+
     function _get_stats() {
         var stats = $cookies.getObject('stats');
         return stats;
@@ -28,7 +28,7 @@ magento_module.controller("CriticalController", function ($scope, $rootScope,
     }
 
     function init_table(part_type) {
-        return $http.get('/elastic/critical/index/headers?part_type=' + part_type).then(function (promise) {
+        return $http.get('/frontend/menu/critical/header?part_type=' + part_type).then(function (promise) {
             usSpinnerService.spin('spinner-1');
             $scope.headers = promise.data;
             $scope.listReady = true;
@@ -38,7 +38,7 @@ magento_module.controller("CriticalController", function ($scope, $rootScope,
     }
 
     function init_sorters(part_type) {
-        return $http.get('/elastic/critical/index/sorters?part_type=' + part_type).then(function (promise) {
+        return $http.get('/frontend/menu/critical/sorter?part_type=' + part_type).then(function (promise) {
             $scope.sorters = promise.data;
             $scope.data.sorter_selected = $scope.sorters[0];
             return $scope.data.sorter_selected;

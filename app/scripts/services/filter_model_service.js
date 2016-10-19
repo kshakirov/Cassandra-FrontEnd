@@ -1,6 +1,6 @@
 magento_module.service("FilterModel", function ($http) {
     this.init_filters = function (part_type) {
-        return $http.get('/elastic/critical/index/filters?part_type=' + part_type).then(function (promise) {
+        return $http.get('/frontend/menu/critical/filter?part_type=' + part_type).then(function (promise) {
             return promise.data;
         })
     }
