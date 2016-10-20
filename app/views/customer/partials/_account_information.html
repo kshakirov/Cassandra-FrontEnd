@@ -1,0 +1,78 @@
+<div class="my-account">
+    <div class="page-title">
+        <h1>Edit Account Information</h1>
+    </div>
+    <form    class="ng-pristine ng-valid">
+        <div class="fieldset">
+            <input name="form_key" type="hidden" value="GLJZUZqOQzS7mJF8">
+            <h2 class="legend">Account Information</h2>
+            <ul class="form-list">
+                <li class="fields">
+                    <div class="customer-name">
+                        <div class="field name-firstname">
+                            <label for="firstname" class="required"><em>*</em>First Name</label>
+                            <div class="input-box">
+                                <input ng-model="customer_data.firstname"  type="text" id="firstname" name="firstname"  title="First Name"
+                                       maxlength="255" class="input-text required-entry">
+                            </div>
+                        </div>
+                        <div class="field name-lastname">
+                            <label for="lastname" class="required"><em>*</em>Last Name</label>
+                            <div class="input-box">
+                                <input ng-model="customer_data.lastname" type="text" id="lastname" name="lastname"  title="Last Name"
+                                       maxlength="255" class="input-text required-entry">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <label for="email" class="required"><em>*</em>Email Address</label>
+                    <div class="input-box">
+                        <input ng-model="customer_data.email" type="text" name="email" id="email"  title="Email Address"
+                               class="input-text required-entry validate-email">
+                    </div>
+                </li>
+                <li class="control">
+                    <input type="checkbox" name="change_password" id="change_password" value="1"
+                           ng-click="setPasswordFormVisible()" title="Change Password" class="checkbox"><label
+                        for="change_password">Change Password</label>
+                </li>
+            </ul>
+        </div>
+        <div ng-if="passwordVisible" class="fieldset" >
+            <h2 class="legend">Change Password</h2>
+            <ul class="form-list">
+                <li>
+                    <label for="current_password" class="required"><em>*</em>Current Password</label>
+                    <div class="input-box">
+                        <input ng-model="customer_data.currentPassword" type="password" title="Current Password" class="input-text" name="current_password"
+                               id="current_password">
+                    </div>
+                </li>
+                <li class="fields">
+                    <div class="field">
+                        <label for="password" class="required"><em>*</em>New Password</label>
+                        <div class="input-box">
+                            <input ng-model ="customer_data.newPassword_1" type="password" title="New Password" class="input-text validate-password"
+                                   name="password" id="password">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="confirmation" class="required"><em>*</em>Confirm New Password</label>
+                        <div class="input-box">
+                            <input ng-model="customer_data.newPassword_2" type="password" title="Confirm New Password" class="input-text validate-cpassword"
+                                   name="confirmation" id="confirmation">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="buttons-set">
+            <p class="required">* Required Fields</p>
+            <p class="back-link"><a href="http://localhost/#/">
+                <small>«</small>
+                Back</a></p>
+            <button ng-click="updateCustomerData()"  title="Save" class="button"><span><span>Save</span></span></button>
+        </div>
+    </form>
+</div>

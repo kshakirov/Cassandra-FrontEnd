@@ -1,0 +1,98 @@
+<div class="my-account" ng-controller="CustomerOrdersController" ng-init="init()">
+      <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-orders"
+            spinner-start-active="true"></span>
+    <div class="page-title">
+        <h1>My Orders</h1>
+    </div>
+
+    <div class="pager">
+
+        <p class="amount">
+            <strong>2 Item(s)</strong>
+        </p>
+
+        <div class="limiter">
+            <label>Show</label>
+            <select onchange="setLocation(this.value)">
+                <option value="http://localhost/sales/order/history/?limit=10" selected="selected">
+                    10
+                </option>
+                <option value="http://localhost/sales/order/history/?limit=20">
+                    20
+                </option>
+                <option value="http://localhost/sales/order/history/?limit=50">
+                    50
+                </option>
+            </select> per page
+        </div>
+
+
+    </div>
+
+    <table class="data-table" id="my-orders-table">
+        <colgroup>
+            <col width="1">
+            <col width="1">
+            <col>
+            <col width="1">
+            <col width="1">
+            <col width="1">
+        </colgroup>
+        <thead>
+        <tr class="first last">
+            <th>Order #</th>
+            <th>Date</th>
+            <th>Ship To</th>
+            <th><span class="nobr">Order Total</span></th>
+            <th><span class="nobr">Order Status</span></th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="order in orders">
+            <td>{{order.id}}</td>
+            <td><span class="nobr">{{order.created_at}}</span></td>
+            <td>{{order.ship_to}}</td>
+            <td><span class="price">{{order.total}}</span></td>
+            <td><em>{{order.status}}</em></td>
+            <td class="a-center last">
+                <span class="nobr"><a href="http://localhost/sales/order/view/order_id/303/">View Order</a>
+                                                            <span class="separator">|</span> <a
+                            href="http://localhost/sales/order/reorder/order_id/303/" class="link-reorder">Reorder</a>
+                                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <div class="pager">
+
+        <p class="amount">
+            <strong>2 Item(s)</strong>
+        </p>
+
+        <div class="limiter">
+            <label>Show</label>
+            <select onchange="setLocation(this.value)">
+                <option value="http://localhost/sales/order/history/?limit=10" selected="selected">
+                    10
+                </option>
+                <option value="http://localhost/sales/order/history/?limit=20">
+                    20
+                </option>
+                <option value="http://localhost/sales/order/history/?limit=50">
+                    50
+                </option>
+            </select> per page
+        </div>
+
+
+    </div>
+
+    <div class="buttons-set">
+        <p class="back-link"><a href="http://localhost/">
+            <small>«</small>
+            Back</a></p>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="main-container col2-right-layout">
+    <div class="main" ng-controller="CustomerCheckoutController" ng-init="init()">
+        <div class="col-main">
+            <div class="page-title">
+                <h1>Checkout</h1>
+            </div>
+
+            <v-accordion class="vAccordion--default" multiple>
+
+                <!-- add expanded attribute to open the section -->
+                <v-pane expanded>
+                    <v-pane-header>
+                        {{panes[0].header}}
+                    </v-pane-header>
+
+                    <v-pane-content>
+                        <div ng-include="'/skin/frontend/default/default/views/customer/partials/_billing_information.html'"></div>
+                    </v-pane-content>
+                </v-pane>
+
+                <v-pane >
+                    <v-pane-header>
+                        {{panes[1].header}}
+                    </v-pane-header>
+
+                    <v-pane-content>
+                        <div ng-include="'/skin/frontend/default/default/views/customer/partials/_billing_information.html'"></div>
+                    </v-pane-content>
+                </v-pane>
+
+                <v-pane >
+                    <v-pane-header>
+                        {{panes[2].header}}
+                    </v-pane-header>
+
+                    <v-pane-content>
+                        <div ng-include="'/skin/frontend/default/default/views/customer/partials/_shipment_method.html'"></div>
+                    </v-pane-content>
+                </v-pane>
+                <v-pane >
+                    <v-pane-header>
+                        {{panes[3].header}}
+                    </v-pane-header>
+
+                    <v-pane-content>
+                        <div ng-include="'/skin/frontend/default/default/views/customer/partials/_payment_method.html'"></div>
+                    </v-pane-content>
+                </v-pane>
+                <v-pane >
+                    <v-pane-header>
+                        {{panes[4].header}}
+                    </v-pane-header>
+
+                    <v-pane-content>
+                        <div ng-include="'/skin/frontend/default/default/views/customer/partials/_order_review.html'"></div>
+                    </v-pane-content>
+                </v-pane>
+
+            </v-accordion>
+
+            <!--<button ng-click="accordion.toggle(0)">Toggle first pane</button>-->
+            <!--<button ng-click="accordion.expandAll()">Expand all</button>-->
+            <!--<button ng-click="accordion.collapseAll()">Collapse all</button>-->
+
+        </div>
+        <div class="col-right sidebar"><div id="checkout-progress-wrapper"><div class="block block-progress opc-block-progress">
+            <div class="block-title">
+                <strong><span>Your Checkout Progress</span></strong>
+            </div>
+            <div class="block-content">
+                <dl>
+                    <dt>
+                        Billing Address            </dt>
+
+                    <dt>
+                        Shipping Address            </dt>
+
+                    <dt>
+                        Shipping Method            </dt>
+
+                    <dt>
+                        Payment Method            </dt>
+                </dl>
+            </div>
+        </div></div></div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="order-review" id="checkout-review-load">
+
+    <form id="custom-billing-form" action="">
+        <fieldset>
+            <ul class="form-list">
+                <li class="fields">
+                    <div class="field">
+                        <label for="billing:customer_po">Customer Purchase Order</label>
+                        <div class="input-box">
+                            <input type="text" name="billing[customer_po]" id="billing:customer_po" value="" title="" class="input-text">
+                        </div>
+                    </div>
+                </li>
+                <li class="wide">
+                    <label for="billing:special_instructions">Special instructions</label>
+                    <div class="input-box">
+                        <textarea name="billing[special_instructions]" id="billing:special_instructions" value="" title="" style="height: 2em;"></textarea>
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+
+    <div id="checkout-review-table-wrapper">
+        <table class="data-table" id="checkout-review-table">
+            <colgroup><col>
+                <col width="1">
+                <col width="1">
+                <col width="1">
+            </colgroup><thead>
+        <tr class="first last">
+            <th rowspan="1">Part Type</th>
+            <th rowspan="1">TI Part #</th>
+            <th rowspan="1">OEM Part #</th>
+            <th colspan="1" class="a-center">Price</th>
+            <th rowspan="1" class="a-center">Qty</th>
+            <th colspan="1" class="a-right">Subtotal</th>
+        </tr>
+        </thead>
+            <tfoot>
+            <tr class="first">
+                <td style="" class="a-right" colspan="5">
+                    Subtotal    </td>
+                <td style="" class="a-right last">
+                    <span class="price">$261.84</span>    </td>
+            </tr>
+            <tr>
+                <td style="" class="a-right" colspan="5">
+                    Shipping &amp; Handling (To Be Quoted by Sales Representative - Offline)    </td>
+                <td style="" class="a-right last">
+                    <span class="price">$0.00</span>    </td>
+            </tr>
+            <tr class="last">
+                <td style="" class="a-right" colspan="5">
+                    <strong>Grand Total</strong>
+                </td>
+                <td style="" class="a-right last">
+                    <strong><span class="price">$261.84</span></strong>
+                </td>
+            </tr>
+            </tfoot>
+            <tbody>
+            <tr class="first last odd">
+
+                <!-- Part Type -->
+                <td>
+                    <h3 class="product-name">Cartridge</h3>
+                </td>
+
+                <!-- TI Part Number -->
+                <td>
+                    1-A-0549    </td>
+
+                <!-- OEM Part Number -->
+                <td>
+                </td>
+
+                <td class="a-right">
+                    <span class="cart-price">
+
+                            <span class="price">$261.84</span>
+        </span>
+
+
+                </td>
+                <td class="a-center">1</td>
+                <td class="a-right last">
+                    <span class="cart-price">
+
+                            <span class="price">$261.84</span>
+        </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="checkout-review-submit">
+
+        <div class="buttons-set" id="review-buttons-container">
+            <p class="f-left">Forgot an Item?            <a href="http://ec2-52-52-21-147.us-west-1.compute.amazonaws.com/checkout/cart/">
+                Edit Your Cart            </a>
+            </p>
+            <button type="submit" title="Place Order" class="button btn-checkout" onclick="review.save();"><span><span>Place Order</span></span></button>
+        <span class="please-wait" id="review-please-wait" style="display:none;">
+            <img src="http://ec2-52-52-21-147.us-west-1.compute.amazonaws.com/skin/frontend/default/default/images/opc-ajax-loader.gif" alt="Submitting order information..." title="Submitting order information..." class="v-middle"> Submitting order information...        </span>
+        </div>
+
+
+
+
+
+    </div>
+</div>
