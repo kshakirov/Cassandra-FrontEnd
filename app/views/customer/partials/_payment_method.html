@@ -1,0 +1,61 @@
+<div id="checkout-step-payment" class="step a-item">
+    <script type="text/javascript">
+        //<![CDATA[
+        var quoteBaseGrandTotal = 261.84;
+        var checkQuoteBaseGrandTotal = quoteBaseGrandTotal;
+        var payment = new Payment('co-payment-form', 'http://ec2-52-52-21-147.us-west-1.compute.amazonaws.com/checkout/onepage/savePayment/');
+        var lastPrice;
+        //]]>
+    </script>
+    <form action="" id="co-payment-form" class="ng-pristine ng-valid">
+        <fieldset>
+            <dl class="sp-methods" id="checkout-payment-method-load"><dl class="sp-methods" id="checkout-payment-method-load">
+                <dt>
+                    <span class="no-display"><input id="p_method_checkmo" value="checkmo" type="radio" name="payment[method]" checked="checked" class="radio validation-passed" autocomplete="off"></span>
+                    <label for="p_method_checkmo">To be finalized by Sales Representative </label>
+                </dt>
+            </dl>
+
+            </dl>
+            <script type="text/javascript">
+                //<![CDATA[
+                payment.init();
+                payment.switchMethod('checkmo');
+                //]]>
+            </script>
+        </fieldset>
+    </form>
+    <div class="tool-tip" id="payment-tool-tip" style="display:none;">
+        <div class="btn-close"><a href="#" id="payment-tool-tip-close" title="Close">Close</a></div>
+        <div class="tool-tip-content"><img src="http://ec2-52-52-21-147.us-west-1.compute.amazonaws.com/skin/frontend/default/default/images/cvv.gif" alt="Card Verification Number Visual Reference" title="Card Verification Number Visual Reference"></div>
+    </div>
+    <div class="buttons-set" id="payment-buttons-container">
+        <p class="required">* Required Fields</p>
+        <p class="back-link"><a href="#" onclick="checkout.back(); return false;"><small>« </small>Back</a></p>
+        <button type="button" class="button" onclick="payment.save()"><span><span>Continue</span></span></button>
+    <span class="please-wait" id="payment-please-wait" style="display: none;">
+        <img src="http://ec2-52-52-21-147.us-west-1.compute.amazonaws.com/skin/frontend/default/default/images/opc-ajax-loader.gif" alt="Loading next step..." title="Loading next step..." class="v-middle"> Loading next step...    </span>
+    </div>
+    <script type="text/javascript">
+        //<![CDATA[
+        function toggleToolTip(event){
+            if($('payment-tool-tip')){
+                $('payment-tool-tip').setStyle({
+                    top: (Event.pointerY(event)-560)+'px'//,
+                    //left: (Event.pointerX(event)+100)+'px'
+                })
+                $('payment-tool-tip').toggle();
+            }
+            Event.stop(event);
+        }
+        if($('payment-tool-tip-close')){
+            Event.observe($('payment-tool-tip-close'), 'click', toggleToolTip);
+        }
+        //]]>
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+        payment.currentMethod = "checkmo";
+        //]]>
+    </script>
+</div>

@@ -1,0 +1,62 @@
+<div class="compared" ng-controller="ComparedProductsModalController" ng-init="init()">
+    <table class="table data-table ">
+        <thead>
+        <th>
+
+        </th>
+        <th ng-repeat="item in products">
+            <span>{{item.name}}</span>
+        </th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                        PHOTO
+                </td>
+                <td ng-repeat="item in products">
+                    <img   ng-click="clickToOpen()"
+                          ng-src="/imageserver/product/{{item.sku}}/image/150/100" alt="item.id" title="item.sku"
+                          style="width: 150px; left: 0px; top: 0; height: 100px" />
+                </td>
+            </tr>
+            <tr>
+                <td>MANUFACTURER</td>
+                <td ng-repeat="item in products">
+                    {{item.manufacturer}}
+                </td>
+            </tr>
+            <tr>
+                <td>PART NUMBER</td>
+                <td ng-repeat="item in products">
+                    {{item.part_number}}
+                </td>
+            </tr>
+            <tr>
+                <td>PART TYPE</td>
+                <td ng-repeat="item in products">
+                    {{item.part_type}}
+                </td>
+            </tr>
+            <tr>
+                <td>DESCRIPTION</td>
+                <td ng-repeat="item in products">
+                    {{item.description}}
+                </td>
+            </tr>
+            <tr>
+                <td>PRICE</td>
+                <td ng-repeat="item in products">
+                   <span class="regular-price" ng-bind-html='item.prices | product_price_filter'></span>
+                </td>
+            </tr>
+            <tr ng-repeat="row in comparedTable">
+                <td>{{row[0] | critical_units}}</td>
+                <td ng-repeat="item in row">
+
+                    <span ng-if="item.decimal" ng-bind-html='item | tolerance'></span>
+                    <span ng-if="!item.decimal" ng-bind-html="item | critical_integer"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

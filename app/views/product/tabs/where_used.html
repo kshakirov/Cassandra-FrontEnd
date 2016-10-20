@@ -1,0 +1,34 @@
+<div class="box-collateral">
+    <table ng-table="where_usedTableParams" template-pagination="custom/pager" class="data-table" show-filter="true">
+        <tr ng-repeat="bom in $data">
+            <td title="getWhereUsedHeader()" filter="{ partNumber: 'text'}" sortable="'partNumber'">
+                <a href="/#/part/sku/{{bom.sku}}">{{bom.partNumber}}</a>
+            </td>
+            <td title="'TI Part'" filter="{ tiPartNumber: 'text'}" sortable="'tiPartNumber'">
+                <a href="/#/part/sku/{{bom.tiSku}}">{{bom.tiPartNumber}}</a>
+            </td>
+            <td title="'Description'" filter="{ description: 'text'}" sortable="'description'">
+                {{bom.description}}
+            </td>
+            <td title="'Manufacturer'" filter="{ manufacturer: 'text'}" sortable="'manufacturer'">
+                {{bom.manufacturer}}
+            </td>
+            <td ng-if="!is_cartride()&& !is_turbo()" title="'Turbo OE Part'" filter="{ turboPartNumbers: 'text'}"
+                sortable="'turboPartNumbers'">
+                {{bom.turboPartNumbers | strings_array_2_sorted_array}}
+            </td>
+            <td ng-if="is_cartride()" title="'Turbo Type'" filter="{ turboType: 'text'}" sortable="'turboType'">
+                {{bom.turboType}}
+            </td>
+            <td title="'Price'" filter="{ prices: 'text'}" sortable="'prices'">
+                <span ng-if="bom.prices!='login'" ng-bind-html="bom.prices | ti_price_filter"> </span>
+                <span ng-if="bom.prices=='login'">
+                     <a href="/customer/account/login">Login</a>
+                </span>
+            </td>
+        </tr>
+        <tr ng-if="$data.length == 0">
+            <td colspan="7" style="text-align: center"><b>No Results</b></td>
+        </tr>
+    </table>
+</div>

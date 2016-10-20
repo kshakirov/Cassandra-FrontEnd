@@ -1,0 +1,76 @@
+<table ng-table="bomTableParams" template-pagination="custom/pager" class="table data-table " show-filter="true"
+       width="600px">
+
+    <tbody>
+    <tr ng-repeat="bom in $data">
+        <td title="'Part Type'" filter="{ part_type: 'text'}" sortable="'part_type'">
+            {{bom.part_type}}
+        </td>
+        <td ng-if="!is_Ti_manufactured()" title="'Part'" filter="{ oe_part_number: 'text'}" sortable="'oe_part_number'">
+            <a href="#/part/sku/{{bom.oe_sku}}">{{bom.oe_part_number}}</a>
+        </td>
+        <td ng-if="is_Ti_manufactured()" title="'Part'" filter="{ part_number: 'text'}" sortable="'part_number'">
+            <a href="#/part/sku/{{bom.sku}}">{{bom.part_number}}</a>
+        </td>
+        <td title="'Description'" filter="{ description: 'text'}" sortable="'description'">
+            {{bom.description}}
+        </td>
+        <td ng-if="!is_Ti_manufactured()" title="'TI Part'" filter="{ part_number: 'text'}" sortable="'part_number'">
+            <a href="#/part/sku/{{bom.sku}}">{{bom.part_number}}</a>
+        </td>
+        <td title="'Interch Part'" filter="{ interchanges_flat: 'text'}" sortable="'interchanges_flat'">
+            <span ng-bind-html='bom.interchanges | parts_array_2_urls'></span>
+        </td>
+        <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+            {{bom.name}}
+        </td>
+        <td title="'Qty'" filter="{ quantity: 'text'}" sortable="'quantity'">
+            {{bom.quantity}}
+        </td>
+        <td title="'Price'" filter="{ prices: 'text'}" sortable="'prices'">
+            <span ng-if="bom.prices!='login'" ng-bind-html="bom.prices | ti_price_filter"> </span>
+                      <span ng-if="bom.prices=='login'">
+                         <a href="/customer/account/login">Login</a>
+                    </span>
+        </td>
+    </tr>
+    <tr ng-if="$data.length == 0">
+        <td colspan="7" style="text-align: center"><b>No Results</b></td>
+    </tr>
+    </tbody>
+</table>
+<!-- Pager Template -->
+<script type="text/ng-template" id="custom/pager">
+    <div>
+        <div style="float: left; width: 400px;">
+
+                    <span ng-repeat="page in pages"
+                          ng-class="{'disabled': !page.active, 'previous': page.type == 'prev', 'next': page.type == 'next'}"
+                          ng-show="page.type == 'prev' || page.type == 'next'" ng-switch="page.type">
+                        <a ng-switch-when="prev" ng-click="params.page(page.number)" href="">&laquo; Previous</a>
+                        <a ng-switch-when="next" ng-click="params.page(page.number)" href="">Next &raquo;</a>
+                    </span>
+        </div>
+        <div style="float: left; width: 460px;">
+            <ul ng-if="pages.length > 1">
+                <li>
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" ng-class="{'active':params.count() == 10}" ng-click="params.count(10)"
+                                class="btn_pagination">10
+                        </button>
+                        <button type="button" ng-class="{'active':params.count() == 25}" ng-click="params.count(25)"
+                                class="btn_pagination">25
+                        </button>
+                        <button type="button" ng-class="{'active':params.count() == 50}" ng-click="params.count(50)"
+                                class="btn_pagination">50
+                        </button>
+                        <button type="button" ng-class="{'active':params.count() == 100}"
+                                ng-click="params.count(100)"
+                                class="btn_pagination">100
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>

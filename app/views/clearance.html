@@ -1,0 +1,22 @@
+<div class="main-container col2-left-layout">
+    <div class="main">
+
+        <div class="col-main">
+            <div class="page-title category-title">
+                <h4>Clearance /</h4>
+            </div>
+            <ng-fader></ng-fader>
+            <div class="category-products"
+                 ng-controller="ByPartsProductTable"
+                 ng-init="initTable()">
+                <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1" spinner-start-active="true"></span>
+                <div ng-include="'views/toolbar.html'"></div>
+                <div ng-include="'views/table.html'"></div>
+            </div>
+
+        </div>
+        <div class="col-left sidebar" ng-if="flags.catalog">
+            <div ng-include="'views/left_menu.html'"></div>
+        </div>
+    </div>
+</div>

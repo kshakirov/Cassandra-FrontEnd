@@ -1,0 +1,24 @@
+<div  class="block block-list block-compare" ng-controller="ComparedProductsController"  ng-init="init()">
+    <div ng-if="reload">
+    <div class="block-title">
+        <strong><span>Compare Products
+                <small>{{products.length}}</small>
+                    </span></strong>
+    </div>
+    <div  class="block-content">
+        <ol id="compare-items">
+            <li ng-repeat="item in products" class="item odd">
+                <a
+                        href="" title="Remove This Item" class="btn-remove" ng-click="removeItem(item.compared_id)" >Remove This Item</a>
+                        <p class="product-name"><a href="/#/part/sku/{{item.sku}}">{{item.name}}</a></p>
+            </li>
+        </ol>
+
+        <div class="actions">
+            <a href="javascript:CompareNoReload.compareClearList('/catalog/product_compare/silentclear/')" onclick="return confirm('Are you sure you would like to remove all products from your comparison?');"
+               oldlink="/catalog/product_compare/clear/">Clear All</a>
+            <button type="button" title="Compare" class="button" ng-click="openModal()"><span><span>Compare</span></span></button>
+        </div>
+    </div>
+        </div>
+</div>

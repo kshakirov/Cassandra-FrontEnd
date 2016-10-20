@@ -1,0 +1,19 @@
+<!--<h1>Additional Information</h1>-->
+
+<table ng-table="applicationTableParams" template-pagination="custom/pager" class="table data-table" show-filter="true">
+    <tr ng-repeat="app in $data">
+        <td title="'Make'" filter="{ make: 'text'}" sortable="'make'">
+            {{app.make}}</td>
+        <td title="'Model'" filter="{ model: 'text'}" sortable="'model'">
+            {{app.model}}</td>
+        <td title="'Year'" filter="{ year: 'number'}" sortable="'year'">
+            {{app.year}}</td>
+        <td title="'Engine'" filter="{ engine: 'text'}" sortable="'engine'">
+            {{app.engine}}</td>
+        <td title="'Fuel'" filter="{ size: 'text'}" sortable="'size'">
+            {{app.size}}</td>
+    </tr>
+    <tr ng-if="$data.length  == 1 ">
+        <td colspan="7" style="text-align: center"><b>No Results</b></td>
+    </tr>
+</table>

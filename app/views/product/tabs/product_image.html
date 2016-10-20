@@ -1,0 +1,41 @@
+<div ng-controller="ProductMainImageController" ng-init="init()">
+    <script type="text/ng-template" id="templateId">
+        <div class="product-image product-image-zoom">
+            <img ng-click="clickToOpen()"
+                 src="/imageserver/product/{{image_sku}}/image/1000/1000"
+                 style="width: 1000px; left: 0px;"/>
+        </div>
+    </script>
+    <p class="product-image product-image-zoom">
+        <img  ng-click="clickToOpen()"    ng-src="/imageserver/product/{{image_sku}}/image/250/192"
+             style="width: 265px; left: 0px; top: 0; height: 192px" spinkit-image-preloader='wave-spinner'/>
+    </p>
+</div>
+
+<div ng-controller="ProductImageGalleryController" ng-init="init(image_sku)">
+    <div class="more-views" ng-if="images">
+        <h2>More Views</h2>
+        <ul>
+            <li ng-if="isPreviousVisible()" >
+                <img
+                        ng-click="previous()"
+                        src="images/pager_arrow_left.gif"  style="width: 10px; padding-top: 15px">
+            </li>
+            <li ng-repeat="img in images" ng-if="isVisible($index)">
+                <a href=""
+                   ng-click="clickToOpen(img.id)"
+                   title=""
+                   class="product-image">
+                    <img
+                            ng-src="/imageserver/product/{{image_sku}}/image/{{img.id}}/60/45"
+                            style="width: 60px; height: 45px; "  spinkit-image-preloader='wave-spinner'/>
+                </a>
+            </li>
+            <li ng-if="isNextVisible(images.length)">
+                <img
+                        ng-click="next()"
+                        src="images/pager_arrow_right.gif" style="width: 10px; padding-top: 15px">
+            </li>
+        </ul>
+    </div>
+</div>

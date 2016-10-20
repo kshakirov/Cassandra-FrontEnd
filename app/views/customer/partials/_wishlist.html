@@ -1,0 +1,81 @@
+<div class="my-account">
+    <div class="my-wishlist">
+        <div class="page-title title-buttons">
+            <h1>My Wishlist</h1>
+        </div>
+
+        <form i class="ng-pristine ng-valid">
+            <fieldset>
+
+                <table class="data-table">
+                    <thead>
+                    <tr class="first last">
+                        <th></th>
+                        <th>Product Details and Comment</th>
+                        <th>Add to Cart</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="product in products">
+                        <td><a class="product-image" ng-href="/#/part/sku/{{product.sku}}" title=" - ">
+                            <img ng-src="http://localhost/imageserver/product/{{product.sku}}/image/113/90" width="113"
+                                 height="90" alt=" - ">
+                        </a>
+                        </td>
+                        <td><h3 class="product-name"><a ng-href="/#/part/sku/{{product.sku}}" title=" - "> - </a></h3>
+                            <div class="description std">
+                                <div class="inner"></div>
+                            </div>
+                        <textarea name="description[120]" rows="3" cols="5" onfocus="focusComment(this)"
+                                  onblur="focusComment(this)" title="Comment">
+                            {{product.description}}
+                        </textarea>
+                        </td>
+                        <td>
+                            <div class="cart-cell">
+                                <div class="price-box">
+                            <span class="regular-price" id="">
+                                <span class="price">{{product.prices}}</span>
+                            </span>
+                                </div>
+                                <div class="add-to-cart-alt">
+                                    <input type="text" class="input-text qty validate-not-negative-number"
+                                           name="qty[120]" value="1">
+                                    <button type="button" title="Add to Cart" onclick="addWItemToCart(120);"
+                                            class="button btn-cart"><span><span>Add to Cart</span></span></button>
+                                </div>
+
+                                <p><a class="link-edit"
+                                      href="http://localhost/wishlist/index/configure/id/120/">Edit</a></p>
+                            </div>
+                        <td class="last"><a href="http://localhost/wishlist/index/remove/item/120/"
+                                            onclick="return confirmRemoveWishlistItem();" title="Remove Item"
+                                            class="btn-remove btn-remove2">Remove item</a>
+                        </td>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="buttons-set buttons-set2">
+
+                    <button type="submit" name="save_and_share" title="Share Wishlist" class="button btn-share">
+                        <span><span>Share Wishlist</span></span></button>
+
+                    <button type="button" title="Add All to Cart" onclick="addAllWItemsToCart()" class="button btn-add">
+                        <span><span>Add All to Cart</span></span></button>
+
+                    <button type="submit" name="do" title="Update Wishlist" class="button btn-update"><span><span>Update Wishlist</span></span>
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+
+    </div>
+    <div class="buttons-set">
+        <p class="back-link"><a href="http://localhost/customer/account/">
+            <small>«</small>
+            Back</a></p>
+    </div>
+</div>

@@ -8,7 +8,13 @@
     "angular-resource": "^1.4.0",
     "angular-route": "^1.4.0",
     "angular-sanitize": "^1.4.0",
-    "angular-touch": "^1.4.0"
+    "angular-touch": "^1.4.0",
+    "angularjs-slider": "2.13.0",
+    "elasticsearch": "11.0.1",
+    "ng-table": "1.0.0",
+    "angular-preload-image": "",
+    "angular-spinkit": "0.3.4",
+    "ng-dialog": ""
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

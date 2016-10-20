@@ -1,0 +1,17 @@
+<div ng-controller="ProductLegendController" class="box-collateral" ng-if="isCriticalPart()">
+    <script type="text/ng-template" id="legendTemplate">
+        <div class="product-image product-image-zoom">
+            <img ng-click="clickToOpen()"
+                 src="/imageserver/product/{{image_sku}}/legend/1000/1000"
+                 style="width: 1000px; left: 0px; top: 33px;"/>
+        </div>
+    </script>
+    <h2>Dimensions Measurement Legend</h2>
+    <img ng-click="clickToOpen()"
+            ng-src="/imageserver/product/{{image_sku}}/legend/550/252"
+            alt="Legend Is Not Available" title="Legend Is Not Available" width="400">
+</div>
+
+<!--<div class="box-standard-oversize-master">-->
+    <!--<h2> Standard Dimensions</h2>-->
+<!--</div>-->
