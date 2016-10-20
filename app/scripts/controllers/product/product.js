@@ -14,14 +14,14 @@ magento_module.controller("ProductController", function ($scope,
             return stats;
         }
 
-        function _get_product_uri(params) {
-            if (params.sku) {
-                return '/critical/index/part?sku=' + params.sku
-            }
-            return '/critical/index/part?id=' + params.id
-        }
+        // function _get_product_uri(params) {
+        //     if (params.sku) {
+        //         return '/frontend/t?sku=' + params.sku
+        //     }
+        //     return '/critical/index/part?id=' + params.id
+        // }
 
-       
+
 
         function _create_link_to_product(product) {
             return "<a href='#/part/sku/" + product.sku + " '>" + product.partNumber + "</a>"
@@ -82,10 +82,10 @@ magento_module.controller("ProductController", function ($scope,
             })
         }
 
-    
-    
+
+
         function _sort_() {
-            
+
         }
 
         $scope.tab = 1;
@@ -171,11 +171,11 @@ magento_module.controller("ProductController", function ($scope,
         }
 
         $scope.init = function () {
-            var uri = _get_product_uri($routeParams);
+           // var uri = _get_product_uri($routeParams);
             var sku = $routeParams.sku;
             $rootScope.image_sku = sku;
 
-            $http.post('/elastic/critical/index/part', {sku: sku, stats: _get_stats()}).then(function (promise) {
+            $http.post('/frontend/product', {sku: sku, stats: _get_stats()}).then(function (promise) {
                 $scope.product = promise.data;
                 $rootScope.image_part_type = $scope.product.part_type;
                 $scope.applicationTableParams = new NgTableParams({}, {dataset: $scope.product.application_detail});

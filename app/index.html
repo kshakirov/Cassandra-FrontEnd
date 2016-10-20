@@ -71,12 +71,21 @@
                 USD            </option>
             </select>
             Welcome, Kirill Jr Shakirov!                    </p>
-          <form  class="ng-pristine ng-valid ng-scope ng-valid-maxlength">
+          <form  ng-controller="SearchController"  class="ng-pristine ng-valid ng-scope ng-valid-maxlength">
             <div class="form-search">
-              <input type="text" name="" value="" class="input-text ng-pristine ng-untouched ng-valid ng-valid-maxlength" maxlength="" ng-model="query" ng-keypress="searchByEnterClick($event, query)" placeholder="Part Number…">
-              <button ng-click="search_in_all_fields(query)" type="button" title="Search" class="button">
-            <span>
-                Search            </span>
+              <input type="text"
+                     name=""
+                     value=""
+                     class="input-text ng-pristine ng-untouched ng-valid ng-valid-maxlength"
+                     maxlength=""
+                     ng-model="query"
+                     ng-keypress="searchByEnterClick($event, query)"
+                     placeholder="Part Number…">
+              <button
+                  ng-click="search_in_all_fields(query)" type="button" title="Search" class="button">
+                  <span>
+                    Search
+                  </span>
               </button>
 
 
