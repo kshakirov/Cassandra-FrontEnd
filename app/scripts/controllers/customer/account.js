@@ -68,7 +68,7 @@ magento_module.controller("CustomerOrdersController", function ($scope,
   $scope.init = function () {
     console.log("Hi customer");
     usSpinnerService.spin('spinner-orders');
-    $http.get("/critical/index/customerOrders/").then(function (promise) {
+    $http.get("/customer/order").then(function (promise) {
       console.log(promise);
       $scope.orders = promise.data;
       usSpinnerService.stop('spinner-orders');
