@@ -5,7 +5,7 @@ magento_module.controller("CustomerAccountController", function ($scope,
   $scope.init = function () {
     console.log("Hi customer");
     usSpinnerService.spin('spinner-account');
-    $http.get("/critical/index/account/").then(function (promise) {
+    $http.get("/customer/account").then(function (promise) {
       console.log(promise);
       $scope.customer_data = promise.data;
       usSpinnerService.stop('spinner-account');
@@ -156,7 +156,8 @@ magento_module.controller("CustomerLogin", function ($scope,
     return $http.post("/frontend/customer/login", data)
       .then(function (promise) {
         if(promise.data.result=='success'){
-          console.log('success')
+          console.log(promise);
+          $cookies.putObject('token', promise.data.token)
         }
 
       }, function (error) {
