@@ -21,7 +21,7 @@ magento_module.controller("CustomerAccountInformationController", function ($sco
   $scope.init = function () {
     console.log("Hi customer");
     usSpinnerService.spin('spinner-account-info');
-    $http.get("/critical/index/customerInfo/").then(function (promise) {
+    $http.get("/customer/account").then(function (promise) {
       console.log(promise);
       $scope.customer_data = promise.data;
       usSpinnerService.stop('spinner-account-info');
@@ -52,7 +52,7 @@ magento_module.controller("CustomerAddressBookController", function ($scope,
   $scope.init = function () {
     console.log("Hi customer");
     usSpinnerService.spin('spinner-account');
-    $http.get("/critical/index/account/").then(function (promise) {
+    $http.get("/customer/account").then(function (promise) {
       console.log(promise);
       $scope.customer_data = promise.data;
       usSpinnerService.stop('spinner-account');
