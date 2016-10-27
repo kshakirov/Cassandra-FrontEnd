@@ -8,7 +8,16 @@
         <div ng-if="is_Ti_manufactured() ||  product.ti_part_number" class="add-to-cart">
             <div class="add-to-cart-qty">
                 <label for="qty">Qty:</label>
-                <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty">
+                <input
+                  ng-model="qty"
+                  type="text"
+                  name="qty"
+                  id="qty"
+                  maxlength="12"
+    
+                  title="Qty"
+                  class="input-text qty"
+                >
             </div>
             <div>
                 <button type="button" title="Add to Cart" class="button btn-cart"

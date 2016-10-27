@@ -14,15 +14,6 @@ magento_module.controller("ProductController", function ($scope,
             return stats;
         }
 
-        // function _get_product_uri(params) {
-        //     if (params.sku) {
-        //         return '/frontend/t?sku=' + params.sku
-        //     }
-        //     return '/critical/index/part?id=' + params.id
-        // }
-
-
-
         function _create_link_to_product(product) {
             return "<a href='#/part/sku/" + product.sku + " '>" + product.partNumber + "</a>"
         }
@@ -89,6 +80,7 @@ magento_module.controller("ProductController", function ($scope,
         }
 
         $scope.tab = 1;
+        $scope.qty = 1;
         $rootScope.pageTitle = ": Product";
 
         $scope.idSelectedPart = null;
@@ -123,7 +115,14 @@ magento_module.controller("ProductController", function ($scope,
         };
 
         $scope.addToCart = function () {
-            $http.post('/checkout/cart/add', {product: $scope.product.id}).then(function (response) {
+
+            var product = {
+                product: $scope.product,
+                price: $scope.price,
+                qty: $scope.qty
+            };
+
+          $http.post('/customer/cart/product',  product).then(function (response) {
                 console.log("sent to cart");
                 $scope.cart_message = $scope.product.name + " was added to your shopping cart."
             })
