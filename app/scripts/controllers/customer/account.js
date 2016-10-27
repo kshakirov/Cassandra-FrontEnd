@@ -166,3 +166,19 @@ magento_module.controller("CustomerLogin", function ($scope,
   }
 
 })
+
+magento_module.controller("CustomerCartController", function ($scope,
+                                                     $rootScope, $http,
+                                                     $cookies) {
+
+  $scope.init = function () {
+    console.log("Hi Cart");
+    $http.get('/customer/cart').then(function (promise) {
+        console.log(promise.data)
+      $scope.cart_data = promise.data;
+      $scope.cart_data.items = Object.values(promise.data.items);
+    })
+  }
+
+
+})

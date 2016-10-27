@@ -65,12 +65,12 @@
                                         height="50" alt="{{item.name}}"></a></td>
                                 <!-- Part Type -->
                                 <td>
-                                    <h3>Not yet part {{item.id}}</h3>
+                                    <h3>{{item.part_type}}</h3>
 
                                 </td>
                                 <!-- TI Part Number -->
                                 <td>
-                                    <a style="white-space: nowrap;" href="/#/part/sku/6229">Not yet number {{item.sku}}</a>
+                                    <a style="white-space: nowrap;" href="/#/part/sku/6229">{{item.ti_part}}</a>
                                 </td>
                                 <!-- OEM Part Number -->
                                 <td>
@@ -83,7 +83,7 @@
                                 <!-- Excluding tax price -->
                                 <td class="a-right">
                             <span class="cart-price">
-                                        <span class="price">{{item.price}}</span>
+                                        <span class="price">{{item.unit_price}}</span>
                             </span>
                                 </td>
                                 <!-- Quantity -->
@@ -94,7 +94,7 @@
                                 <!-- Subtotal -->
                                 <td class="a-right">
                     <span class="cart-price">
-                         <span class="price">{{item.price}}</span>
+                         <span class="price">{{item.subtotal}}</span>
                     </span>
                                 </td>
                                 <!-- Remove item -->
@@ -144,7 +144,7 @@
                                     <strong>Grand Total</strong>
                                 </td>
                                 <td style="" class="a-right">
-                                    <strong><span class="price">$247.78</span></strong>
+                                    <strong><span class="price">{{cart_data.subtotal}}</span></strong>
                                 </td>
                             </tr>
                             </tfoot>
@@ -154,7 +154,7 @@
                                     Subtotal
                                 </td>
                                 <td style="" class="a-right">
-                                    <span class="price">$247.78</span></td>
+                                    <span class="price">{{cart_data.subtotal}}</span></td>
                             </tr>
                             </tbody>
                         </table>

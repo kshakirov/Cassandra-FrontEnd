@@ -146,8 +146,7 @@ magento_module.controller("ProductController", function ($scope,
         };
 
         $scope.isAuthorised = function () {
-            if ($scope.product && $scope.product.hasOwnProperty('prices'))
-                return $scope.product.prices != "Unauthorized";
+          return true;
         };
         $scope.isCriticalPart = function () {
             if ($scope.product && $scope.product.hasOwnProperty('critical')) {
@@ -180,6 +179,13 @@ magento_module.controller("ProductController", function ($scope,
                 $rootScope.image_part_type = $scope.product.part_type;
                 $scope.applicationTableParams = new NgTableParams({}, {dataset: $scope.product.application_detail});
             });
+
+          $http.get('/customer/product/' + sku + '/price').then(function (promise) {
+            $scope.price = promise.data.price;
+            console.log(promise.data.promise)
+          });
+
+
             $http.get('/attrsreader/product/' + sku + '/where_used/?stats=' + _get_stats()).then(function (prom) {
                 var where_used = [];
                 if (typeof prom.data == 'object') {

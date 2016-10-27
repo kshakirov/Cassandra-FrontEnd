@@ -1,7 +1,7 @@
 <div class="add-to-box">
     <div ng-if="isAuthorised()">
         <div ng-if="is_Ti_manufactured() || product.ti_part_number" class="price-box">
-          <span class="regular-price" ng-bind-html='product.prices | product_price_filter'>
+          <span class="regular-price" ng-bind-html='price | product_price_filter'>
           </span>
         </div>
 
