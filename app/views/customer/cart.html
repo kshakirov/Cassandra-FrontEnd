@@ -1,177 +1,179 @@
 <div class="main-container col1-layout">
-    <div class="main">
-        <div class="col-main">
-            <div class="cart" ng-controller="CustomerCartController" ng-init="init()">
-                <div class="page-title title-buttons">
-                    <h1>Shopping Cart</h1>
-                    <ul class="checkout-types">
-                        <li>
-                            <button type="button" title="Proceed to Checkout"
-                                    class="button btn-proceed-checkout btn-checkout"
-                                    onclick="window.location='http://localhost/checkout/onepage/';"><span><span>Proceed to Checkout</span></span>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-                <form class="ng-pristine ng-valid">
-                    <fieldset>
-                        <table id="shopping-cart-table" class="data-table cart-table">
-                            <colgroup>
-                                <col width="1">
-                                <col>
-                                <col width="1">
-                                <col width="1">
-                                <col width="1">
-                                <col width="1">
-                                <col width="1">
-                                <col width="1">
+  <div class="main">
+    <div class="col-main">
+      <div class="cart" ng-controller="CustomerCartController" ng-init="init()">
+        <div class="page-title title-buttons">
+          <h1>Shopping Cart</h1>
+          <ul class="checkout-types">
+            <li>
+              <button type="button" title="Proceed to Checkout"
+                      class="button btn-proceed-checkout btn-checkout"
+                      onclick="window.location='http://localhost/checkout/onepage/';">
+                <span><span>Proceed to Checkout</span></span>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <form class="ng-pristine ng-valid">
+          <fieldset>
+            <table id="shopping-cart-table" class="data-table cart-table">
+              <colgroup>
+                <col width="1">
+                <col>
+                <col width="1">
+                <col width="1">
+                <col width="1">
+                <col width="1">
+                <col width="1">
+                <col width="1">
 
-                            </colgroup>
-                            <thead>
-                            <tr class="first last">
-                                <th rowspan="1">&nbsp;</th>
-                                <th rowspan="1"><span class="nobr">Part Type</span></th>
-                                <th rowspan="1"><span class="nobr">TI Part #</span></th>
-                                <th rowspan="1"><span class="nobr">OEM Part #</span></th>
-                                <!-- <th rowspan="1"></th>-->
-                                <th rowspan="1" class="a-center"><span class="nobr">Move to Wishlist</span></th>
-                                <th class="a-center" colspan="1"><span class="nobr">Unit Price</span></th>
-                                <th rowspan="1" class="a-center">Qty</th>
-                                <th class="a-center" colspan="1">Subtotal</th>
-                                <th rowspan="1" class="a-center">&nbsp;</th>
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr class="first last">
-                                <td colspan="50" class="a-right last">
-                                    <button type="button" title="Continue Shopping" class="button btn-continue"
-                                            onclick="setLocation('http://localhost/')">
-                                        <span><span>Continue Shopping</span></span></button>
-                                    <button type="submit" name="update_cart_action" value="update_qty"
-                                            title="Update Shopping Cart" class="button btn-update">
-                                        <span><span>Update Shopping Cart</span></span></button>
-                                    <button type="submit" name="update_cart_action" value="empty_cart"
-                                            title="Clear Shopping Cart" class="button btn-empty" id="empty_cart_button">
-                                        <span><span>Clear Shopping Cart</span></span>
-                                    </button>
-                                </td>
-                            </tr>
-                            </tfoot>
-                            <tbody>
-                            <tr ng-repeat="item in cart_data.items" class="first last odd">
-                                <!-- Product image -->
-                                <td><a ng-href="/#/part/sku/{{sku}}" title="{{item.name}}" class="product-image"><img
-                                        ng-src="/imageserver/product/{{item.sku}}/image/75/50" width="75"
-                                        height="50" alt="{{item.name}}"></a></td>
-                                <!-- Part Type -->
-                                <td>
-                                    <h3>{{item.part_type}}</h3>
+              </colgroup>
+              <thead>
+              <tr class="first last">
+                <th rowspan="1">&nbsp;</th>
+                <th rowspan="1"><span class="nobr">Part Type</span></th>
+                <th rowspan="1"><span class="nobr">TI Part #</span></th>
+                <th rowspan="1"><span class="nobr">OEM Part #</span></th>
+                <!-- <th rowspan="1"></th>-->
+                <th rowspan="1" class="a-center"><span class="nobr">Move to Wishlist</span></th>
+                <th class="a-center" colspan="1"><span class="nobr">Unit Price</span></th>
+                <th rowspan="1" class="a-center">Qty</th>
+                <th class="a-center" colspan="1">Subtotal</th>
+                <th rowspan="1" class="a-center">&nbsp;</th>
+              </tr>
+              </thead>
+              <tfoot>
+              <tr class="first last">
+                <td colspan="50" class="a-right last">
+                  <button type="button" title="Continue Shopping" class="button btn-continue"
+                          onclick="setLocation('http://localhost/')">
+                    <span><span>Continue Shopping</span></span></button>
+                  <button type="submit" name="update_cart_action" value="update_qty"
+                          title="Update Shopping Cart" class="button btn-update">
+                    <span><span>Update Shopping Cart</span></span></button>
+                  <button type="submit" name="update_cart_action" value="empty_cart"
+                          title="Clear Shopping Cart" class="button btn-empty" id="empty_cart_button">
+                    <span><span>Clear Shopping Cart</span></span>
+                  </button>
+                </td>
+              </tr>
+              </tfoot>
+              <tbody>
+              <tr ng-repeat="(key, item) in cart_data.items" class="first last odd">
+                <!-- Product image -->
+                <td><a ng-href="/#/part/sku/{{sku}}" title="{{item.name}}" class="product-image"><img
+                  ng-src="/imageserver/product/{{item.sku}}/image/75/50" width="75"
+                  height="50" alt="{{item.name}}"></a></td>
+                <!-- Part Type -->
+                <td>
+                  <h3>{{item.part_type}}</h3>
 
-                                </td>
-                                <!-- TI Part Number -->
-                                <td>
-                                    <a style="white-space: nowrap;" href="/#/part/sku/6229">{{item.ti_part}}</a>
-                                </td>
-                                <!-- OEM Part Number -->
-                                <td>
-                                </td>
-                                <!-- Add to wishlist -->
-                                <td class="a-center">
-                                    <a href="http://localhost/wishlist/index/fromcart/item/1976/"
-                                       class="link-wishlist use-ajax">Move</a>
-                                </td>
-                                <!-- Excluding tax price -->
-                                <td class="a-right">
+                </td>
+                <!-- TI Part Number -->
+                <td>
+                  <a style="white-space: nowrap;" href="/#/part/sku/6229">{{item.ti_part}}</a>
+                </td>
+                <!-- OEM Part Number -->
+                <td>
+                </td>
+                <!-- Add to wishlist -->
+                <td class="a-center">
+                  <a href="http://localhost/wishlist/index/fromcart/item/1976/"
+                     class="link-wishlist use-ajax">Move</a>
+                </td>
+                <!-- Excluding tax price -->
+                <td class="a-right">
                             <span class="cart-price">
                                         <span class="price">{{item.unit_price}}</span>
                             </span>
-                                </td>
-                                <!-- Quantity -->
-                                <td class="a-center">
-                                    <input ng-model="item.qty" name="cart[1976][qty]"  size="4" title="Qty" class="input-text qty"
-                                           maxlength="12">
-                                </td>
-                                <!-- Subtotal -->
-                                <td class="a-right">
+                </td>
+                <!-- Quantity -->
+                <td class="a-center">
+                  <input ng-model="item.qty" name="cart[1976][qty]" size="4" title="Qty" class="input-text qty"
+                         maxlength="12">
+                </td>
+                <!-- Subtotal -->
+                <td class="a-right">
                     <span class="cart-price">
                          <span class="price">{{item.subtotal}}</span>
                     </span>
-                                </td>
-                                <!-- Remove item -->
-                                <td class="a-center last"><a
-                                        href=""
-                                        ng-click="removeProductFromCart(item)"
-                                        title="Remove item" class="btn-remove btn-remove2">Remove item</a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </fieldset>
-                </form>
-                <div class="cart-collaterals">
-                    <div class="col2-set">
-                        <div class="col-1">
-                        </div>
-                        <div class="col-2">
-                            <form id="discount-coupon-form" action="http://localhost/checkout/cart/couponPost/"
-                                  method="post" class="ng-pristine ng-valid">
-                                <div class="discount">
-                                    <h2>Discount Codes</h2>
-                                    <div class="discount-form">
-                                        <label for="coupon_code">Enter your coupon code if you have one.</label>
-                                        <input type="hidden" name="remove" id="remove-coupone" value="0">
-                                        <div class="input-box">
-                                            <input class="input-text" id="coupon_code" name="coupon_code" value="">
-                                        </div>
-                                        <div class="buttons-set">
-                                            <button type="button" title="Apply Coupon" class="button"
-                                                    onclick="discountForm.submit(false)" value="Apply Coupon">
-                                                <span><span>Apply Coupon</span></span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="totals">
-                        <table id="shopping-cart-totals-table">
-                            <colgroup>
-                                <col>
-                                <col width="1">
-                            </colgroup>
-                            <tfoot>
-                            <tr>
-                                <td style="" class="a-right" colspan="1">
-                                    <strong>Grand Total</strong>
-                                </td>
-                                <td style="" class="a-right">
-                                    <strong><span class="price">{{cart_data.subtotal}}</span></strong>
-                                </td>
-                            </tr>
-                            </tfoot>
-                            <tbody>
-                            <tr>
-                                <td style="" class="a-right" colspan="1">
-                                    Subtotal
-                                </td>
-                                <td style="" class="a-right">
-                                    <span class="price">{{cart_data.subtotal}}</span></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <ul class="checkout-types">
-                            <li>
-                                <button type="button" title="Proceed to Checkout"
-                                        class="button btn-proceed-checkout btn-checkout"
-                                        onclick="window.location='http://localhost/checkout/onepage/';"><span><span>Proceed to Checkout</span></span>
-                                </button>
-                            </li>
-                            <li><a href="http://localhost/checkout/multishipping/"
-                                   title="Checkout with Multiple Addresses">Checkout with Multiple Addresses</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                </td>
+                <!-- Remove item -->
+                <td class="a-center last"><a
+                  href=""
+                  ng-click="removeProductFromCart(key)"
+                  title="Remove item" class="btn-remove btn-remove2">Remove item</a></td>
+              </tr>
+              </tbody>
+            </table>
+          </fieldset>
+        </form>
+        <div class="cart-collaterals">
+          <div class="col2-set">
+            <div class="col-1">
             </div>
+            <div class="col-2">
+              <form id="discount-coupon-form" action="http://localhost/checkout/cart/couponPost/"
+                    method="post" class="ng-pristine ng-valid">
+                <div class="discount">
+                  <h2>Discount Codes</h2>
+                  <div class="discount-form">
+                    <label for="coupon_code">Enter your coupon code if you have one.</label>
+                    <input type="hidden" name="remove" id="remove-coupone" value="0">
+                    <div class="input-box">
+                      <input class="input-text" id="coupon_code" name="coupon_code" value="">
+                    </div>
+                    <div class="buttons-set">
+                      <button type="button" title="Apply Coupon" class="button"
+                              onclick="discountForm.submit(false)" value="Apply Coupon">
+                        <span><span>Apply Coupon</span></span></button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="totals">
+            <table id="shopping-cart-totals-table">
+              <colgroup>
+                <col>
+                <col width="1">
+              </colgroup>
+              <tfoot>
+              <tr>
+                <td style="" class="a-right" colspan="1">
+                  <strong>Grand Total</strong>
+                </td>
+                <td style="" class="a-right">
+                  <strong><span class="price">{{cart_data.subtotal}}</span></strong>
+                </td>
+              </tr>
+              </tfoot>
+              <tbody>
+              <tr>
+                <td style="" class="a-right" colspan="1">
+                  Subtotal
+                </td>
+                <td style="" class="a-right">
+                  <span class="price">{{cart_data.subtotal}}</span></td>
+              </tr>
+              </tbody>
+            </table>
+            <ul class="checkout-types">
+              <li>
+                <button type="button" title="Proceed to Checkout"
+                        class="button btn-proceed-checkout btn-checkout"
+                        onclick="window.location='http://localhost/checkout/onepage/';">
+                  <span><span>Proceed to Checkout</span></span>
+                </button>
+              </li>
+              <li><a href="http://localhost/checkout/multishipping/"
+                     title="Checkout with Multiple Addresses">Checkout with Multiple Addresses</a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

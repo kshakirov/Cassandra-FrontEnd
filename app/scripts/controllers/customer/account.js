@@ -176,7 +176,13 @@ magento_module.controller("CustomerCartController", function ($scope,
     $http.get('/customer/cart').then(function (promise) {
         console.log(promise.data)
       $scope.cart_data = promise.data;
-      $scope.cart_data.items = Object.values(promise.data.items);
+    })
+  }
+
+  $scope.removeProductFromCart = function (sku) {
+    console.log(sku + " To delete");
+    $http.delete('/customer/cart/product/'  + sku).then(function () {
+        console.log("item deleted from cart")
     })
   }
 
