@@ -169,7 +169,7 @@ magento_module.controller("CustomerLogin", function ($scope,
 
 magento_module.controller("CustomerCartController", function ($scope,
                                                      $rootScope, $http,
-                                                     $cookies) {
+                                                     $cookies, $location) {
 
   $scope.init = function () {
     console.log("Hi Cart");
@@ -184,6 +184,11 @@ magento_module.controller("CustomerCartController", function ($scope,
     $http.delete('/customer/cart/product/'  + sku).then(function () {
         console.log("item deleted from cart")
     })
+  }
+
+  $scope.checkout = function () {
+    console.log("dfdf")
+    $location.path("/customer/checkout")
   }
 
 

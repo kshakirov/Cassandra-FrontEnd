@@ -1,6 +1,6 @@
 var magento_module = angular.module('MagentoApp', ['rzModule',
     'angularSpinner', 'elasticsearch', 'ngRoute', 'ngCookies',
-    'ngTouch', 'ngAnimate', 'ngFader', 'angular-preload-image', 'ngSanitize', 'ngDialog', 'ngTable', 'angular-spinkit']);
+    'ngTouch', 'ngAnimate', 'ngFader', 'angular-preload-image', 'ngSanitize', 'ngDialog', 'ngTable', 'angular-spinkit', 'vAccordion']);
 
 magento_module.run(function($rootScope) {
     $rootScope.flags = {catalog: false};
