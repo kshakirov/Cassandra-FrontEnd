@@ -122,23 +122,7 @@ magento_module.controller("CustomerWishlistController", function ($scope,
   }
 })
 
-magento_module.controller("CustomerCheckoutController", function ($scope,
-                                                                  $rootScope, $http,
-                                                                  usSpinnerService,
-                                                                  $cookies) {
-  function _init() {
-    return [{header: 'Billing Information ', content: "Hi Biliing"},
-      {header: 'Shipping Information', content: "Hi shipping"},
-      {header: 'Shipping Method', content: "Hi shipping method"},
-      {header: 'Payment Information', content: "Hi payment"},
-      {header: 'Order Review', content: "Hi order review"}];
-  }
 
-  $scope.init = function () {
-    console.log("Hi customer");
-    $scope.panes = _init();
-  }
-})
 
 magento_module.controller("CustomerLogin", function ($scope,
                                                      $rootScope, $http,
@@ -155,7 +139,7 @@ magento_module.controller("CustomerLogin", function ($scope,
     };
     return $http.post("/frontend/customer/login", data)
       .then(function (promise) {
-        if(promise.data.result=='success'){
+        if (promise.data.result == 'success') {
           console.log(promise);
           $cookies.putObject('token', promise.data.token)
         }
@@ -168,21 +152,21 @@ magento_module.controller("CustomerLogin", function ($scope,
 })
 
 magento_module.controller("CustomerCartController", function ($scope,
-                                                     $rootScope, $http,
-                                                     $cookies, $location) {
+                                                              $rootScope, $http,
+                                                              $cookies, $location) {
 
   $scope.init = function () {
     console.log("Hi Cart");
     $http.get('/customer/cart').then(function (promise) {
-        console.log(promise.data)
+      console.log(promise.data)
       $scope.cart_data = promise.data;
     })
   }
 
   $scope.removeProductFromCart = function (sku) {
     console.log(sku + " To delete");
-    $http.delete('/customer/cart/product/'  + sku).then(function () {
-        console.log("item deleted from cart")
+    $http.delete('/customer/cart/product/' + sku).then(function () {
+      console.log("item deleted from cart")
     })
   }
 

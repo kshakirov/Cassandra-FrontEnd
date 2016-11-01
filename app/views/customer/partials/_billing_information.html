@@ -7,11 +7,8 @@
                 <div class="input-box">
                     <select name="billing_address_id" id="billing-address-select"
                             class="address-select validation-passed" title=""
-                            onchange="billing.newAddress(!this.value)">
-                        <option value="449" selected="selected">Kirill Shakirov, not adress, Alabama, Alabama 123456,
-                            United States
-                        </option>
-                        <option value="">New Address</option>
+                            ng-options="option.name for option in billingAddresses track by option.id"
+                            ng-model="billingAddress">
                     </select></div>
             </li>
             <li id="billing-new-address-form" style="display: none;">
@@ -461,9 +458,6 @@
             <p class="required">* Required Fields</p>
             <button type="button" title="Continue" class="button validation-passed" onclick="billing.save()">
                 <span><span>Continue</span></span></button>
-        <span class="please-wait" id="billing-please-wait" style="display: none;">
-            <img src="http://ec2-52-52-21-147.us-west-1.compute.amazonaws.com/skin/frontend/default/default/images/opc-ajax-loader.gif"
-                 alt="Loading next step..." title="Loading next step..." class="v-middle"> Loading next step...        </span>
         </div>
     </fieldset>
 </form>
