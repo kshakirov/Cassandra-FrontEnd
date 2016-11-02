@@ -21,6 +21,7 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
   function _clear_products(products) {
       return products.map(function (product) {
         delete  product.$$hashKey;
+        product.sku = product.sku.toString();
         return product;
       })
   }
@@ -29,9 +30,11 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
     return {
         customer_id : null,
         order_id: null,
+        billing_address: billing_address.value,
+        shipping_address: shipping_address.value,
         data:{
-          billing_address: billing_address.value,
-          shipping_address: shipping_address.value
+          base_currency_code: order.base_currency_code,
+          base_subtotal: order.base_subtotal
         },
       products: _clear_products(order.products)
     }
@@ -42,8 +45,13 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
 
   $scope.placeOrder = function () {
       console.log("HI placeOrdere");
-      var order_data = create_order_date(this.shippingAddress, this.billingAddress, this.data)
+      var order_data = create_order_date(this.shippingAddress, this.billingAddress, this.data);
       console.log(order_data);
+      $http.post('/customer/order/save', order_data).then(function (promise) {
+        console.log(promise);
+      }, function (error) {
+            console.log(error);
+      })
   }
 
 
