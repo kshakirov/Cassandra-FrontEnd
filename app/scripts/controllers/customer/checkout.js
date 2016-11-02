@@ -10,24 +10,53 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
       {header: 'Order Review', content: "Hi order review"}];
   }
 
-  function create_billing_address_options(order){
-    var address = order.data.billing_address;
+  function create_address_options(address){
+    //var address = address.data.billing_address;
     return [
-      {id: 1, name: Object.values(address).join(",")},
-      {id: 2, name: "New Address"}
+      {id: 1, name: Object.values(address).join(","), value: address},
+      {id: 2, name: "New Address", value: address}
     ]
   }
 
+  function _clear_products(products) {
+      return products.map(function (product) {
+        delete  product.$$hashKey;
+        return product;
+      })
+  }
+
+  function create_order_date(shipping_address, billing_address, order) {
+    return {
+        customer_id : null,
+        order_id: null,
+        data:{
+          billing_address: billing_address.value,
+          shipping_address: shipping_address.value
+        },
+      products: _clear_products(order.products)
+    }
+  }
+
   $scope.order = {};
+
+
+  $scope.placeOrder = function () {
+      console.log("HI placeOrdere");
+      var order_data = create_order_date(this.shippingAddress, this.billingAddress, this.data)
+      console.log(order_data);
+  }
+
 
   $scope.init = function () {
     console.log("Hi customer");
     $http.get('/customer/order/new').then(function (promise) {
       $scope.panes = _init();
       $scope.data = promise.data;
-      $scope.billingAddresses = create_billing_address_options(promise.data);
+      $scope.billingAddresses = create_address_options(promise.data.data.billing_address);
+      $scope.shippingAddresses = create_address_options(promise.data.data.shipping_address);
+      $scope.billingAddress =  $scope.billingAddresses[0];
+      $scope.shippingAddress =  $scope.shippingAddresses[0];
       console.log($scope.data)
-
     })
 
   }
