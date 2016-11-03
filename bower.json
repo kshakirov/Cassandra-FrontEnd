@@ -16,7 +16,6 @@
     "angular-preload-image": "",
     "angular-spinkit": "0.3.4",
     "ng-dialog": "",
-    "ngFader": "",
     "v-accordion": ""
   },
   "devDependencies": {
