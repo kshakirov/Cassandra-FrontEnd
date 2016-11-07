@@ -1,0 +1,58 @@
+<div class="meta-header">
+  <strong>
+    US &amp; International Sales: +1.760.476.1444        </strong>
+  <a href="mailto:sales@turbointernational.com">
+    sales@turbointernational.com        </a>
+
+  <ul ng-if="isAuthorized" class="links" >
+    <li class="first"><a href="/#/customer/account/" title="My Account">My Account</a></li>
+    <li><a href="/#/customer/account/wishlist/" title="My Wishlist (-)">My Wishlist ({{customer_data.wishlist}})</a></li>
+    <li><a href="/#/customer/cart/" title="My Cart (-)" class="top-link-cart">My Cart ({{customer_data.cart}})</a></li>
+    <li><a href="/#/customer/checkout/" title="Checkout" class="top-link-checkout">Checkout</a></li>
+    <li class=" last"><a ng-click="logout()" href="" title="Log Out">Log Out</a></li>
+  </ul>    </div>
+<div class="header">
+  <h1 class="logo">
+    <strong>
+      Turbo International            </strong>
+    <a href="/#/" title="Turbo International" class="logo">
+      <img src="http://localhost/skin/frontend/base/default/images/ti-logo_100x77.jpg" alt="Turbo International">
+    </a>
+  </h1>
+
+  <h2 class="logo">
+    Quality Replacement<br>
+    Turbocharger Parts        </h2>
+
+  <p class="welcome-msg">
+    <label for="custom-currency-selector" style="font-weight: bold;">Currency</label>
+    <select onchange="window.location.href=this.value" name="custom-currency-selector" id="custom-currency-selector" style="margin-right: 5px;">
+      <option value="http://localhost/directory/currency/switch/currency/GBP/uenc/aHR0cDovL2xvY2FsaG9zdDo4MDg4Lw,,/">
+        GBP            </option>
+      <option value="http://localhost/directory/currency/switch/currency/EUR/uenc/aHR0cDovL2xvY2FsaG9zdDo4MDg4Lw,,/">
+        EUR            </option>
+      <option value="http://localhost/directory/currency/switch/currency/USD/uenc/aHR0cDovL2xvY2FsaG9zdDo4MDg4Lw,,/" selected="SELECTED">
+        USD            </option>
+    </select>
+    Welcome, {{customer_data.name}}!                    </p>
+  <form  ng-controller="SearchController"  class="ng-pristine ng-valid ng-scope ng-valid-maxlength">
+    <div class="form-search">
+      <input type="text"
+             name=""
+             value=""
+             class="input-text ng-pristine ng-untouched ng-valid ng-valid-maxlength"
+             maxlength=""
+             ng-model="query"
+             ng-keypress="searchByEnterClick($event, query)"
+             placeholder="Part Number…">
+      <button
+        ng-click="search_in_all_fields(query)" type="button" title="Search" class="button">
+                  <span>
+                    Search
+                  </span>
+      </button>
+
+
+    </div>
+  </form>
+</div>

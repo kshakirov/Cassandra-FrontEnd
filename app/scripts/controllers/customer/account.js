@@ -126,7 +126,7 @@ magento_module.controller("CustomerWishlistController", function ($scope,
 
 magento_module.controller("CustomerLogin", function ($scope,
                                                      $rootScope, $http,
-                                                     $cookies) {
+                                                     $cookies, $location) {
 
   $scope.init = function () {
     console.log("Hi Login");
@@ -141,7 +141,9 @@ magento_module.controller("CustomerLogin", function ($scope,
       .then(function (promise) {
         if (promise.data.result == 'success') {
           console.log(promise);
-          $cookies.putObject('token', promise.data.token)
+          $cookies.putObject('token', promise.data.token);
+          $rootScope.$broadcast('loginDone', true);
+          $location.path("/customer/account/");
         }
 
       }, function (error) {
