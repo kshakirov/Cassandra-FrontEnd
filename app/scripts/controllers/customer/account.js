@@ -132,6 +132,7 @@ magento_module.controller("CustomerLogin", function ($scope,
     console.log("Hi Login");
   }
 
+
   $scope.submitPassword = function () {
     var data = {
       customer_email: $scope.customer_email,
@@ -143,10 +144,14 @@ magento_module.controller("CustomerLogin", function ($scope,
           console.log(promise);
           $cookies.putObject('token', promise.data.token);
           $rootScope.$broadcast('loginDone', true);
+          $scope.isNotAuthorized = false;
           $location.path("/customer/account/");
+        }else{
+          $scope.isNotAuthorized = true;
         }
 
       }, function (error) {
+          $scope.isNotAuthorized = true;
         console.log('Error')
       })
   }

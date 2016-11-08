@@ -1,11 +1,20 @@
 <div class="main-container col1-layout">
   <div class="main">
     <div class="col-main">
-      <div class="account-login">
-        <div class="page-title">
+      <div class="account-login" ng-controller="CustomerLogin" ng-init="init()">
+        <div class="page-title" >
           <h1>Login</h1>
         </div>
-        <form ng-controller="CustomerLogin" ng-init="init()" class="ng-pristine ng-valid">
+        <ul ng-if="isNotAuthorized" class="messages">
+          <li class="error-msg">
+            <ul>
+              <li>
+                <span>Invalid login or password.</span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <form  class="ng-pristine ng-valid">
           <div class="col2-set">
             <div class="col-1 new-users">
               <div class="content">
