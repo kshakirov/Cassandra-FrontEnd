@@ -26,13 +26,14 @@
 
   <p class="welcome-msg">
     <label for="custom-currency-selector" style="font-weight: bold;">Currency</label>
-    <select onchange="window.location.href=this.value" name="custom-currency-selector" id="custom-currency-selector" style="margin-right: 5px;">
-      <option value="http://localhost/directory/currency/switch/currency/GBP/uenc/aHR0cDovL2xvY2FsaG9zdDo4MDg4Lw,,/">
-        GBP            </option>
-      <option value="http://localhost/directory/currency/switch/currency/EUR/uenc/aHR0cDovL2xvY2FsaG9zdDo4MDg4Lw,,/">
-        EUR            </option>
-      <option value="http://localhost/directory/currency/switch/currency/USD/uenc/aHR0cDovL2xvY2FsaG9zdDo4MDg4Lw,,/" selected="SELECTED">
-        USD            </option>
+    <select
+      name="custom-currency-selector"
+      id="custom-currency-selector"
+      style="margin-right: 5px;"
+      ng-options="option.name for option in currencyOptions"
+      ng-model="selectedCurrency"
+      ng-change="selectCurrency(selectedCurrency)">
+
     </select>
     Welcome, {{customer_data.name}}!                    </p>
   <form  ng-controller="SearchController"  class="ng-pristine ng-valid ng-scope ng-valid-maxlength">

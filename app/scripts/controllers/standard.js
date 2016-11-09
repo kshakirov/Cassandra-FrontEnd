@@ -149,4 +149,15 @@ magento_module.controller("ByPartsProductTable", function ($scope, $rootScope,
             Pagination.renderUpdated(promise, page);
         })
     }
+
+  $scope.$on('currencyChanged', function (event, args) {
+    console.log("Currency Changed");
+    var query = ElasticQuery.reQuery();
+    ElasticSearch.search(query).then(function (promise) {
+      $scope.rows = ListUtils.transform_elastic_response_2_table (promise, $scope.headers);
+      Pagination.render(promise);
+    })
+  });
+
+
 })

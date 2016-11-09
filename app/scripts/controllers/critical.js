@@ -136,7 +136,6 @@ magento_module.controller("CriticalController", function ($scope, $rootScope,
     $scope.toggleMesurements = function () {
         $scope.unitsButton = _toggle_unit_button($scope.units, $scope.unitsButton);
         $cookies.putObject('inches', $scope.units.inches);
-        $http.post('/checkout/cart/tajax', 'inches=' + $scope.units.inches);
         $route.reload();
     };
 
