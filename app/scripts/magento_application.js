@@ -31,9 +31,7 @@ magento_module.controller("AboutUsController", function ($rootScope, $scope){
     $rootScope.pageTitle=": About Us";
 })
 
-magento_module.controller("ContactUsController", function ($rootScope, $scope){
-    $rootScope.pageTitle=": Contact Us";
-})
+
 
 
 

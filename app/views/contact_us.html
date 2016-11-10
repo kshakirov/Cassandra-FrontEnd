@@ -1,71 +1,107 @@
 <div ng-controller="ContactUsController" class="main">
-    <div class="breadcrumbs">
-        <ul>
-            <li class="home">
-                <a href="/#/" title="Go to Home Page">Home</a>
-                <span>/ </span>
+  <div class="breadcrumbs">
+    <ul>
+      <li class="home">
+        <a href="/#/" title="Go to Home Page">Home</a>
+        <span>/ </span>
+      </li>
+      <li class="cms_page">
+        <strong>Contact Us</strong>
+      </li>
+    </ul>
+  </div>
+  <div class="col-main">
+    <div class="std"><p><strong>Turbo International</strong>&nbsp;services the worldwide turbo aftermarket through a
+      network of distributors.</p>
+      <p><span></span></p>
+      <div id="messages_product_view"></div>
+      <div class="page-title">
+        <h1>Contact Us</h1>
+      </div>
+      <form  id="contactForm"  class="ng-pristine ng-valid">
+        <div class="fieldset">
+          <h2 class="legend">Contact Information</h2>
+          <ul class="form-list">
+            <li class="fields">
+              <div class="field">
+                <label for="name" class="required"><em>*</em>Name</label>
+                <div class="input-box">
+                  <input
+                    ng-model="mailData.name"
+                    name="name"
+                    id="name"
+                    class="input-text required-entry"
+                    type="text">
+                </div>
+              </div>
+              <div class="field">
+                <label for="email" class="required"><em>*</em>Email</label>
+                <div class="input-box">
+                  <input
+                    ng-model="mailData.email"
+                    name="email"
+                    id="email"
+                    title="Email"
+                    class="input-text required-entry validate-email"
+                    type="text">
+                </div>
+              </div>
             </li>
-            <li class="cms_page">
-                <strong>Contact Us</strong>
+            <li>
+              <label for="telephone">Telephone</label>
+              <div class="input-box">
+                <input
+                  ng-model="mailData.telephone"
+                  name="telephone"
+                  id="telephone"
+                  title="Telephone"
+                  class="input-text"
+                  type="text">
+              </div>
             </li>
-        </ul>
+            <li class="wide">
+              <label for="comment" class="required"><em>*</em>Comment</label>
+              <div class="input-box">
+                <textarea
+                  ng-model="mailData.comment"
+                  name="comment"
+                  id="comment"
+                  title="Comment"
+                  class="required-entry input-text"
+                  cols="5"
+                  rows="3">
+                </textarea>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="buttons-set">
+          <p class="required">* Required Fields</p>
+          <button ng-click="sendMail()" title="Submit" class="button"><span><span>Submit</span></span></button>
+        </div>
+      </form>
+
+      <p></p>
+      <table style="width: 900px;" border="0" cellspacing="0" cellpadding="0" align="center">
+        <tbody>
+        <tr>
+          <td valign="top" width="400"><strong>Turbo
+            International</strong><br><span>2151 Las Palmas Drive, Suite E</span><br><span>Carlsbad, CA 92011 USA&nbsp;</span><br><br><strong>International
+            Sales Office</strong><br><em>Phone:</em><br><span>800.238.8726 (in USA)</span><br><span>760.476.1444 (in USA direct)</span><br><span>+1.760.476.1444 (outside USA)</span><br><br><em>Fax:</em><br><span>888.368.8726 (in USA)</span><br><span>+1.760.476.1414 (outside USA))</span><br><br><strong>European
+            Distribution Centre</strong><br><span>Windmolen 22</span><br><span>7609 NN Almelo, NL</span><br><em>Phone:&nbsp;</em><span>+31 (0) 548 659036</span>
+          </td>
+          <td align="center" valign="top" width="500">
+            <iframe
+              src="https://maps.google.com/maps?q=2151+Las+Palmas+Drive,+Suite+E+Carlsbad,+CA+92011+USA&amp;ie=UTF8&amp;split=0&amp;gl=us&amp;ei=xoBKSoiiCcHJlAfW4PEf&amp;hq=&amp;hnear=2151+Las+Palmas+Dr,+Carlsbad,+San+Diego,+California+92011&amp;ll=33.135251,-117.264462&amp;spn=0.076771,0.154324&amp;z=13&amp;output=embed"
+              frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="500" height="400"></iframe>
+            <br>
+            <small><a style="color: #0000ff; text-align: left;"
+                      href="https://maps.google.com/maps?q=2151+Las+Palmas+Drive,+Suite+E+Carlsbad,+CA+92011+USA&amp;ie=UTF8&amp;split=0&amp;gl=us&amp;ei=xoBKSoiiCcHJlAfW4PEf&amp;hq=&amp;hnear=2151+Las+Palmas+Dr,+Carlsbad,+San+Diego,+California+92011&amp;ll=33.135251,-117.264462&amp;spn=0.076771,0.154324&amp;z=13&amp;source=embed">View
+              Larger Map</a></small>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="col-main">
-        <div class="std"><p><strong>Turbo International</strong>&nbsp;services the worldwide turbo aftermarket through a network of distributors.</p>
-            <p><span></span></p><div id="messages_product_view"></div>
-            <div class="page-title">
-                <h1>Contact Us</h1>
-            </div>
-            <form action="/contacts/index/post" id="contactForm" method="post" class="ng-pristine ng-valid">
-                <div class="fieldset">
-                    <h2 class="legend">Contact Information</h2>
-                    <ul class="form-list">
-                        <li class="fields">
-                            <div class="field">
-                                <label for="name" class="required"><em>*</em>Name</label>
-                                <div class="input-box">
-                                    <input name="name" id="name" title="Name" value="" class="input-text required-entry" type="text">
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label for="email" class="required"><em>*</em>Email</label>
-                                <div class="input-box">
-                                    <input name="email" id="email" title="Email" value="" class="input-text required-entry validate-email" type="text">
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <label for="telephone">Telephone</label>
-                            <div class="input-box">
-                                <input name="telephone" id="telephone" title="Telephone" value="" class="input-text" type="text">
-                            </div>
-                        </li>
-                        <li class="wide">
-                            <label for="comment" class="required"><em>*</em>Comment</label>
-                            <div class="input-box">
-                                <textarea name="comment" id="comment" title="Comment" class="required-entry input-text" cols="5" rows="3"></textarea>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="buttons-set">
-                    <p class="required">* Required Fields</p>
-                    <input type="text" name="hideit" id="hideit" value="" style="display:none !important;">
-                    <button type="submit" title="Submit" class="button"><span><span>Submit</span></span></button>
-                </div>
-            </form>
-            <script type="text/javascript">
-                //<![CDATA[
-                var contactForm = new VarienForm('contactForm', true);
-                //]]>
-            </script>
-            <p></p>
-            <table style="width: 900px;" border="0" cellspacing="0" cellpadding="0" align="center">
-                <tbody>
-                <tr>
-                    <td valign="top" width="400"><strong>Turbo International</strong><br><span>2151 Las Palmas Drive, Suite E</span><br><span>Carlsbad, CA 92011 USA&nbsp;</span><br><br><strong>International Sales Office</strong><br><em>Phone:</em><br><span>800.238.8726 (in USA)</span><br><span>760.476.1444 (in USA direct)</span><br><span>+1.760.476.1444 (outside USA)</span><br><br><em>Fax:</em><br><span>888.368.8726 (in USA)</span><br><span>+1.760.476.1414 (outside USA))</span><br><br><strong>European Distribution Centre</strong><br><span>Windmolen 22</span><br><span>7609 NN Almelo, NL</span><br><em>Phone:&nbsp;</em><span>+31 (0) 548 659036</span></td>
-                    <td align="center" valign="top" width="500"><iframe src="https://maps.google.com/maps?q=2151+Las+Palmas+Drive,+Suite+E+Carlsbad,+CA+92011+USA&amp;ie=UTF8&amp;split=0&amp;gl=us&amp;ei=xoBKSoiiCcHJlAfW4PEf&amp;hq=&amp;hnear=2151+Las+Palmas+Dr,+Carlsbad,+San+Diego,+California+92011&amp;ll=33.135251,-117.264462&amp;spn=0.076771,0.154324&amp;z=13&amp;output=embed" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="500" height="400"></iframe> <br> <small><a style="color: #0000ff; text-align: left;" href="https://maps.google.com/maps?q=2151+Las+Palmas+Drive,+Suite+E+Carlsbad,+CA+92011+USA&amp;ie=UTF8&amp;split=0&amp;gl=us&amp;ei=xoBKSoiiCcHJlAfW4PEf&amp;hq=&amp;hnear=2151+Las+Palmas+Dr,+Carlsbad,+San+Diego,+California+92011&amp;ll=33.135251,-117.264462&amp;spn=0.076771,0.154324&amp;z=13&amp;source=embed">View Larger Map</a></small></td>
-                </tr>
-                </tbody>
-            </table></div>                </div>
+  </div>
 </div>
