@@ -12,7 +12,7 @@ magento_module.service("FilterModel", function ($http) {
     }
 
     this.init_by_manufacturer_product_filters = function (args) {
-        return $http.get('/elastic/critical/index/manufacturersfilters?part_type=' + args[1] + '&manufacturer=' + args[0]).then(function (promise) {
+        return $http.get('/frontend/menu/manufacturer/filter?part_type=' + args[1] + '&manufacturer=' + args[0]).then(function (promise) {
             return promise.data;
         })
     }
