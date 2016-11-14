@@ -18,6 +18,14 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
     ]
   }
 
+  function get_currency_code() {
+    var currency = $cookies.getObject('ti_currency');
+    if(currency && currency.hasOwnProperty('code')){
+      return currency.code;
+    }
+    return "USD";
+  }
+
   function _clear_products(products) {
       return products.map(function (product) {
         delete  product.$$hashKey;
@@ -33,10 +41,13 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
         billing_address: billing_address.value,
         shipping_address: shipping_address.value,
         data:{
-          base_currency_code: order.base_currency_code,
-          base_subtotal: order.base_subtotal
+          base_currency_code: get_currency_code(),
         },
-      products: _clear_products(order.products)
+      products: _clear_products(order.products),
+      subtotal:  order.data.base_subtotal,
+      special_instructions: order.special_instructions,
+      customer_purchase_order: order.customer_purchase_order,
+      grand_total:  order.data.base_subtotal
     }
   }
 

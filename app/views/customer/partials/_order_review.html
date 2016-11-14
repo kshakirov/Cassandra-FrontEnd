@@ -7,7 +7,7 @@
           <div class="field">
             <label for="billing:customer_po">Customer Purchase Order</label>
             <div class="input-box">
-              <input ng-model="order.cpo" type="text" name="billing[customer_po]" id="billing:customer_po" title=""
+              <input ng-model="data.customer_purchase_order" type="text" name="billing[customer_po]" id="billing:customer_po" title=""
                      class="input-text">
             </div>
           </div>
@@ -15,7 +15,7 @@
         <li class="wide">
           <label for="billing:special_instructions">Special instructions</label>
           <div class="input-box">
-            <textarea ng-model="order.special_instructions" name="billing[special_instructions]"
+            <textarea ng-model="data.special_instructions" name="billing[special_instructions]"
                       id="billing:special_instructions" title="" style="height: 2em;"></textarea>
           </div>
         </li>
@@ -54,14 +54,14 @@
           Shipping &amp; Handling (To Be Quoted by Sales Representative - Offline)
         </td>
         <td style="" class="a-right last">
-          <span class="price">$0.00</span></td>
+          <span class="price">{{data.shipping_handling}}</span></td>
       </tr>
       <tr class="last">
         <td style="" class="a-right" colspan="5">
           <strong>Grand Total</strong>
         </td>
         <td style="" class="a-right last">
-          <strong><span class="price">{{data.data.base_subtotal}}</span></strong>
+          <strong><span class="price">{{data.grand_total}}</span></strong>
         </td>
       </tr>
       </tfoot>
