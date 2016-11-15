@@ -71,11 +71,10 @@
       </div>
       <h2 class="sub-title">Thank you for your purchase!</h2>
 
-      <p>Your order # is: <a href="/customer/order/{{order.order_id}}">{{order.order_id}}</a>.</p>
+      <p>Your order # is: <a ng-href="/#/customer/order/{{order.order_id}}/view">{{order.order_id}}</a>.</p>
       <p>You will receive an order confirmation email with details of your order and a link to track its progress.</p>
       <p>
-        Click <a href="https://www.turbointernational.com/sales/order/print/order_id/534/"
-                 onclick="this.target='_blank'">here to print</a> a copy of your order confirmation. </p>
+        Click <a ng-href="/#/customer/order/{{order.order_id}}/print/" >here to print</a> a copy of your order confirmation. </p>
 
 
       <div class="buttons-set">

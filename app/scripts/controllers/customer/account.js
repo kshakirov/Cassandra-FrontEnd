@@ -184,3 +184,20 @@ magento_module.controller("CustomerCartController", function ($scope,
 
 
 })
+
+magento_module.controller("CustomerOrderViewController", function ($scope,
+                                                                $routeParams, $http,
+                                                                usSpinnerService,
+                                                                $cookies) {
+  $scope.init = function () {
+    console.log("Hi customer");
+    var id = $routeParams.id;
+    usSpinnerService.spin('spinner-order');
+    $http.get("/customer/order/" + id).then(function (promise) {
+      console.log(promise);
+      $scope.order = promise.data;
+      usSpinnerService.stop('spinner-order');
+    })
+  }
+})
+

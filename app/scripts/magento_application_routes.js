@@ -68,6 +68,10 @@ magento_module.config(function ($routeProvider) {
       templateUrl: VIEW_DIR + 'customer/orders.html',
       controller: 'CustomerOrdersController'
     })
+    .when('/customer/order/:id/view', {
+      templateUrl: VIEW_DIR + 'customer/order_view.html',
+      controller: 'CustomerOrderViewController'
+    })
     .when('/customer/account/wishlist/', {
       templateUrl: VIEW_DIR + 'customer/wishlist.html',
       controller: 'CustomerWishlistController'
