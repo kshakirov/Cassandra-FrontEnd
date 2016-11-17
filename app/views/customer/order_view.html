@@ -5,7 +5,7 @@
         <div class="page-title title-buttons">
           <h1>Order {{order.order_id}} - {{order.data.status}}</h1>
 
-          <a href="/order/print/order_id/300/" class="link-print">Print Order</a>
+          <button ng-click="printOrder(order.order_id)" class="link-print">Print Order</button>
         </div>
         <dl class="order-info">
           <dt>About This Order:</dt>
@@ -13,8 +13,6 @@
             <ul id="order-info-tabs">
               <li class="current first last">Order Information</li>
             </ul>
-            <script
-              type="text/javascript">decorateGeneric($('order-info-tabs').select('LI'), ['first', 'last']);</script>
           </dd>
         </dl>
         <p class="order-date">Order Date: {{order.data.date}}</p>

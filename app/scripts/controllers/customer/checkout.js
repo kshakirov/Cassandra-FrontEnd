@@ -67,6 +67,8 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
     })
   }
 
+ 
+
 
   $scope.init = function () {
     console.log("Hi customer");

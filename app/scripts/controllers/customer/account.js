@@ -199,5 +199,14 @@ magento_module.controller("CustomerOrderViewController", function ($scope,
       usSpinnerService.stop('spinner-order');
     })
   }
+
+  $scope.printOrder = function (order_id) {
+    console.log("PRINT")
+    var w = window.open('/frontend/order/' + order_id + '/print');
+    w.print();
+    // $http.get('/customer/order/' + order_id + '/print').then(function (promise) {
+    //  console.log(promise);
+    // })
+  }
 })
 
