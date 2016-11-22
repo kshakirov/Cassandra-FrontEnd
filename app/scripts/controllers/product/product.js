@@ -113,12 +113,12 @@ magento_module.controller("ProductController", function ($scope,
         return $scope.product.manufacturer.toLowerCase() == 'turbo international';
     };
 
-    $scope.addToCart = function () {
+    $scope.addToCart = function (qty) {
 
       var product = {
         product: $scope.product,
         price: $scope.price,
-        qty: $scope.qty
+        qty: qty
       };
 
       $http.post('/customer/cart/product', product).then(function (response) {
