@@ -82,7 +82,7 @@ magento_module.config(function ($routeProvider) {
     })
     .when('/customer/cart/', {
       templateUrl: VIEW_DIR + 'customer/cart.html',
-      controller: 'CustomerCartController'
+      controller: 'CustomerCart'
     })
     .when('/customer/checkout/', {
       templateUrl: VIEW_DIR + 'customer/checkout.html',

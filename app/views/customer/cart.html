@@ -1,7 +1,7 @@
 <div class="main-container col1-layout">
   <div class="main">
     <div class="col-main">
-      <div class="cart" ng-controller="CustomerCartController" ng-init="init()">
+      <div class="cart" ng-controller="CustomerCart" ng-init="init()">
         <div class="page-title title-buttons">
           <h1>Shopping Cart</h1>
           <ul class="checkout-types">
@@ -61,8 +61,8 @@
               <tbody>
               <tr ng-repeat="(key, item) in cart_data.items" class="first last odd">
                 <!-- Product image -->
-                <td><a ng-href="/#/part/sku/{{sku}}" title="{{item.name}}" class="product-image"><img
-                  ng-src="/imageserver/product/{{item.sku}}/image/75/50" width="75"
+                <td><a ng-href="/#/part/sku/{{key}}" title="{{item.name}}" class="product-image"><img
+                  ng-src="/imageserver/product/{{key}}/image/75/50" width="75"
                   height="50" alt="{{item.name}}"></a></td>
                 <!-- Part Type -->
                 <td>
@@ -71,7 +71,7 @@
                 </td>
                 <!-- TI Part Number -->
                 <td>
-                  <a style="white-space: nowrap;" href="/#/part/sku/6229">{{item.ti_part}}</a>
+                  <a style="white-space: nowrap;" ng-href="/#/part/sku/{{key}}">{{item.ti_part}}</a>
                 </td>
                 <!-- OEM Part Number -->
                 <td>
@@ -163,7 +163,7 @@
               <li>
                 <button type="button" title="Proceed to Checkout"
                         class="button btn-proceed-checkout btn-checkout"
-                        ng-href="/customer/checkout">
+                        ng-click="checkout()">
                   <span><span>Proceed to Checkout</span></span>
                 </button>
               </li>

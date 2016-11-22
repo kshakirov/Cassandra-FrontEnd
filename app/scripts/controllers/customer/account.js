@@ -158,32 +158,6 @@ magento_module.controller("CustomerLogin", function ($scope,
 
 })
 
-magento_module.controller("CustomerCartController", function ($scope,
-                                                              $rootScope, $http,
-                                                              $cookies, $location) {
-
-  $scope.init = function () {
-    console.log("Hi Cart");
-    $http.get('/customer/cart').then(function (promise) {
-      console.log(promise.data)
-      $scope.cart_data = promise.data;
-    })
-  }
-
-  $scope.removeProductFromCart = function (sku) {
-    console.log(sku + " To delete");
-    $http.delete('/customer/cart/product/' + sku).then(function () {
-      console.log("item deleted from cart")
-    })
-  }
-
-  $scope.checkout = function () {
-    console.log("dfdf")
-    $location.path("/customer/checkout")
-  }
-
-
-})
 
 magento_module.controller("CustomerOrderViewController", function ($scope,
                                                                 $routeParams, $http,
