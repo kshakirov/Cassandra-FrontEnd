@@ -1,48 +1,26 @@
 magento_module.controller("CustomerAccountController", function ($scope,
                                                                  $rootScope, $http,
                                                                  usSpinnerService,
-                                                                 $cookies) {
+                                                                 $location) {
   $scope.init = function () {
     console.log("Hi customer");
     usSpinnerService.spin('spinner-account');
     $http.get("/customer/account").then(function (promise) {
       console.log(promise);
-      $scope.customer_data = promise.data;
+      $scope.customer = promise.data;
       usSpinnerService.stop('spinner-account');
     })
   }
-})
 
-magento_module.controller("CustomerAccountInformationController", function ($scope,
-                                                                            $rootScope, $http,
-                                                                            usSpinnerService,
-                                                                            $cookies) {
-  $scope.passwordVisible = false;
-  $scope.init = function () {
-    console.log("Hi customer");
-    usSpinnerService.spin('spinner-account-info');
-    $http.get("/customer/account").then(function (promise) {
-      console.log(promise);
-      $scope.customer_data = promise.data;
-      usSpinnerService.stop('spinner-account-info');
-    })
+  $scope.changePassword = function () {
+      $location.path('/customer/account/information')
   }
 
-  $scope.setPasswordFormVisible = function () {
-    $scope.passwordVisible = !$scope.passwordVisible;
-  }
-
-  function save_data(customer_data) {
-    $http.post('/critical/index/updateCustomerInfo/', customer_data).then(function (promise) {
-      console.log(promise)
-    })
-  }
-
-  $scope.updateCustomerData = function () {
-    console.log($scope.customer_data);
-    save_data($scope.customer_data);
+  $scope.editAddress = function (id) {
+    $location.path('/customer/account/address/edit/' + id)
   }
 })
+
 
 
 magento_module.controller("CustomerAddressBookController", function ($scope,
@@ -54,7 +32,7 @@ magento_module.controller("CustomerAddressBookController", function ($scope,
     usSpinnerService.spin('spinner-account');
     $http.get("/customer/account").then(function (promise) {
       console.log(promise);
-      $scope.customer_data = promise.data;
+      $scope.customer = promise.data;
       usSpinnerService.stop('spinner-account');
     })
   }
@@ -184,3 +162,29 @@ magento_module.controller("CustomerOrderViewController", function ($scope,
   }
 })
 
+
+var compareTo = function() {
+  return {
+    require: "ngModel",
+    scope: {
+      otherModelValue: "=compareTo"
+    },
+    link: function(scope, element, attributes, ngModel) {
+
+      ngModel.$validators.compareTo = function(modelValue) {
+        console.log(modelValue);
+        console.log("RRRRR");
+        console.log(scope.otherModelValue);
+        //return modelValue == scope.otherModelValue;
+        return true;
+      };
+
+      scope.$watch("otherModelValue", function() {
+        var result  = ngModel.$validate();
+        console.log(result);
+      });
+    }
+  };
+};
+
+magento_module.directive("compareTo", compareTo);

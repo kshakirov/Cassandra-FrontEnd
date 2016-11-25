@@ -27,7 +27,7 @@ magento_module.controller("LoginManager", function ($scope, $http,
 
 
   $scope.isAuthorized = false;
-  $scope.customer_data = {name: " to Turbo International"};
+  $scope.customer = {name: " to Turbo International"};
   $scope.currencies = [{}]
   $scope.currencyOptions = [{name: 'USD'}, {name: 'EUR'}, {name: 'GBP'}];
   $scope.selectedCurrency = $scope.currencyOptions[0];
@@ -37,7 +37,7 @@ magento_module.controller("LoginManager", function ($scope, $http,
     getCurrency();
     return $http.get('/customer/data').then(function (promise) {
       console.log(promise.data);
-      $scope.customer_data = promise.data;
+      $scope.customer = promise.data;
       $scope.isAuthorized = true;
     })
   }
@@ -46,7 +46,7 @@ magento_module.controller("LoginManager", function ($scope, $http,
     $cookies.remove('token');
     console.log("Logout");
     $scope.isAuthorized = false;
-    $scope.customer_data.name = " to Turbo International";
+    $scope.customer.name = " to Turbo International";
     $location.path('/#/');
   }
 

@@ -1,0 +1,114 @@
+<div class="my-account" ng-if="addressReady">
+  <div class="page-title">
+    <h1>Edit Address</h1>
+  </div>
+  <form id="form-validate" class="ng-pristine ng-valid">
+    <div class="fieldset">
+      <h2 class="legend">Contact Information</h2>
+      <ul class="form-list">
+        <li class="fields">
+          <div class="customer-name">
+            <div class="field name-firstname">
+              <label for="firstname" class="required"><em>*</em>First Name</label>
+              <div class="input-box">
+                <input ng-model="customer.firstname" type="text" id="firstname" name="firstname" title="First Name"
+                       maxlength="255" class="input-text required-entry">
+              </div>
+            </div>
+            <div class="field name-lastname">
+              <label for="lastname" class="required"><em>*</em>Last Name</label>
+              <div class="input-box">
+                <input ng-model="customer.lastname" type="text" id="lastname" name="lastname" value="Shakirov"
+                       title="Last Name" maxlength="255" class="input-text required-entry">
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="wide">
+          <label for="company">Company</label>
+          <div class="input-box">
+            <input ng-model="address.company" type="text" name="company" id="company" title="Company"
+                   class="input-text ">
+          </div>
+        </li>
+        <li class="fields">
+          <div class="field">
+            <label for="telephone" class="required"><em>*</em>Telephone</label>
+            <div class="input-box">
+              <input ng-model="address.telephone" type="text" name="telephone"  title="Telephone"
+                     class="input-text   required-entry" id="telephone">
+            </div>
+          </div>
+          <div class="field">
+            <label for="fax">Fax</label>
+            <div class="input-box">
+              <input ng-model="address.fax" type="text" name="fax" id="fax" title="Fax" value="" class="input-text ">
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="fieldset">
+      <h2 class="legend">Address</h2>
+      <ul class="form-list">
+        <li class="wide">
+          <label for="street_1" class="required"><em>*</em>Street Address</label>
+          <div class="input-box">
+            <input ng-model="address.street" type="text" name="street" title="Street Address" id="street_1"
+                   class="input-text  required-entry">
+          </div>
+        </li>
+        <li class="wide">
+          <div class="input-box">
+            <input type="text" name="street[]" value="" title="Street Address 2" id="street_2" class="input-text ">
+          </div>
+        </li>
+        <li class="fields">
+          <div class="field">
+            <label for="city" class="required"><em>*</em>City</label>
+            <div class="input-box">
+              <input ng-model="address.city" type="text" name="city" title="City" class="input-text  required-entry"
+                     id="city">
+            </div>
+          </div>
+          <div class="field">
+            <label for="region_id" class="required"><em>*</em>State/Province</label>
+            <div class="input-box">
+              <ang-select-usstates ng-model="address.region" name="State" id="selectState"></ang-select-usstates>
+
+
+
+            </div>
+          </div>
+        </li>
+        <li class="fields">
+          <div class="field">
+            <label for="zip" class="required"><em>*</em>Zip/Postal Code</label>
+            <div class="input-box">
+              <input ng-model="address.postcode" type="text" name="postcode" title="Zip/Postal Code" id="zip"
+                     class="input-text validate-zip-international  required-entry">
+            </div>
+          </div>
+          <div class="field">
+            <label for="country" class="required"><em>*</em>Country</label>
+            <div class="input-box">
+              <country-select data-ng-model="address.country_id"></country-select>
+          </div>
+        </li>
+        <li>
+          <strong>Default Billing Address</strong>
+        </li>
+        <li>
+          <strong>Default Shipping Address</strong>
+        </li>
+      </ul>
+    </div>
+    <div class="buttons-set">
+      <p class="required">* Required Fields</p>
+      <p class="back-link"><a href="https://www.turbointernational.com/customer/address/">
+        <small>«</small>
+        Back</a></p>
+      <button ng-click="save(customer)" title="Save Address" class="button"><span><span>Save Address</span></span></button>
+    </div>
+  </form>
+</div>

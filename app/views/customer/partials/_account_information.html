@@ -2,9 +2,8 @@
     <div class="page-title">
         <h1>Edit Account Information</h1>
     </div>
-    <form    class="ng-pristine ng-valid">
+    <form id="customerData" name="customerData"  >
         <div class="fieldset">
-            <input name="form_key" type="hidden" value="GLJZUZqOQzS7mJF8">
             <h2 class="legend">Account Information</h2>
             <ul class="form-list">
                 <li class="fields">
@@ -12,14 +11,14 @@
                         <div class="field name-firstname">
                             <label for="firstname" class="required"><em>*</em>First Name</label>
                             <div class="input-box">
-                                <input ng-model="customer_data.firstname"  type="text" id="firstname" name="firstname"  title="First Name"
+                                <input ng-model="customer.firstname"  type="text" id="firstname" name="firstname"  title="First Name"
                                        maxlength="255" class="input-text required-entry">
                             </div>
                         </div>
                         <div class="field name-lastname">
                             <label for="lastname" class="required"><em>*</em>Last Name</label>
                             <div class="input-box">
-                                <input ng-model="customer_data.lastname" type="text" id="lastname" name="lastname"  title="Last Name"
+                                <input ng-model="customer.lastname" type="text" id="lastname" name="lastname"  title="Last Name"
                                        maxlength="255" class="input-text required-entry">
                             </div>
                         </div>
@@ -28,7 +27,7 @@
                 <li>
                     <label for="email" class="required"><em>*</em>Email Address</label>
                     <div class="input-box">
-                        <input ng-model="customer_data.email" type="text" name="email" id="email"  title="Email Address"
+                        <input ng-model="customer.email" type="text" name="email" id="email"  title="Email Address"
                                class="input-text required-entry validate-email">
                     </div>
                 </li>
@@ -45,7 +44,7 @@
                 <li>
                     <label for="current_password" class="required"><em>*</em>Current Password</label>
                     <div class="input-box">
-                        <input ng-model="customer_data.currentPassword" type="password" title="Current Password" class="input-text" name="current_password"
+                        <input ng-model="customer.currentPassword" type="password" title="Current Password" class="input-text" name="current_password"
                                id="current_password">
                     </div>
                 </li>
@@ -53,26 +52,38 @@
                     <div class="field">
                         <label for="password" class="required"><em>*</em>New Password</label>
                         <div class="input-box">
-                            <input ng-model ="customer_data.newPassword_1" type="password" title="New Password" class="input-text validate-password"
+                            <input ng-model ="customer.newPassword_1" type="password" title="New Password" class="input-text validate-password"
                                    name="password" id="password">
                         </div>
                     </div>
                     <div class="field">
                         <label for="confirmation" class="required"><em>*</em>Confirm New Password</label>
                         <div class="input-box">
-                            <input ng-model="customer_data.newPassword_2" type="password" title="Confirm New Password" class="input-text validate-cpassword"
-                                   name="confirmation" id="confirmation">
+                            <input  ng-model="customer.newPassword_2" type="password" title="Confirm New Password" class="input-text validate-cpassword"
+                                   name="confirmation" id="confirmation" compare-to="customer.newPassword_1">
                         </div>
+                      <div ng-messages="customerData.confirmation.$error" style="color:maroon" role="alert">
+                        <div class="messages">
+                          <div ng-message="compareTo">Must match the previous entry</div>
+                        </div>
+                      </div>
                     </div>
+
+
+
                 </li>
             </ul>
         </div>
+
+
+
+
         <div class="buttons-set">
             <p class="required">* Required Fields</p>
             <p class="back-link"><a href="http://localhost/#/">
                 <small>«</small>
                 Back</a></p>
-            <button ng-click="updateCustomerData()"  title="Save" class="button"><span><span>Save</span></span></button>
+            <button ng-click="updateCustomer(customer)"  title="Save" class="button"><span><span>Save</span></span></button>
         </div>
     </form>
 </div>

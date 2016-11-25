@@ -12,7 +12,7 @@ magento_module.controller("Menus", function ($scope, $http,
 
 
   $scope.init = function () {
-    return $http.get(backend_path + 'part').then(function (promise) {
+    return $http.get(backend_path + 'critical').then(function (promise) {
       usSpinnerService.spin('spinner-1');
       $rootScope.criticalParts = promise.data;
       usSpinnerService.stop('spinner-1');

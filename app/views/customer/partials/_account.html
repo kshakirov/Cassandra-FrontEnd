@@ -6,7 +6,7 @@
             <h1>My Dashboard</h1>
         </div>
         <div class="welcome-msg">
-            <p class="hello"><strong>Hello, {{customer_data.firstname}} {{customer_data.lastname}}!</strong>
+            <p class="hello"><strong>Hello, {{customer.firstname}} {{customer.lastname}}!</strong>
             </p>
             <p>From your My Account Dashboard you have the ability to view a snapshot of your recent account
                 activity and update your account information. Select a link below to view or edit
@@ -25,9 +25,9 @@
                         </div>
                         <div class="box-content">
                             <p>
-                                {{customer_data.firstname}} {{customer_data.lastname}}<br>
-                                {{customer_data.email}} <br>
-                                <a href="http://localhost/customer/account/edit/changepass/1/">Change
+                                {{customer.firstname}} {{customer.lastname}}<br>
+                                {{customer.email}} <br>
+                                <a  href="/#/customer/account/information">Change
                                     Password</a>
                             </p>
                         </div>
@@ -44,35 +44,35 @@
                         <div class="col-1">
                             <h4>Default Billing Address</h4>
                             <address>
-                                {{customer_data.firstname}} {{customer_data.lastname}}<br>
-                                {{customer_data.default_billing_address.company}}<br>
-                                {{customer_data.default_billing_address.street}}<br>
+                                {{customer.firstname}} {{customer.lastname}}<br>
+                                {{customer.default_billing_address.company}}<br>
+                                {{customer.default_billing_address.street}}<br>
 
 
-                                {{customer_data.default_billing_address.city}},
-                                {{customer_data.default_billing_address.postcode}}<br>
-                                {{customer_data.default_billing_address.country_id}}<br>
-                                T: {{customer_data.default_billing_address.telephone}}
+                                {{customer.default_billing_address.city}},
+                                {{customer.default_billing_address.postcode}}<br>
+                                {{customer.default_billing_address.country_id}}<br>
+                                T: {{customer.default_billing_address.telephone}}
 
                                 <br>
-                                <a href="http://localhost/customer/address/edit/id/449/">Edit Address</a>
+                                <a  href="/#/customer/account/address/edit/1">Edit Address</a>
                             </address>
                         </div>
                         <div class="col-2">
                             <h4>Default Shipping Address</h4>
                             <address>
-                                {{customer_data.firstname}} {{customer_data.lastname}}<br>
-                                {{customer_data.default_shipping_address.company}}<br>
-                                {{customer_data.default_shipping_address.street}}<br>
+                                {{customer.firstname}} {{customer.lastname}}<br>
+                                {{customer.default_shipping_address.company}}<br>
+                                {{customer.default_shipping_address.street}}<br>
 
 
-                                {{customer_data.default_shipping_address.city}},
-                                {{customer_data.default_shipping_address.postcode}}<br>
-                                {{customer_data.default_shipping_address.country_id}}<br>
-                                T: {{customer_data.default_shipping_address.telephone}}
+                                {{customer.default_shipping_address.city}},
+                                {{customer.default_shipping_address.postcode}}<br>
+                                {{customer.default_shipping_address.country_id}}<br>
+                                T: {{customer.default_shipping_address.telephone}}
 
                                 <br>
-                                <a href="http://localhost/customer/address/edit/id/449/">Edit Address</a>
+                                <a   href="/#/customer/account/address/edit/2">Edit Address</a>
                             </address>
                         </div>
                     </div>
