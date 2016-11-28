@@ -53,6 +53,7 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
 
   $scope.order = {};
 
+  $scope.newAddress = false;
 
   $scope.placeOrder = function () {
     console.log("HI placeOrdere");
@@ -67,8 +68,9 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
     })
   }
 
- 
-
+  $scope.toggleAddresses = function (address) {
+    $scope.newAddress = !$scope.newAddress;
+  };
 
   $scope.init = function () {
     console.log("Hi customer");

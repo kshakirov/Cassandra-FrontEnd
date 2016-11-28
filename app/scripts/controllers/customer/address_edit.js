@@ -5,7 +5,7 @@ magento_module.controller("CustomerAddressEditController", function ($scope,
                                                                      $location) {
 
 
-  var current_address = 1;
+  var current_address = false;
 
   function _get_address_type(address_id) {
     if (address_id == 1)
@@ -14,11 +14,13 @@ magento_module.controller("CustomerAddressEditController", function ($scope,
   }
 
   $scope.init = function () {
-    current_address = $routeParams.id;
+    current_address = $routeParams.id | false;
     $http.get("/customer/account").then(function (promise) {
       $scope.customer = promise.data;
-      $scope.address = $scope.customer[_get_address_type(current_address)];
-      $scope.address.region = $scope.address.region || null;
+      if(current_address) {
+        $scope.address = $scope.customer[_get_address_type(current_address)];
+        $scope.address.region = $scope.address.region || null;
+      }
       $scope.addressReady = true;
     })
   }

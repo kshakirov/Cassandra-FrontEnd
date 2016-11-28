@@ -11,7 +11,7 @@
           <a href=""
              ng-click="createBreadcrumb('Manufacturer', manufacturer[0])" ng-mouseover="toggleList($index)"  >{{manufacturer[0]}}</a>
           <ul ng-class="getClass($index)">
-            <li ng-repeat="part in criticalParts"  ng-class="getComponentListItemClass(part)">
+            <li ng-repeat="part in stdParts"  ng-class="getComponentListItemClass(part)">
               <a  ng-click="createBreadcrumb('Manufacturer', manufacturer[0] + ' / ' + part[0])"
                   ng-href="#/manufacturer/{{manufacturer[1] }}/parttype/{{part[1]}}/parts">{{part[0]}}</a>
             </li>

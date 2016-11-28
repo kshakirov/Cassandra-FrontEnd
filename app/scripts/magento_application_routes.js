@@ -68,6 +68,10 @@ magento_module.config(function ($routeProvider) {
       templateUrl: VIEW_DIR + 'customer/address_edit.html',
       controller: 'CustomerAddressEditController'
     })
+    .when('/customer/account/address/new/', {
+      templateUrl: VIEW_DIR + 'customer/address_edit.html',
+      controller: 'CustomerAddressEditController'
+    })
     .when('/customer/account/orders/', {
       templateUrl: VIEW_DIR + 'customer/orders.html',
       controller: 'CustomerOrdersController'

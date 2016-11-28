@@ -2,7 +2,7 @@
     <div class="page-title title-buttons">
         <h1>Address Book</h1>
         <button type="button" title="Add New Address" class="button"
-                onclick="window.location='http://localhost/customer/address/new/';">
+                ng-click="createNewAddress()">
             <span><span>Add New Address</span></span></button>
     </div>
     <div class="col2-set addresses-list">
@@ -40,7 +40,7 @@
                         T: {{customer.default_shipping_address.telephone}}
 
                     </address>
-                    <p><a href=/#/customer/account/address/edit/2">Change Shipping Address</a></p>
+                    <p><a href="/#/customer/account/address/edit/2">Change Shipping Address</a></p>
                 </li>
             </ol>
         </div>

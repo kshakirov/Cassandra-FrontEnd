@@ -23,20 +23,7 @@ magento_module.controller("CustomerAccountController", function ($scope,
 
 
 
-magento_module.controller("CustomerAddressBookController", function ($scope,
-                                                                     $rootScope, $http,
-                                                                     usSpinnerService,
-                                                                     $cookies) {
-  $scope.init = function () {
-    console.log("Hi customer");
-    usSpinnerService.spin('spinner-account');
-    $http.get("/customer/account").then(function (promise) {
-      console.log(promise);
-      $scope.customer = promise.data;
-      usSpinnerService.stop('spinner-account');
-    })
-  }
-})
+
 
 
 magento_module.controller("CustomerOrdersController", function ($scope,

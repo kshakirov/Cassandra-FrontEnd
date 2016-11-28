@@ -7,13 +7,13 @@
                 <div class="input-box">
                     <select name="billing_address_id" id="billing-address-select"
                             class="address-select validation-passed" title=""
+                            ng-change="toggleAddresses()"
                             ng-options="option.name for option in billingAddresses track by option.id"
                             ng-model="billingAddress">
                     </select></div>
             </li>
-            <li id="billing-new-address-form" style="display: none;">
+            <li ng-if="newAddress" id="billing-new-address-form" >
                 <fieldset>
-                    <input type="hidden"  value="2614" id="billing:address_id">
                     <ul>
                         <li class="fields">
                             <div class="customer-name">
