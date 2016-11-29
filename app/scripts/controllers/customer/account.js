@@ -3,12 +3,11 @@ magento_module.controller("CustomerAccountController", function ($scope,
                                                                  usSpinnerService,
                                                                  $location) {
   $scope.init = function () {
-    console.log("Hi customer");
     usSpinnerService.spin('spinner-account');
     $http.get("/customer/account").then(function (promise) {
-      console.log(promise);
       $scope.customer = promise.data;
       usSpinnerService.stop('spinner-account');
+      $rootScope.customerSideBar =1;
     })
   }
 
@@ -21,6 +20,21 @@ magento_module.controller("CustomerAccountController", function ($scope,
   }
 })
 
+
+magento_module.controller("CustomerAccountSideBarController", function ($scope,
+                                                                 $rootScope) {
+  $scope.init = function () {
+    console.log("CustomerAccountSideBarController")
+  };
+
+  $scope.getClassByMenuItem = function (id) {
+    if($rootScope.customerSideBar == id)
+      return '';
+    else
+      return '';
+  }
+
+})
 
 
 
