@@ -4,7 +4,6 @@
       <div class="page-title">
         <h1>Checkout</h1>
       </div>
-
       <v-accordion class="vAccordion--default" multiple>
 
         <!-- add expanded attribute to open the section -->
@@ -66,6 +65,13 @@
     </div>
   <div ng-if="orderSent" class="main">
     <div class="col-main">
+      <div ng-if="orderCreationError">
+        <ul class="messages">
+          <li class="error-msg">
+            <ul><li><span>Order is not sent, check your email</span></li></ul>
+          </li>
+        </ul>
+      </div>
       <div class="page-title">
         <h1>Your order has been received.</h1>
       </div>

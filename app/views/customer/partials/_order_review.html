@@ -47,7 +47,7 @@
           Subtotal
         </td>
         <td style="" class="a-right last">
-          <span class="price">{{data.data.base_subtotal}}</span></td>
+         <span class="price" ng-bind-html='data.data.base_subtotal | cart_price_filter: product.data.base_currency_code'></span>
       </tr>
       <tr>
         <td style="" class="a-right" colspan="5">
@@ -79,13 +79,13 @@
         </td>
         <td class="a-right">
                     <span class="cart-price">
-                            <span class="price">{{product.base_price_incl_tax}}</span>
+                            <span class="regular-price" ng-bind-html='product.base_price_incl_tax | cart_price_filter: product.data.base_currency_code'></span>
                      </span>
         </td>
         <td class="a-center">{{product.qty_ordered}}</td>
         <td class="a-right last">
                     <span class="cart-price">
-                            <span class="price">{{product.base_row_total}}</span>
+                            <span class="regular-price" ng-bind-html='product.base_row_total | cart_price_filter: product.data.base_currency_code'></span>
                     </span>
         </td>
       </tr>
@@ -95,7 +95,7 @@
   <div id="checkout-review-submit">
     <div class="buttons-set" id="review-buttons-container">
       <p class="f-left">Forgot an Item? <a
-        href="http://ec2-52-52-21-147.us-west-1.compute.amazonaws.com/checkout/cart/">
+        href="">
         Edit Your Cart </a>
       </p>
       <button ng-click="placeOrder()" title="Place Order" class="button btn-checkout" >

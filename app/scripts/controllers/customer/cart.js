@@ -11,11 +11,19 @@ magento_module.controller("CustomerCart", function ($scope,
     })
   }
 
+  function is_cart_empty(cart) {
+     if(cart && cart.hasOwnProperty('items'))
+       return Object.keys(cart.items) == 0;
+  }
+
+  
 
   $scope.init = function () {
     console.log("Hi Cart");
     return load_cart().then(function (data) {
       $scope.cart_data = data;
+      $scope.emptyCart = is_cart_empty(data);
+      console.log($scope.emptyCart);
     })
   }
 
@@ -26,6 +34,7 @@ magento_module.controller("CustomerCart", function ($scope,
     }).then(function (sku) {
         load_cart().then(function (data) {
           $scope.cart_data = data;
+          $scope.emptyCart = is_cart_empty(data);
         })
     })
   }

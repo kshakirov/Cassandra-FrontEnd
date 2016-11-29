@@ -1,7 +1,16 @@
 <div class="main-container col1-layout">
-  <div class="main">
-    <div class="col-main">
-      <div class="cart" ng-controller="CustomerCart" ng-init="init()">
+  <div class="main" ng-controller="CustomerCart" ng-init="init()">
+    <div ng-if="emptyCart" class="col-main">
+      <div class="page-title">
+        <h1>Shopping Cart is Empty</h1>
+      </div>
+      <div class="cart-empty">
+        <p>You have no items in your shopping cart.</p>
+        <p>Click <a ng-href="/#/">here</a> to continue shopping.</p>
+      </div>
+    </div>
+    <div ng-if="!emptyCart"  class="col-main">
+      <div class="cart" >
         <div class="page-title title-buttons">
           <h1>Shopping Cart</h1>
           <ul class="checkout-types">
@@ -84,7 +93,7 @@
                 <!-- Excluding tax price -->
                 <td class="a-right">
                             <span class="cart-price">
-                                        <span class="price">{{item.unit_price}}</span>
+                                        <span class="regular-price" ng-bind-html='item.unit_price | cart_price_filter: cart_data.currency '></span>
                             </span>
                 </td>
                 <!-- Quantity -->
@@ -95,7 +104,7 @@
                 <!-- Subtotal -->
                 <td class="a-right">
                     <span class="cart-price">
-                         <span class="price">{{item.subtotal}}</span>
+                        <span class="regular-price" ng-bind-html='item.subtotal | cart_price_filter: cart_data.currency '></span>
                     </span>
                 </td>
                 <!-- Remove item -->
@@ -155,7 +164,7 @@
                   Subtotal
                 </td>
                 <td style="" class="a-right">
-                  <span class="price">{{cart_data.subtotal}}</span></td>
+                  <span class="regular-price" ng-bind-html='cart_data.subtotal | cart_price_filter: cart_data.currency '></span></td>
               </tr>
               </tbody>
             </table>
@@ -175,5 +184,6 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>

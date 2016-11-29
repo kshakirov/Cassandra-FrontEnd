@@ -63,14 +63,21 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
       console.log(promise);
       $scope.orderSent = true;
       $scope.order = promise.data;
+      $scope.orderCreationError = _is_maiiled(promise.data);
     }, function (error) {
       console.log(error);
+      $scope.orderCreationError = true;
     })
   }
 
   $scope.toggleAddresses = function (address) {
     $scope.newAddress = !$scope.newAddress;
   };
+
+
+  function _is_maiiled(response) {
+    return !response.mailed;
+  }
 
   $scope.init = function () {
     console.log("Hi customer");
