@@ -1,7 +1,7 @@
 var magento_module = angular.module('MagentoApp', ['rzModule',
     'angularSpinner', 'elasticsearch', 'ngRoute', 'ngCookies',
     'ngTouch', 'ngAnimate', 'ngFader', 'angular-preload-image', 'ngSanitize', 'ngDialog', 'ngTable', 'angular-spinkit', 'vAccordion',
-  'angular-directive-select-usstates','countrySelect']);
+  'angular-directive-select-usstates','countrySelect', 'angular-md5']);
 
 magento_module.run(function($rootScope) {
     $rootScope.flags = {catalog: false};
@@ -33,20 +33,6 @@ magento_module.controller("AboutUsController", function ($rootScope, $scope){
 })
 
 
-
-
-
-magento_module.factory('sessionInjector',  function($cookies) {
-  var sessionInjector = {
-    request: function(config) {
-
-        config.headers['Authorization'] = "Bearer " +  $cookies.getObject('token');
-
-      return config;
-    }
-  };
-  return sessionInjector;
-});
 magento_module.config(['$httpProvider', function($httpProvider) {
   $httpProvider.interceptors.push('sessionInjector');
 }]);
