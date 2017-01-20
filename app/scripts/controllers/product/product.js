@@ -121,6 +121,11 @@ magento_module.controller("ProductController", function ($scope,
         return $scope.product.part_type.toLowerCase() == 'cartridge';
     };
 
+    $scope.is_gasket_kit = function () {
+      if ($scope.product && $scope.product.part_type)
+        return $scope.product.part_type.toLowerCase() == 'gasket kit';
+    };
+
     $scope.is_turbo = function () {
       if ($scope.product && $scope.product.part_type)
         return $scope.product.part_type.toLowerCase() == 'turbo';
@@ -280,6 +285,18 @@ magento_module.controller("ProductController", function ($scope,
             process_turbos_interchanges(turbo_gaskets);
           }
           $scope.turboGaskeKitTableParams = new NgTableParams({}, {dataset: turbo_gaskets});
+        });
+      };
+
+      $scope.init_gasket_kit = function () {
+        console.log("Gasket Kit Rest");
+        return $http.get('/attrsreader/product/' + sku + '/gasket_kit/?stats=' + _get_stats()).then(function (prom) {
+          var gasket_kit_turbos = [];
+          if (typeof prom.data == 'object') {
+            gasket_kit_turbos = prom.data;
+            process_turbos_interchanges(gasket_kit_turbos);
+          }
+          $scope.gasketKitTurbosTableParams = new NgTableParams({}, {dataset: gasket_kit_turbos});
         });
       }
 
