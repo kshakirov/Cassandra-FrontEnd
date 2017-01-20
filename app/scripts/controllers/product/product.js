@@ -73,10 +73,28 @@ magento_module.controller("ProductController", function ($scope,
       })
     }
 
-
-    function _sort_() {
-
+    function get_matrix_skus(cols) {
+      var skus = cols.map(function (col) {
+        return col.sku;
+      })
+      return skus;
     }
+
+    function turbo_interchanges_to_string(turbo) {
+      if (turbo.interchanges) {
+        var strs_array = turbo.interchanges.map(function (t) {
+          return t.part_number
+        })
+        return strs_array.join(", ");
+      }
+    }
+
+    function process_turbos_interchanges(turbos) {
+      return turbos.map(function (turbo) {
+        turbo.interchanges = turbo_interchanges_to_string(turbo);
+      })
+    }
+
 
     $scope.tab = 1;
     $scope.qty = 1;
@@ -171,6 +189,7 @@ magento_module.controller("ProductController", function ($scope,
       // var uri = _get_product_uri($routeParams);
       var sku = $routeParams.sku;
       $rootScope.image_sku = sku;
+      var stats = [_get_stats()];
 
       $http.post('/frontend/product', {sku: sku, stats: _get_stats()}).then(function (promise) {
         $scope.product = promise.data;
@@ -188,7 +207,7 @@ magento_module.controller("ProductController", function ($scope,
       });
 
 
-      $http.get('/attrsreader/product/' + sku + '/where_used/?stats=' + _get_stats()).then(function (prom) {
+      $http.post('/attrsreader/product/' + sku + '/where_used/', stats).then(function (prom) {
         var where_used = [];
         if (typeof prom.data == 'object') {
           where_used = KitMatrixService.hash2array(prom.data);
@@ -243,15 +262,43 @@ magento_module.controller("ProductController", function ($scope,
         $scope.salesnotesTableParams = new NgTableParams({}, {dataset: sales_notes});
       });
 
-      $http.get('/attrsreader/product/' + sku + '/kit_matrix/').then(function (prom) {
-        if (typeof prom.data == 'object') {
-          $scope.kit_matrix = KitMatrixService.hash2array(prom.data[0]);
-          $scope.cols = KitMatrixService.modifyHeaders(prom.data[1]);
-          $scope.cols = KitMatrixService.sortByKey($scope.cols, 'title');
-          $scope.kit_matrix = KitMatrixService.sortByKey($scope.kit_matrix, 'part_number');
-        }
+      function init_batches(cols) {
+        var skus = get_matrix_skus(cols.slice(3));
+        return $http.post('/attrsreader/product/sales_notes/', skus).then(function (promise) {
+          console.log(promise.data);
+          $scope.salesBatchnotesTableParams = new NgTableParams({sorting: {part_number: "asc"}}, {dataset: promise.data});
+        })
+      }
 
-      });
+
+      $scope.init_gasket_turbo = function () {
+        console.log("Gasket Turbo Rest");
+        return $http.get('/attrsreader/product/' + sku + '/gasket_turbo/?stats=' + _get_stats()).then(function (prom) {
+          var turbo_gaskets = [];
+          if (typeof prom.data == 'object') {
+            turbo_gaskets.push(prom.data);
+            process_turbos_interchanges(turbo_gaskets);
+          }
+          $scope.turboGaskeKitTableParams = new NgTableParams({}, {dataset: turbo_gaskets});
+        });
+      }
+
+
+      $scope.init_kit_matrix = function () {
+        return $http.get('/attrsreader/product/' + sku + '/kit_matrix/').then(function (prom) {
+          if (typeof prom.data == 'object') {
+            $scope.kit_matrix = KitMatrixService.hash2array(prom.data[0]);
+            $scope.cols = KitMatrixService.modifyHeaders(prom.data[1]);
+            $scope.cols = KitMatrixService.sortByKey($scope.cols, 'title');
+            $scope.kit_matrix = KitMatrixService.sortByKey($scope.kit_matrix, 'part_number');
+            return init_batches($scope.cols)
+          } else {
+            $scope.cols = [];
+          }
+
+        });
+
+      }
 
 
     }
