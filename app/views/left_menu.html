@@ -72,9 +72,9 @@
                     <span style="font-size: 8px; font-style: italic">({{renderUnits(filter.units)}})</span>
                 </dt>
                 <dd ng-if="filter.type=='price'">
-                    <input  type="number" style="width: 4.0em" ng-model="filter.min" min="0" step="0.1" required>
+                    <input  type="text"  style="width: 4.0em" numbers-only ng-model="filter.min" />
                         -
-                    <input   type="number"  style="width: 4.0em" ng-model="filter.max" min="0" step="0.1" required>
+                    <input   type="text"   style="width: 4.0em" numbers-only  ng-model="filter.max"  />
 
                     <button class="button" ng-click="searchByRange(filter)">
                         <span>FIND</span>
