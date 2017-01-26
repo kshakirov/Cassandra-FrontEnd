@@ -118,6 +118,15 @@ magento_module.service("FiltersAggregationService", function ($cookies) {
       return 'centimeters'
   }
 
+  function _check_ranges_available(ranges) {
+    if (!angular.isNumber(ranges.lte)) {
+      delete ranges.lte;
+    }
+    if (!angular.isNumber(ranges.gte)) {
+      delete  ranges.gte;
+    }
+  }
+
   function _add_ranges_aggregation_filters(limitations) {
     var musts = [];
     angular.forEach(limitations, function (limitation, limitation_key) {
@@ -125,10 +134,12 @@ magento_module.service("FiltersAggregationService", function ($cookies) {
       var r;
       if (limitation.type == 'price') {
         r = {range: {}};
-        r.range[limitation.id + '.value' + '.' + _add_units_measurements()] = {
+        var key = limitation.id + '.value' + '.' + _add_units_measurements();
+        r.range[key] = {
           gte: limitation.min,
           lte: limitation.max
-        }
+        };
+        _check_ranges_available(r.range[key]);
         added = true;
       } else {
 

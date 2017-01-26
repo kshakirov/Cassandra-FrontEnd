@@ -67,15 +67,14 @@
                 </dd>
             </span>
 
-                <span data-ng-repeat="filter in input_filters">
+             <span data-ng-repeat="filter in input_filters">
                 <dt ng-if="filter.type=='price'"><span style="size: 10px">{{filter.name}}</span>
                     <span style="font-size: 8px; font-style: italic">({{renderUnits(filter.units)}})</span>
                 </dt>
                 <dd ng-if="filter.type=='price'">
-
-                    <input  style="width: 4.0em" ng-model="filter.min">
-                    -
-                    <input  style="width: 4.0em" ng-model="filter.max">
+                    <input  type="number" style="width: 4.0em" ng-model="filter.min" min="0" step="0.1" required>
+                        -
+                    <input   type="number"  style="width: 4.0em" ng-model="filter.max" min="0" step="0.1" required>
 
                     <button class="button" ng-click="searchByRange(filter)">
                         <span>FIND</span>

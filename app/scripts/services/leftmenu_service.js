@@ -207,12 +207,6 @@ magento_module.service("LeftMenuService", function (FiltersAggregationService,
                     _replace_filter_with_reaggregated(current_filters, reaggregated_filter);
                 }, function (error) {
                 })
-            } else {
-                aggs_query = FiltersAggregationService.createCritDimFilterQuery(ncf, selected_filters);
-                ElasticSearch.search(aggs_query).then(function (promise) {
-                    var reaggregated_filter = _rearrangeFiltersByAggregation(ncf, promise);
-                    _replace_filter_with_reaggregated(current_filters, reaggregated_filter);
-                })
             }
         })
 
