@@ -33,7 +33,9 @@ magento_module.controller("AboutUsController", function ($rootScope, $scope){
 })
 
 
-
+magento_module.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.interceptors.push('sessionInjector');
+}]);
 
 
 magento_module.factory('sessionInjector',  function($cookies) {
