@@ -1,0 +1,216 @@
+<div class="main-container col1-layout">
+  <div class="main">
+    <div class="col-main" ng-controller="CustomerOrderViewController" ng-init="init()">
+      <div class="my-account">
+        <div class="page-title title-buttons">
+          <h1>Order {{order.order_id}} - {{order.data.status}}</h1>
+
+          <button ng-click="printOrder(order.order_id)" class="link-print">Print Order</button>
+        </div>
+        <dl class="order-info">
+          <dt>About This Order:</dt>
+          <dd>
+            <ul id="order-info-tabs">
+              <li class="current first last">Order Information</li>
+            </ul>
+          </dd>
+        </dl>
+        <p class="order-date">Order Date: {{order.data.date}}</p>
+        <div class="col2-set order-info-box">
+          <div class="col-1">
+            <div class="box">
+              <div class="box-title">
+                <h2>Shipping Address</h2>
+              </div>
+              <div class="box-content">
+                <address>{{order.shipping_address.customer_name}}<br>
+                  {{order.shipping_address.company}}<br>
+                  {{order.shipping_address.street}}<br>
+
+
+                  {{order.shipping_address.city}}, {{order.shipping_address.region_id}},
+                  {{order.shipping_address.postcode}}<br>
+                  {{order.shipping_address.country}}<br>
+                  T: {{order.shipping_address.telephone}}
+
+                </address>
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="box">
+              <div class="box-title">
+                <h2>Shipping Method</h2>
+              </div>
+              <div class="box-content">
+                {{order.shipping_address.shipping_method}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col2-set order-info-box">
+          <div class="col-1">
+            <div class="box">
+              <div class="box-title">
+                <h2>Billing Address</h2>
+              </div>
+              <div class="box-content">
+                <address>{{order.billing_address.customer_name}}<br>
+                  {{order.billing_address.company}}<br>
+                  {{order.billing_address.street}}<br>
+
+
+                  {{order.billing_address.city}}, {{order.billing_address.region_id}},
+                  {{order.billing_address.postcode}}<br>
+                  {{order.billing_address.country}}<br>
+                  T: {{order.billing_address.telephone}}
+
+                </address>
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="box box-payment">
+              <div class="box-title">
+                <h2>Payment Method</h2>
+              </div>
+              <div class="box-content">
+                <p>{{order.payment_method}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col2-set order-info-box">
+          <div class="box">
+            <div class="box-title">
+              <h2>Additional Information</h2>
+            </div>
+            <div class="box-content">
+              <table>
+                <tbody>
+                <tr>
+                  <td width="50%">Customer Special Instructions</td>
+                  <td><b>{{order.special_instructions}} </b></td>
+
+
+                </tr>
+                <tr>
+                  <td>Customer Purchase Order</td>
+                  <td><b>{{order.customer_purchase_order}}</b></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="order-items order-details">
+
+          <h2 class="table-caption">Items Ordered </h2>
+
+          <table class="data-table" id="my-orders-table" summary="Items Ordered">
+            <colgroup>
+              <col>
+              <col width="1">
+              <col width="1">
+              <col width="1">
+              <col width="1">
+            </colgroup>
+            <thead>
+            <tr class="first last">
+              <th>Part Type</th>
+              <th>TI Part #</th>
+              <th>OEM Part #</th>
+              <th class="a-right">Price</th>
+              <th class="a-center">Qty</th>
+              <th class="a-right">Subtotal</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr class="subtotal first">
+              <td colspan="5" class="a-right">
+                Subtotal
+              </td>
+              <td class="last a-right">
+                <span class="price">{{order.subtotal}}</span></td>
+            </tr>
+            <tr class="shipping">
+              <td colspan="5" class="a-right">
+                Shipping &amp; Handling
+              </td>
+              <td class="last a-right">
+                <span class="price">{{order.shipping_handling}}</span></td>
+            </tr>
+            <tr class="grand_total last">
+              <td colspan="5" class="a-right">
+                <strong>Grand Total</strong>
+              </td>
+              <td class="last a-right">
+                <strong><span class="price">{{order.grand_total}}</span></strong>
+              </td>
+            </tr>
+            </tfoot>
+
+            <tbody ng-repeat="product in order.products">
+            <tr class="border first">
+              <td><h3 class="product-name"></h3>
+                {{product.part_type}}
+              </td>
+
+              <!-- TI Part Number -->
+              <td>
+                {{product.name}}
+              </td>
+
+              <!-- OEM Part Number -->
+              <td>
+                {{product.oem_part}}
+              </td>
+
+              <td class="a-right">
+                    <span class="price-excl-tax">
+                                                    <span class="cart-price">
+
+                                            <span class="price"> {{product.base_price_incl_tax}}</span>
+                </span>
+
+
+                            </span>
+                <br>
+              </td>
+              <td class="a-right">
+        <span class="nobr">
+                            Ordered: <strong>{{product.qty_ordered}}</strong><br>
+                                        </span>
+              </td>
+              <td class="a-right last">
+                    <span class="price-excl-tax">
+                                                    <span class="cart-price">
+
+                                            <span class="price">{{product.base_row_total}}</span>
+                </span>
+
+
+                            </span>
+                <br>
+              </td>
+              <!--
+                  <th class="a-right"><span class="price">$172.00</span></th>
+                      -->
+            </tr>
+            </tbody>
+
+          </table>
+
+
+          <div class="buttons-set">
+            <p class="back-link"><a href="https://www.turbointernational.com/sales/order/history/">
+              <small>«</small>
+              Back to My Orders</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

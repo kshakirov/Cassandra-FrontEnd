@@ -19,6 +19,7 @@ magento_module.controller("ByPartsProductTable", function ($scope, $rootScope,
         return stats;
     }
 
+
     function init_headers(part_type) {
         return $http.get('/frontend/menu/standard/header?part_type=' + part_type).then(function (promise) {
             $scope.headers = promise.data;
@@ -117,7 +118,7 @@ magento_module.controller("ByPartsProductTable", function ($scope, $rootScope,
 
     $scope.initTable = function () {
         $rootScope.flags.catalog = true;
-        var part_type = $routeParams.id || 0;
+        var part_type = $routeParams.id || 'catalog';
         usSpinnerService.spin('spinner-1');
         $scope.pagination = {};
         Pagination.initialize($scope.pagination);
@@ -149,4 +150,15 @@ magento_module.controller("ByPartsProductTable", function ($scope, $rootScope,
             Pagination.renderUpdated(promise, page);
         })
     }
+
+  $scope.$on('currencyChanged', function (event, args) {
+    console.log("Currency Changed");
+    var query = ElasticQuery.reQuery();
+    ElasticSearch.search(query).then(function (promise) {
+      $scope.rows = ListUtils.transform_elastic_response_2_table (promise, $scope.headers);
+      Pagination.render(promise);
+    })
+  });
+
+
 })

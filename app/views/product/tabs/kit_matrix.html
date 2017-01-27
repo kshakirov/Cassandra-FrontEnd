@@ -1,29 +1,53 @@
 <!--<h1>Kit Matrix</h1>-->
-<table ng-if="kit_matrix_ready()" class="data-table">
-    <tr>
+<div ng-init="init_kit_matrix()">
+  <div ng-if="cols.length > 3">
+    <h4>Kit Matrix </h4>
+    <table class="data-table">
+      <tr>
         <th ng-repeat="col in cols" class="rotate" ng-class="selectedCols(col)">
-            <div><span  >
+          <div><span>
                           <a ng-href="/#/part/sku/{{col.sku}}">{{col.title}}</a>
                       </span>
-            </div>
+          </div>
         </th>
-    </tr>
-    <tr ng-repeat="row in kit_matrix">
+      </tr>
+      <tr ng-repeat="row in kit_matrix">
         <td ng-class="selectedColsDesc(row)"><a ng-href="/#/part/sku/{{row.sku}}">{{row.part_number}}</a></td>
         <td ng-class="selectedColsDesc(row)">{{row.part_type}}</td>
         <td ng-class="selectedColsDesc(row)">{{row.description}}</td>
         <td
-                ng-repeat="col in cols.slice(3,col.length)"
-                ng-mouseover="setSelectPart(row.part_number,col.field, $index)"
-                ng-class="{selected: (row.part_number === idSelectedPart || col.field===selectedCol)}">
-            {{row[col.field]}}
+          ng-repeat="col in cols.slice(3,col.length)"
+          ng-mouseover="setSelectPart(row.part_number,col.field, $index)"
+          ng-class="{selected: (row.part_number === idSelectedPart || col.field===selectedCol)}">
+          {{row[col.field]}}
 
         </td>
-    </tr>
-  </table>
-
-<p  style="text-align: center" ng-if="!kit_matrix_ready()">
+      </tr>
+    </table>
+  </div>
+  <p style="text-align: center" ng-if="cols.length < 3">
     <b>No Results</b>
-</p>
-
+  </p>
+  <div style="padding-top: 30px" ng-if="cols.length > 3">
+    <h4>Kit Sales Notes</h4>
+    <!--<h1>Sales Notes</h1>-->
+    <table ng-table="salesBatchnotesTableParams" template-pagination="custom/pager" class="table data-table"
+           show-filter="true">
+      <tr ng-repeat="note in $data">
+        <td title="'Part'" filter="{ part_number: 'text'}" sortable="'part_number'" width="10%">
+          {{note.part_number}}
+        </td>
+        <td title="'DATE'" filter="{ create_date: 'text'}" sortable="'create_date'" width="10%">
+          {{note.create_date}}
+        </td>
+        <td title="'NOTE'" filter="{ comment: 'text'}" sortable="'comment'">
+          {{note.comment}}
+        </td>
+      </tr>
+      <tr ng-if="$data.length == 0">
+        <td colspan="7" style="text-align: center"><b>No Results</b></td>
+      </tr>
+    </table>
+  </div>
+</div>
 

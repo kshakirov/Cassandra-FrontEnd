@@ -66,16 +66,20 @@
                     </ol>
                 </dd>
             </span>
-            <span data-ng-repeat="filter in filters">
-                <dt ng-if="filter.type=='price'">{{filter.name}}
+
+             <span data-ng-repeat="filter in input_filters">
+                <dt ng-if="filter.type=='price'"><span style="size: 10px">{{filter.name}}</span>
+                    <span style="font-size: 8px; font-style: italic">({{renderUnits(filter.units)}})</span>
                 </dt>
                 <dd ng-if="filter.type=='price'">
-                    <rzslider
-                            rz-slider-model="filter.min"
-                            rz-slider-high="filter.max"
-                            rz-slider-options="filter.options">
+                    <input  type="text"  style="width: 4.0em" numbers-only ng-model="filter.min" />
+                        -
+                    <input   type="text"   style="width: 4.0em" numbers-only  ng-model="filter.max"  />
 
-                    </rzslider
+                    <button class="button" ng-click="searchByRange(filter)">
+                        <span>FIND</span>
+                    </button>
+
                 </dd>
             </span>
 

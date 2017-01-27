@@ -64,6 +64,8 @@ magento_module.filter('tolerance', function ($rootScope, $filter, $cookies) {
                 tolerance = "<b> <font color='red'>N/A</font></b>"
             }
             return tolerance;
+        }else{
+          return "<b> <font color='blue'>NULL</font></b>"
         }
     };
 });

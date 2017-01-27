@@ -11,7 +11,7 @@ magento_module.controller("CriticalController", function ($scope, $rootScope,
     $scope.headers = ['Ti', 'OE REF', 'Description', 'C/E DIA'];
     $scope.pageSizes = [5, 10, 25, 50, 100];
 
-
+    
     function _get_stats() {
         var stats = $cookies.getObject('stats');
         return stats;
@@ -32,7 +32,7 @@ magento_module.controller("CriticalController", function ($scope, $rootScope,
             usSpinnerService.spin('spinner-1');
             $scope.headers = promise.data;
             $scope.listReady = true;
-            usSpinnerService.stop('spinner-1');
+
             return part_type;
         })
     }
@@ -93,15 +93,18 @@ magento_module.controller("CriticalController", function ($scope, $rootScope,
         $q.all(promises).then(function(data){
             $scope.rows = ListUtils.transform_elastic_response_2_table(data[2], $scope.headers);
             Pagination.render(data[2]);
+            usSpinnerService.stop('spinner-critical');
         });
     };
 
     $scope.$on('filterChanged', function (event, args) {
+        usSpinnerService.spin('spinner-critical');
         var query = ElasticQuery.getByNumericRange(args[0], args[1]);
         ElasticQuery.addManufacturerFilter(query, 'Turbo International');
         ElasticSearch.search(query).then(function (promise) {
             $scope.rows = ListUtils.transform_elastic_response_2_table(promise, $scope.headers);
             Pagination.render(promise);
+            usSpinnerService.stop('spinner-critical');
         })
     });
 
@@ -136,7 +139,6 @@ magento_module.controller("CriticalController", function ($scope, $rootScope,
     $scope.toggleMesurements = function () {
         $scope.unitsButton = _toggle_unit_button($scope.units, $scope.unitsButton);
         $cookies.putObject('inches', $scope.units.inches);
-        $http.post('/checkout/cart/tajax', 'inches=' + $scope.units.inches);
         $route.reload();
     };
 

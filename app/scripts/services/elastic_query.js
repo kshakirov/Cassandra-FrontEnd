@@ -388,4 +388,9 @@ magento_module.service('ElasticQuery', function ($cookies,
         return order;
     }
 
+
+  this.reQuery = function (page_object) {
+    return persistent_query;
+  }
+
 })

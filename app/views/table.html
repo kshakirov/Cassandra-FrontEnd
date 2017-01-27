@@ -18,7 +18,7 @@
             <span ng-if="item.code=='oe_ref_urls'"><span ng-repeat="ref in item.value track by $index"><a
                     ng-href="#/part/sku/{{ref.sku}}">{{ref.part_number | uppercase}}</a>{{$index | oe_ref_coma: item.value.length}}</span></span>
 
-            <span ng-if="item.value.hasOwnProperty('value')" ng-bind-html='item.value | tolerance'>
+            <span ng-if="item.value.hasOwnProperty('value') || item.value==''" ng-bind-html='item.value | tolerance'>
 
             </span>
 

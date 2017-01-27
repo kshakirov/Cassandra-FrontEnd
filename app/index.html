@@ -1,193 +1,152 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angularjs-slider/dist/rzslider.css" />
-    <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.css" />
-    <link rel="stylesheet" href="bower_components/angular-spinkit/build/angular-spinkit.min.css" />
-    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
-    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/ngFader.css">
-    <link rel="stylesheet" href="styles/turbointernational.css">
-    <link rel="stylesheet" href="styles/rzslider.css">
-    <link rel="stylesheet" href="styles/ng-table.css">
-    <link rel="stylesheet" href="styles/ngDialog.css">
-    <link rel="stylesheet" href="styles/ngDialog-theme-default.css">
-    <link rel="stylesheet" href="styles/angular-spinkit.css">
-    <link rel="stylesheet" href="styles/amshopby.css">
-    <link rel="stylesheet" href="styles/amfinder.css">
-    <link rel="stylesheet" href="styles/button.css">
-    <!-- endbuild -->
-  </head>
-  <body ng-app="MagentoApp">
-  <div class="wrapper">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/angularjs-slider/dist/rzslider.css" />
+  <link rel="stylesheet" href="bower_components/ng-table/dist/ng-table.css" />
+  <link rel="stylesheet" href="bower_components/angular-spinkit/build/angular-spinkit.min.css" />
+  <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
+  <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
+  <link rel="stylesheet" href="bower_components/v-accordion/dist/v-accordion.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="styles/ngFader.css">
+  <link rel="stylesheet" href="styles/turbointernational.css">
+  <link rel="stylesheet" href="styles/rzslider.css">
+  <link rel="stylesheet" href="styles/ng-table.css">
+  <link rel="stylesheet" href="styles/ngDialog.css">
+  <link rel="stylesheet" href="styles/ngDialog-theme-default.css">
+  <link rel="stylesheet" href="styles/angular-spinkit.css">
+  <link rel="stylesheet" href="styles/amshopby.css">
+  <link rel="stylesheet" href="styles/amfinder.css">
+  <link rel="stylesheet" href="styles/button.css">
+  <!-- endbuild -->
+</head>
+<body ng-app="MagentoApp">
+<div class="wrapper">
 
-    <div class="page">
-      <div class="header-container">
-        <div class="meta-header">
-          <strong>
-            US &amp; International Sales: +1.760.476.1444        </strong>
-          <a href="mailto:sales@turbointernational.com">
-            sales@turbointernational.com        </a>
+  <div class="page">
+    <div class="header-container" ng-controller="LoginManager" ng-init="initManager()">
+      <div ng-include="'views/navigation_panel.html'"></div>
+    </div>
 
-          <ul class="links" >
-            <li class="first"><a href="/#/customer/account/" title="My Account">My Account</a></li>
-            <li><a href="/#/customer/account/wishlist/" title="My Wishlist (-)">My Wishlist (7 items)</a></li>
-            <li><a href="/#/customer/cart/" title="My Cart (-)" class="top-link-cart">My Cart (5 items)</a></li>
-            <li><a href="/#/customer/checkout/" title="Checkout" class="top-link-checkout">Checkout</a></li>
-            <li class=" last"><a href="/customer/account/logout/" title="Log Out">Log Out</a></li>
-          </ul>    </div>
-        <div class="header">
-          <h1 class="logo">
-            <strong>
-              Turbo International            </strong>
-            <a href="/#/" title="Turbo International" class="logo">
-              <img src="http://localhost/skin/frontend/base/default/images/ti-logo_100x77.jpg" alt="Turbo International">
-            </a>
-          </h1>
-
-          <h2 class="logo">
-            Quality Replacement<br>
-            Turbocharger Parts        </h2>
-
-          <p class="welcome-msg">
-            <label for="custom-currency-selector" style="font-weight: bold;">Currency</label>
-            <select onchange="window.location.href=this.value" name="custom-currency-selector" id="custom-currency-selector" style="margin-right: 5px;">
-              <option value="http://localhost/directory/currency/switch/currency/GBP/uenc/aHR0cDovL2xvY2FsaG9zdDo4MDg4Lw,,/">
-                GBP            </option>
-              <option value="http://localhost/directory/currency/switch/currency/EUR/uenc/aHR0cDovL2xvY2FsaG9zdDo4MDg4Lw,,/">
-                EUR            </option>
-              <option value="http://localhost/directory/currency/switch/currency/USD/uenc/aHR0cDovL2xvY2FsaG9zdDo4MDg4Lw,,/" selected="SELECTED">
-                USD            </option>
-            </select>
-            Welcome, Kirill Jr Shakirov!                    </p>
-          <form  ng-controller="SearchController"  class="ng-pristine ng-valid ng-scope ng-valid-maxlength">
-            <div class="form-search">
-              <input type="text"
-                     name=""
-                     value=""
-                     class="input-text ng-pristine ng-untouched ng-valid ng-valid-maxlength"
-                     maxlength=""
-                     ng-model="query"
-                     ng-keypress="searchByEnterClick($event, query)"
-                     placeholder="Part Number…">
-              <button
-                  ng-click="search_in_all_fields(query)" type="button" title="Search" class="button">
-                  <span>
-                    Search
-                  </span>
-              </button>
-
-
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <div ng-include="'views/navigation.html'"></div>
-      <div ng-view=""></div>
-      <div class="footer-container">
-        <div ng-include="'views/footer.html'"></div>
-      </div>
+    <div ng-include="'views/navigation.html'"></div>
+    <div ng-view=""></div>
+    <div class="footer-container">
+      <div ng-include="'views/footer.html'"></div>
     </div>
   </div>
+</div>
 
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+  !function (A, n, g, u, l, a, r) {
+    A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+        (A[l].q = A[l].q || []).push(arguments)
+      }, A[l].l = +new Date, a = n.createElement(g),
+      r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+  }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
+  ga('create', 'UA-XXXXX-X');
+  ga('send', 'pageview');
+</script>
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angularjs-slider/dist/rzslider.js"></script>
-    <script src="bower_components/elasticsearch/elasticsearch.angular.js"></script>
-    <script src="bower_components/ng-table/dist/ng-table.js"></script>
-    <script src="bower_components/angular-preload-image/angular-preload-image.js"></script>
-    <script src="bower_components/angular-spinkit/build/angular-spinkit.js"></script>
-    <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
-    <script src="bower_components/angular-spinner/angular-spinner.min.js"></script>
-   <script src="bower_components/ngFader/ngFader.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angularjs-slider/dist/rzslider.js"></script>
+<script src="bower_components/elasticsearch/elasticsearch.js"></script>
+<script src="bower_components/ng-table/dist/ng-table.js"></script>
+<script src="bower_components/angular-preload-image/angular-preload-image.js"></script>
+<script src="bower_components/angular-spinkit/build/angular-spinkit.js"></script>
+<script src="bower_components/ng-dialog/js/ngDialog.js"></script>
+<script src="bower_components/v-accordion/dist/v-accordion.js"></script>
+<script src="bower_components/ng-country-select/dist/ng-country-select.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+<script src="bower_components/elasticsearch/elasticsearch.angular.js"></script>
+<script src="bower_components/spin.js/spin.min.js"></script>
+<script src="bower_components/angular-spinner/angular-spinner.min.js"></script>
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/magento_application.js"></script>
-        <script src="scripts/magento_application_routes.js"></script>
-        <script src="scripts/controllers/home_controller.js"></script>
-        <script src="scripts/controllers/topmenu.js"></script>
-        <script src="scripts/services/breadcrumb.js"></script>
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/magento_application.js"></script>
+<script src="scripts/magento_application_routes.js"></script>
+<script src="scripts/controllers/home_controller.js"></script>
+<script src="scripts/controllers/topmenu.js"></script>
+<script src="scripts/services/breadcrumb.js"></script>
+<script src="scripts/directives/ngFader/ngFader.js"></script>
+<script src="scripts/directives/angular-directive-select-usstates.min.js"></script>
+<script src="scripts/controllers/home_controller.js"></script>
+<script src="scripts/controllers/product/product_image_gallery_controller.js"></script>
+<script src="scripts/controllers/product/product.js"></script>
+<script src="scripts/controllers/product/product_legend.js"></script>
+<script src="scripts/controllers/topmenu.js"></script>
+<script src="scripts/controllers/critical.js"></script>
+<script src="scripts/controllers/standard.js"></script>
+<script src="scripts/controllers/cart.js"></script>
+<script src="scripts/controllers/compared_products/compared_products.js"></script>
+<script src="scripts/controllers/compared_products/compared_products_modal.js"></script>
+<script src="scripts/controllers/view_products.js"></script>
+<script src="scripts/controllers/product/product_image.js"></script>
+<script src="scripts/controllers/application.js"></script>
+<script src="scripts/controllers/search_controller.js"></script>
+<script src="scripts/controllers/leftmenu.js"></script>
+<script src="scripts/controllers/contact_us.js"></script>
+<script src="scripts/controllers/customer/account.js"></script>
+<script src="scripts/controllers/customer/account_information.js"></script>
+<script src="scripts/controllers/customer/address_edit.js"></script>
+<script src="scripts/controllers/customer/address_book.js"></script>
+<script src="scripts/controllers/customer/cart.js"></script>
+<script src="scripts/controllers/customer/checkout.js"></script>
+<script src="scripts/controllers/login_manager.js"></script>
+<script src="scripts/services/elastic_query.js"></script>
+<script src="scripts/services/pagination.js"></script>
+<script src="scripts/magento_application_routes.js"></script>
+<script src="scripts/services/leftmenu_service.js"></script>
+<script src="scripts/services/filters_aggregation_service.js"></script>
+<script src="scripts/services/list_utils_service.js"></script>
+<script src="scripts/services/filter_model_service.js"></script>
+<script src="scripts/services/compared_products.js"></script>
+<script src="scripts/filters/tolerance.js"></script>
+<script src="scripts/filters/critical_integer.js"></script>
+<script src="scripts/filters/critical_units.js"></script>
+<script src="scripts/filters/oe_ref_coma.js"></script>
+<script src="scripts/filters/int_array_or_string.js"></script>
+<script src="scripts/filters/chra_2_links.js"></script>
+<script src="scripts/filters/ti_price_filter.js"></script>
+<script src="scripts/filters/product_price.js"></script>
+<script src="scripts/filters/ti_arr_2_urls.js"></script>
+<script src="scripts/filters/cart_price.js"></script>
+<script src="scripts/filters/parts_array_2_links.js"></script>
+<script src="scripts/directives/text_clamp.js"></script>
+<script src="scripts/directives/numbers_only.js"></script>
+<script src="scripts/services/units_service.js"></script>
+<script src="scripts/services/application.js"></script>
+<script src="scripts/services/breadcrumb.js"></script>
+<script src="scripts/services/application_elastic_query.js"></script>
+<script src="scripts/services/application_aggregation.js"></script>
+<script src="scripts/services/page_size.js"></script>
+<script src="scripts/services/statistics_elastic_query.js"></script>
+<script src="scripts/services/lexicographical_sort.js"></script>
+<script src="scripts/services/kit_matrix_service.js"></script>
+<script src="scripts/services/wishlist_elastic_query.js"></script>
 
-  <script src="scripts/controllers/home_controller.js"></script>
-  <script src="scripts/controllers/product/product_image_gallery_controller.js"></script>
-  <script src="scripts/controllers/product/product.js"></script>
-  <script src="scripts/controllers/product/product_legend.js"></script>
-  <script src="scripts/controllers/topmenu.js"></script>
-  <script src="scripts/controllers/critical.js"></script>
-  <script src="scripts/controllers/standard.js"></script>
-  <script src="scripts/controllers/cart.js"></script>
-  <script src="scripts/controllers/compared_products/compared_products.js"></script>
-  <script src="scripts/controllers/compared_products/compared_products_modal.js"></script>
-  <script src="scripts/controllers/view_products.js"></script>
-  <script src="scripts/controllers/product/product_image.js"></script>
-  <script src="scripts/controllers/application.js"></script>
-  <script src="scripts/controllers/search_controller.js"></script>
-  <script src="scripts/controllers/leftmenu.js"></script>
-  <script src="scripts/controllers/customer/account.js"></script>
-  <script src="scripts/services/elastic_query.js"></script>
-  <script src="scripts/services/pagination.js"></script>
-  <script src="scripts/magento_application_routes.js"></script>
-  <script src="scripts/services/leftmenu_service.js"></script>
-  <script src="scripts/services/filters_aggregation_service.js"></script>
-  <script src="scripts/services/list_utils_service.js"></script>
-  <script src="scripts/services/filter_model_service.js"></script>
-  <script src="scripts/services/compared_products.js"></script>
-  <script src="scripts/filters/tolerance.js"></script>
-  <script src="scripts/filters/critical_integer.js"></script>
-  <script src="scripts/filters/critical_units.js"></script>
-  <script src="scripts/filters/oe_ref_coma.js"></script>
-  <script src="scripts/filters/int_array_or_string.js"></script>
-  <script src="scripts/filters/chra_2_links.js"></script>
-  <script src="scripts/filters/ti_price_filter.js"></script>
-  <script src="scripts/filters/product_price.js"></script>
-  <script src="scripts/filters/ti_arr_2_urls.js"></script>
-  <script src="scripts/filters/parts_array_2_links.js"></script>
-  <script src="scripts/directives/text_clamp.js"></script>
-  <script src="scripts/services/units_service.js"></script>
-  <script src="scripts/services/application.js"></script>
-  <script src="scripts/services/breadcrumb.js"></script>
-  <script src="scripts/services/application_elastic_query.js"></script>
-  <script src="scripts/services/application_aggregation.js"></script>
-  <script src="scripts/services/page_size.js"></script>
-  <script src="scripts/services/statistics_elastic_query.js"></script>
-  <script src="scripts/services/lexicographical_sort.js"></script>
-  <script src="scripts/services/kit_matrix_service.js"></script>
-  <script src="scripts/services/wishlist_elastic_query.js"></script>
 
-
-        <!-- endbuild -->
+<!-- endbuild -->
 </body>
 </html>

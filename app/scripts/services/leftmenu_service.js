@@ -1,5 +1,6 @@
 magento_module.service("LeftMenuService", function (FiltersAggregationService,
                                                     ElasticSearch, UnitsService,
+                                                    FiltersAggregationService,
                                                     ApplicationService) {
 
     function _change_type_of_response(response) {
@@ -63,10 +64,24 @@ magento_module.service("LeftMenuService", function (FiltersAggregationService,
 
     }
 
+    function _rearrangeFiltersByAggregationBatch(original_filters, aggregated_filter_strs) {
+        var aggregated_filters = _change_type_of_response(aggregated_filter_strs);
+        aggregated_filters = aggregated_filters.aggregations.manufacturer_type;
+        angular.forEach(original_filters, function (of) {
+            angular.forEach(aggregated_filters, function (value, key) {
+                if (of.code == key) {
+                    of.max = value.max;
+                    of.min = value.min;
+                }
+
+            })
+        })
+    }
+
     function _find_filter_key_by_code(filters, sliderid) {
         var key = 0;
-        for(var i =0; i< filters.length; i++){
-            if(filters[i].code==sliderid){
+        for (var i = 0; i < filters.length; i++) {
+            if (filters[i].code == sliderid) {
                 key = i;
                 break;
             }
@@ -78,7 +93,7 @@ magento_module.service("LeftMenuService", function (FiltersAggregationService,
 
     function _set_min_max_for_filters(filters) {
         angular.forEach(filters, function (value, key) {
-            
+
             value.min = 0;
             value.max = 0;
             value.options = {
@@ -89,10 +104,10 @@ magento_module.service("LeftMenuService", function (FiltersAggregationService,
                 id: value.code,
                 code: value.name,
                 units: value.units,
-                translate: function (value, sliderid ) {
+                translate: function (value, sliderid) {
                     var key = _find_filter_key_by_code(filters, sliderid);
-                    var  units = filters[key].units;
-                    var measurement= UnitsService.getCurrentUnit(units);
+                    var units = filters[key].units;
+                    var measurement = UnitsService.getCurrentUnit(units);
                     return value + measurement;
                 }
             }
@@ -167,7 +182,21 @@ magento_module.service("LeftMenuService", function (FiltersAggregationService,
         })
     }
 
-    function _reaggregate_current_filters(selected_filters, original_filters, current_filters) {
+
+    function _replace_filters_with_reaggregated(filters, reaggregated_filters) {
+        angular.forEach(filters, function (filter, key) {
+            if (filter.code == reaggregated_filter.code && !reaggregated_filter.options.hasOwnProperty('precision')) {
+                filter.options = reaggregated_filter.options;
+            } else if (filter.code == reaggregated_filter.code && reaggregated_filter.options.hasOwnProperty('precision')) {
+                filter.max = reaggregated_filter.max;
+                filter.min = reaggregated_filter.min;
+                filter.options = reaggregated_filter.options;
+            }
+        })
+    }
+
+
+    function _reaggregate_current_integer_filters(selected_filters, original_filters, current_filters) {
         var not_changed_filters = _get_not_changed_current_filters(selected_filters, original_filters);
         var aggs_query = '';
         angular.forEach(not_changed_filters, function (ncf, key) {
@@ -178,21 +207,23 @@ magento_module.service("LeftMenuService", function (FiltersAggregationService,
                     _replace_filter_with_reaggregated(current_filters, reaggregated_filter);
                 }, function (error) {
                 })
-            } else {
-                aggs_query = FiltersAggregationService.createCritDimFilterQuery(ncf, selected_filters);
-                ElasticSearch.search(aggs_query).then(function (promise) {
-                    var reaggregated_filter = _rearrangeFiltersByAggregation(ncf, promise);
-                    _replace_filter_with_reaggregated(current_filters, reaggregated_filter);
-                })
             }
-
-
         })
 
     }
 
-    this.reaggregate_current_filters = _reaggregate_current_filters;
+    function _reaggregate_current_filters(selected_filters, original_filters, current_filters) {
+        var not_changed_filters = _get_not_changed_current_filters(selected_filters, original_filters);
+        var batch_aggs = FiltersAggregationService.createCritDimFilterQueryBatch(not_changed_filters, selected_filters);
+        ElasticSearch.search(batch_aggs).then(function (promise) {
+            _rearrangeFiltersByAggregationBatch(current_filters, promise);
+        })
 
+
+    }
+
+    this.reaggregate_current_filters = _reaggregate_current_filters;
+    this.reaggregate_current_integer_filters = _reaggregate_current_integer_filters;
 
     function _preserve_original_filters(original_filters, promise) {
         angular.copy(promise, original_filters);
@@ -291,16 +322,18 @@ magento_module.service("LeftMenuService", function (FiltersAggregationService,
 
 
     this.removeAllVisibleFilters = function (current_filters, filters) {
-        var visible_filters = [];
-        angular.forEach(current_filters, function (filter, filter_key) {
-            if (!filter.hidden) {
-                visible_filters.push(filter.code);
-                _unselect_filter_if_blank_selected(filter.code, filters)
-            }
-        })
-        angular.forEach(visible_filters, function (filter) {
-            delete  current_filters[filter];
-        })
+        if (!angular.isUndefined(filters)) {
+            var visible_filters = [];
+            angular.forEach(current_filters, function (filter, filter_key) {
+                if (!filter.hidden) {
+                    visible_filters.push(filter.code);
+                    _unselect_filter_if_blank_selected(filter.code, filters)
+                }
+            })
+            angular.forEach(visible_filters, function (filter) {
+                delete  current_filters[filter];
+            })
+        }
     }
 
 

@@ -6,8 +6,9 @@ magento_module.controller("LeftMenu", function ($scope,
                                                 LeftMenuService,
                                                 FilterModel,
                                                 $routeParams,
+                                                UnitsService,
                                                 $location, $cookies) {
-
+    
 
     /******************************AUXILLARY**************************/
 
@@ -42,6 +43,7 @@ magento_module.controller("LeftMenu", function ($scope,
 
     function _init_criitical(part_type_id) {
         $scope.current_filters = {};
+        $scope.input_filters = [];
         critical_dimensions = true;
         FilterModel.init_filters(part_type_id).then(function (p) {
             var promise = p;
@@ -53,6 +55,7 @@ magento_module.controller("LeftMenu", function ($scope,
                 LeftMenuService.get_aggs_ranges(aggs, filters);
                 LeftMenuService.preserve_original_filters($scope.original_filters, filters);
                 $scope.filters = filters;
+                angular.copy($scope.filters, $scope.input_filters);
             })
         })
     };
@@ -64,7 +67,7 @@ magento_module.controller("LeftMenu", function ($scope,
         return FilterModel.init_by_parts_product_filters(args).then(function (p) {
             LeftMenuService.preserve_original_filters($scope.original_filters, p);
             $scope.filters = p;
-            LeftMenuService.reaggregate_current_filters($scope.current_filters,
+            LeftMenuService.reaggregate_current_integer_filters($scope.current_filters,
                 $scope.original_filters, $scope.filters);
         })
     }
@@ -76,7 +79,7 @@ magento_module.controller("LeftMenu", function ($scope,
         return FilterModel.init_by_manufacturer_product_filters(args).then(function (p) {
             LeftMenuService.preserve_original_filters($scope.original_filters, p);
             $scope.filters = p;
-            LeftMenuService.reaggregate_current_filters($scope.current_filters,
+            LeftMenuService.reaggregate_current_integer_filters($scope.current_filters,
                 $scope.original_filters, $scope.filters);
         })
     }
@@ -87,7 +90,7 @@ magento_module.controller("LeftMenu", function ($scope,
         return FilterModel.init_by_catalog_product_filters().then(function (p) {
             LeftMenuService.preserve_original_filters($scope.original_filters, p);
             $scope.filters = p;
-            LeftMenuService.reaggregate_current_filters($scope.current_filters, $scope.original_filters, $scope.filters);
+            LeftMenuService.reaggregate_current_integer_filters($scope.current_filters, $scope.original_filters, $scope.filters);
         })
     }
 
@@ -119,7 +122,7 @@ magento_module.controller("LeftMenu", function ($scope,
         return FilterModel.init_by_catalog_product_filters().then(function (p) {
             LeftMenuService.preserve_original_filters($scope.original_filters, p);
             $scope.filters = p;
-            LeftMenuService.reaggregate_current_filters($scope.current_filters, $scope.original_filters, $scope.filters);
+            LeftMenuService.reaggregate_current_integer_filters($scope.current_filters, $scope.original_filters, $scope.filters);
         })
 
     }
@@ -161,7 +164,7 @@ magento_module.controller("LeftMenu", function ($scope,
             $scope.removeFilterFromCurrentFilters(LeftMenuService.prepare_filter_to_remove(selected_filter_str), $scope.current_filters);
         else {
             LeftMenuService.add_selected_filter_to_current_filters(selected_filter_str, $scope.current_filters);
-            LeftMenuService.reaggregate_current_filters($scope.current_filters, $scope.original_filters, $scope.filters);
+            LeftMenuService.reaggregate_current_integer_filters($scope.current_filters, $scope.original_filters, $scope.filters);
             $rootScope.$broadcast('intFilterChanged', $scope.current_filters);
         }
     }
@@ -169,34 +172,41 @@ magento_module.controller("LeftMenu", function ($scope,
 
     $scope.removeFilterFromCurrentFilters = function (filter_code, current_filters) {
         delete  current_filters[filter_code];
+        LeftMenuService.unselect_filter_if_blank_selected(filter_code, $scope.input_filters);
         LeftMenuService.unselect_filter_if_blank_selected(filter_code, $scope.filters);
-        LeftMenuService.reaggregate_current_filters($scope.current_filters, $scope.original_filters, $scope.filters);
+        LeftMenuService.reaggregate_current_filters($scope.current_filters, $scope.original_filters, $scope.input_filters);
+        LeftMenuService.reaggregate_current_integer_filters($scope.current_filters, $scope.original_filters, $scope.filters);
         $rootScope.$broadcast('intFilterChanged', $scope.current_filters);
         $rootScope.$broadcast('filterChanged', [[], $scope.current_filters]);
     }
 
     $scope.removeAllFilters = function (current_filters) {
+        LeftMenuService.removeAllVisibleFilters(current_filters, $scope.input_filters);
         LeftMenuService.removeAllVisibleFilters(current_filters, $scope.filters);
-        LeftMenuService.reaggregate_current_filters($scope.current_filters, $scope.original_filters, $scope.filters);
+        LeftMenuService.reaggregate_current_filters($scope.current_filters, $scope.original_filters, $scope.input_filters);
+        LeftMenuService.reaggregate_current_integer_filters($scope.current_filters, $scope.original_filters, $scope.filters);
         $rootScope.$broadcast('intFilterChanged', $scope.current_filters);
         $rootScope.$broadcast('filterChanged', [[], $scope.current_filters]);
     }
 
 
-    $scope.$on("slideEnded", function (event) {
-        var trg = event.targetScope;
-        var current_filter = {
-            id: trg.slider.options.id,
-            code: trg.slider.options.code,
-            max: trg.rzSliderHigh,
-            min: trg.rzSliderModel,
-            name: trg.rzSliderModel + " - " + trg.rzSliderHigh,
+    $scope.searchByRange = function (filter) {
+        console.log(filter);
+        var current_filter= {
+            id: filter.options.id,
+            code: filter.options.code,
+            max: filter.max,
+            min: filter.min,
+            name: filter.options.code + ': '  + filter.min + " - " + filter.max,
             type: 'price'
-
-        }
+        };
+        console.log(current_filter);
         LeftMenuService.add_selected_deciaml_filter_to_current_filters(current_filter, $scope.current_filters);
-        LeftMenuService.reaggregate_current_filters($scope.current_filters, $scope.original_filters, $scope.filters);
+        LeftMenuService.reaggregate_current_filters($scope.current_filters, $scope.original_filters, $scope.input_filters);
         $rootScope.$broadcast('filterChanged', [current_filter, $scope.current_filters]);
-
-    });
+    }
+    
+    $scope.renderUnits = function (units) {
+            return UnitsService.getCurrentUnit(units);
+    }
 })

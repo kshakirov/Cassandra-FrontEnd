@@ -1,18 +1,27 @@
 <div class="add-to-box">
     <div ng-if="isAuthorised()">
         <div ng-if="is_Ti_manufactured() || product.ti_part_number" class="price-box">
-          <span class="regular-price" ng-bind-html='product.prices | product_price_filter'>
+          <span class="regular-price" ng-bind-html='price | product_price_filter'>
           </span>
         </div>
 
         <div ng-if="is_Ti_manufactured() ||  product.ti_part_number" class="add-to-cart">
             <div class="add-to-cart-qty">
                 <label for="qty">Qty:</label>
-                <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty">
+                <input
+                  ng-model="qty"
+                  type="number"
+                  name="qty"
+                  id="qty"
+                  maxlength="12"
+
+                  title="Qty"
+                  class="input-text qty"
+                >
             </div>
             <div>
                 <button type="button" title="Add to Cart" class="button btn-cart"
-                        ng-click="addToCart()">
+                        ng-click="addToCart(qty)">
                         <span ng-if="product.ti_part_number">Add Ti Part to Cart</span>
                     <span ng-if="!product.ti_part_number">Add  to Cart</span>
                 </button>
@@ -21,8 +30,7 @@
 
         <ul class="add-to-links">
             <li>
-                <a ng-href="/wishlist/index/add/product/{{product.id}}/"
-                   onclick="productAddToCartForm.submitLight(this, this.href); return false;"
+                <a ng-href=""
                    class="link-wishlist">Add to Wishlist</a></li>
             <li><span class="separator">|</span> <a
                     href="" ng-click="addProductToComparedProducts(product.id)"
@@ -31,7 +39,7 @@
         <div class="clearer"></div>
         <!-- Email a friend -->
         <p class="email-friend"><a
-                href="/sendfriend/product/send/id/64324/cat_id/17/">Email to a Friend</a>
+                href="">Email to a Friend</a>
         </p>
     </div>
     <div ng-if="!isAuthorised()">

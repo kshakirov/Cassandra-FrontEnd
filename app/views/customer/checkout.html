@@ -1,87 +1,93 @@
-<div class="main-container col2-right-layout">
-    <div class="main" ng-controller="CustomerCheckoutController" ng-init="init()">
-        <div class="col-main">
-            <div class="page-title">
-                <h1>Checkout</h1>
-            </div>
+<div class="main-container col1-layout" ng-controller="CustomerCheckoutController" ng-init="init()">
+  <div ng-if="!orderSent" class="main">
+    <div class="col-main">
+      <div class="page-title">
+        <h1>Checkout</h1>
+      </div>
+      <v-accordion class="vAccordion--default" multiple>
 
-            <v-accordion class="vAccordion--default" multiple>
+        <!-- add expanded attribute to open the section -->
+        <v-pane expanded>
+          <v-pane-header>
+            {{panes[0].header}}
+          </v-pane-header>
 
-                <!-- add expanded attribute to open the section -->
-                <v-pane expanded>
-                    <v-pane-header>
-                        {{panes[0].header}}
-                    </v-pane-header>
+          <v-pane-content>
+            <div ng-include="'views/customer/partials/_billing_information.html'"></div>
+          </v-pane-content>
+        </v-pane>
 
-                    <v-pane-content>
-                        <div ng-include="'/skin/frontend/default/default/views/customer/partials/_billing_information.html'"></div>
-                    </v-pane-content>
-                </v-pane>
+        <v-pane>
+          <v-pane-header>
+            {{panes[1].header}}
+          </v-pane-header>
 
-                <v-pane >
-                    <v-pane-header>
-                        {{panes[1].header}}
-                    </v-pane-header>
+          <v-pane-content>
+            <div ng-include="'views/customer/partials/_shipping_information.html'"></div>
+          </v-pane-content>
+        </v-pane>
 
-                    <v-pane-content>
-                        <div ng-include="'/skin/frontend/default/default/views/customer/partials/_billing_information.html'"></div>
-                    </v-pane-content>
-                </v-pane>
+        <v-pane>
+          <v-pane-header>
+            {{panes[2].header}}
+          </v-pane-header>
 
-                <v-pane >
-                    <v-pane-header>
-                        {{panes[2].header}}
-                    </v-pane-header>
+          <v-pane-content>
+            <div ng-include="'views/customer/partials/_shipment_method.html'"></div>
+          </v-pane-content>
+        </v-pane>
+        <v-pane>
+          <v-pane-header>
+            {{panes[3].header}}
+          </v-pane-header>
 
-                    <v-pane-content>
-                        <div ng-include="'/skin/frontend/default/default/views/customer/partials/_shipment_method.html'"></div>
-                    </v-pane-content>
-                </v-pane>
-                <v-pane >
-                    <v-pane-header>
-                        {{panes[3].header}}
-                    </v-pane-header>
+          <v-pane-content>
+            <div ng-include="'views/customer/partials/_payment_method.html'"></div>
+          </v-pane-content>
+        </v-pane>
+        <v-pane>
+          <v-pane-header>
+            {{panes[4].header}}
+          </v-pane-header>
 
-                    <v-pane-content>
-                        <div ng-include="'/skin/frontend/default/default/views/customer/partials/_payment_method.html'"></div>
-                    </v-pane-content>
-                </v-pane>
-                <v-pane >
-                    <v-pane-header>
-                        {{panes[4].header}}
-                    </v-pane-header>
+          <v-pane-content>
+            <div ng-include="'views/customer/partials/_order_review.html'"></div>
+          </v-pane-content>
+        </v-pane>
 
-                    <v-pane-content>
-                        <div ng-include="'/skin/frontend/default/default/views/customer/partials/_order_review.html'"></div>
-                    </v-pane-content>
-                </v-pane>
+      </v-accordion>
 
-            </v-accordion>
+      <!--<button ng-click="accordion.toggle(0)">Toggle first pane</button>-->
+      <!--<button ng-click="accordion.expandAll()">Expand all</button>-->
+      <!--<button ng-click="accordion.collapseAll()">Collapse all</button>-->
 
-            <!--<button ng-click="accordion.toggle(0)">Toggle first pane</button>-->
-            <!--<button ng-click="accordion.expandAll()">Expand all</button>-->
-            <!--<button ng-click="accordion.collapseAll()">Collapse all</button>-->
-
-        </div>
-        <div class="col-right sidebar"><div id="checkout-progress-wrapper"><div class="block block-progress opc-block-progress">
-            <div class="block-title">
-                <strong><span>Your Checkout Progress</span></strong>
-            </div>
-            <div class="block-content">
-                <dl>
-                    <dt>
-                        Billing Address            </dt>
-
-                    <dt>
-                        Shipping Address            </dt>
-
-                    <dt>
-                        Shipping Method            </dt>
-
-                    <dt>
-                        Payment Method            </dt>
-                </dl>
-            </div>
-        </div></div></div>
     </div>
-</div>
+    </div>
+  <div ng-if="orderSent" class="main">
+    <div class="col-main">
+      <div ng-if="orderCreationError">
+        <ul class="messages">
+          <li class="error-msg">
+            <ul><li><span>Order is not sent, check your email</span></li></ul>
+          </li>
+        </ul>
+      </div>
+      <div class="page-title">
+        <h1>Your order has been received.</h1>
+      </div>
+      <h2 class="sub-title">Thank you for your purchase!</h2>
+
+      <p>Your order # is: <a ng-href="/#/customer/order/{{order.order_id}}/view">{{order.order_id}}</a>.</p>
+      <p>You will receive an order confirmation email with details of your order and a link to track its progress.</p>
+      <p>
+        Click <a ng-href="/#/customer/order/{{order.order_id}}/print/" >here to print</a> a copy of your order confirmation. </p>
+
+
+      <div class="buttons-set">
+        <button type="button" class="button" title="Continue Shopping"
+                onclick="window.location='http://www.turbointernational.com/'">
+          <span><span>Continue Shopping</span></span></button>
+      </div>
+    </div>
+  </div>
+  </div>

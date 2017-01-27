@@ -50,13 +50,13 @@
         </thead>
         <tbody>
         <tr ng-repeat="order in orders">
-            <td>{{order.id}}</td>
-            <td><span class="nobr">{{order.created_at}}</span></td>
-            <td>{{order.ship_to}}</td>
-            <td><span class="price">{{order.total}}</span></td>
-            <td><em>{{order.status}}</em></td>
+            <td>{{order.order_id}}</td>
+            <td><span class="nobr">{{order.data.created_at}}</span></td>
+            <td>{{order.data.shipping_address_id}}</td>
+            <td><span class="price">{{order.data.base_grand_total}}</span></td>
+            <td><em>{{order.data.status}}</em></td>
             <td class="a-center last">
-                <span class="nobr"><a href="http://localhost/sales/order/view/order_id/303/">View Order</a>
+                <span class="nobr"><a ng-href="/#/customer/order/{{order.order_id}}/view">View Order</a>
                                                             <span class="separator">|</span> <a
                             href="http://localhost/sales/order/reorder/order_id/303/" class="link-reorder">Reorder</a>
                                 </span>

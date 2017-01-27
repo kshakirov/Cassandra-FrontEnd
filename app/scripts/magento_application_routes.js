@@ -64,17 +64,33 @@ magento_module.config(function ($routeProvider) {
       templateUrl: VIEW_DIR + 'customer/address_book.html',
       controller: 'CustomerAddressBookController'
     })
+    .when('/customer/account/address/edit/:id', {
+      templateUrl: VIEW_DIR + 'customer/address_edit.html',
+      controller: 'CustomerAddressEditController'
+    })
+    .when('/customer/account/address/new/', {
+      templateUrl: VIEW_DIR + 'customer/address_edit.html',
+      controller: 'CustomerAddressEditController'
+    })
     .when('/customer/account/orders/', {
       templateUrl: VIEW_DIR + 'customer/orders.html',
       controller: 'CustomerOrdersController'
+    })
+    .when('/customer/order/:id/view', {
+      templateUrl: VIEW_DIR + 'customer/order_view.html',
+      controller: 'CustomerOrderViewController'
     })
     .when('/customer/account/wishlist/', {
       templateUrl: VIEW_DIR + 'customer/wishlist.html',
       controller: 'CustomerWishlistController'
     })
+    .when('/customer/account/login/', {
+      templateUrl: VIEW_DIR + 'customer/login.html',
+      controller: 'CustomerLogin'
+    })
     .when('/customer/cart/', {
       templateUrl: VIEW_DIR + 'customer/cart.html',
-      controller: 'CustomerCartController'
+      controller: 'CustomerCart'
     })
     .when('/customer/checkout/', {
       templateUrl: VIEW_DIR + 'customer/checkout.html',

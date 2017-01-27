@@ -2,7 +2,7 @@
     <div class="page-title title-buttons">
         <h1>Address Book</h1>
         <button type="button" title="Add New Address" class="button"
-                onclick="window.location='http://localhost/customer/address/new/';">
+                ng-click="createNewAddress()">
             <span><span>Add New Address</span></span></button>
     </div>
     <div class="col2-set addresses-list">
@@ -12,35 +12,35 @@
                 <li class="item">
                     <h3>Default Billing Address</h3>
                     <address>
-                        {{customer_data.firstname}} {{customer_data.lastname}}<br>
-                        {{customer_data.default_billing_address.company}}<br>
-                        {{customer_data.default_billing_address.street}}<br>
+                        {{customer.firstname}} {{customer.lastname}}<br>
+                        {{customer.default_billing_address.company}}<br>
+                        {{customer.default_billing_address.street}}<br>
 
 
-                        {{customer_data.default_billing_address.city}},
-                        {{customer_data.default_billing_address.postcode}}<br>
-                        {{customer_data.default_billing_address.country_id}}<br>
-                        T: {{customer_data.default_billing_address.telephone}}
+                        {{customer.default_billing_address.city}},
+                        {{customer.default_billing_address.postcode}}<br>
+                        {{customer.default_billing_address.country_id}}<br>
+                        T: {{customer.default_billing_address.telephone}}
 
                     </address>
-                    <p><a href="http://localhost/customer/address/edit/id/449/">Change Billing Address</a></p>
+                    <p><a href="/#/customer/account/address/edit/1">Change Billing Address</a></p>
                 </li>
 
                 <li class="item">
                     <h3>Default Shipping Address</h3>
                     <address>
-                        {{customer_data.firstname}} {{customer_data.lastname}}<br>
-                        {{customer_data.default_shipping_address.company}}<br>
-                        {{customer_data.default_shipping_address.street}}<br>
+                        {{customer.firstname}} {{customer.lastname}}<br>
+                        {{customer.default_shipping_address.company}}<br>
+                        {{customer.default_shipping_address.street}}<br>
 
 
-                        {{customer_data.default_shipping_address.city}},
-                        {{customer_data.default_shipping_address.postcode}}<br>
-                        {{customer_data.default_shipping_address.country_id}}<br>
-                        T: {{customer_data.default_shipping_address.telephone}}
+                        {{customer.default_shipping_address.city}},
+                        {{customer.default_shipping_address.postcode}}<br>
+                        {{customer.default_shipping_address.country_id}}<br>
+                        T: {{customer.default_shipping_address.telephone}}
 
                     </address>
-                    <p><a href="http://localhost/customer/address/edit/id/449/">Change Shipping Address</a></p>
+                    <p><a href="/#/customer/account/address/edit/2">Change Shipping Address</a></p>
                 </li>
             </ol>
         </div>
@@ -58,14 +58,5 @@
             <small>«</small>
             Back</a></p>
     </div>
-    <script type="text/javascript">
-        //<![CDATA[
-        function deleteAddress(addressId) {
-            if (confirm('Are you sure you want to delete this address?')) {
-                window.location = 'http://localhost/customer/address/delete/id/' + addressId;
-            }
-            return false;
-        }
-        //]]>
-    </script>
+
 </div>
