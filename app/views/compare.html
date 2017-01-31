@@ -1,4 +1,4 @@
-<div ng-if="false"  class="block block-list block-compare" ng-controller="ComparedProductsController"  ng-init="init()">
+<div ng-if="true"  class="block block-list block-compare" ng-controller="ComparedProductsController"  ng-init="init()">
 
     <div class="block-title">
         <strong><span>Compare Products
@@ -9,8 +9,8 @@
         <ol id="compare-items">
             <li ng-repeat="item in products" class="item odd">
                 <a
-                        href="" title="Remove This Item" class="btn-remove" ng-click="removeItem(item.compared_id)" >Remove This Item</a>
-                        <p class="product-name"><a href="/#/part/sku/{{item.sku}}">{{item.name}}</a></p>
+                        href="" title="Remove This Item" class="btn-remove" ng-click="removeItem(item.sku)" >Remove This Item</a>
+                        <p class="product-name"><a href="/#/part/sku/{{item.sku}}">{{item.part_number}}</a></p>
             </li>
         </ol>
 

@@ -181,12 +181,12 @@ magento_module.controller("ProductController", function ($scope,
 
     $scope.addProductToComparedProducts = function (id) {
       var sku = $routeParams.sku;
-      var query = StatisticElasticQuery.addCompareProduct(sku, id);
-      console.log(query);
-      ElasticSearch.index(query).then(function (promise) {
+      //var query = StatisticElasticQuery.addCompareProduct(sku, id);
+
+      console.log(sku);
+      $http.put("/customer/compared_product/" + sku).then(function (promise) {
         console.log(promise);
-        $scope.compared_message = $scope.product.name + " was added to Compared Products."
-        $timeout(compared_message_dismiss, 5000);
+
       })
     }
 
