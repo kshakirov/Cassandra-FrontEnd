@@ -116,6 +116,11 @@ magento_module.controller("ProductController", function ($scope,
         return 'selected';
     }
 
+    $scope.selectedOversize = function (item, original_part) {
+    if (item.sku == $scope.std_reference)
+      return 'selected_std';
+  }
+
     $scope.is_cartride = function () {
       if ($scope.product && $scope.product.part_type)
         return $scope.product.part_type.toLowerCase() == 'cartridge';
@@ -124,6 +129,11 @@ magento_module.controller("ProductController", function ($scope,
     $scope.is_gasket_kit = function () {
       if ($scope.product && $scope.product.part_type)
         return $scope.product.part_type.toLowerCase() == 'gasket kit';
+    };
+
+    $scope.is_journal_bearing = function () {
+      if ($scope.product && $scope.product.part_type)
+        return $scope.product.part_type.toLowerCase() == 'journal bearing';
     };
 
     $scope.is_turbo = function () {
@@ -181,9 +191,6 @@ magento_module.controller("ProductController", function ($scope,
 
     $scope.addProductToComparedProducts = function (id) {
       var sku = $routeParams.sku;
-      //var query = StatisticElasticQuery.addCompareProduct(sku, id);
-
-      console.log(sku);
       $http.put("/customer/compared_product/" + sku).then(function (promise) {
         console.log(promise);
 
@@ -275,7 +282,6 @@ magento_module.controller("ProductController", function ($scope,
         })
       }
 
-
       $scope.init_gasket_turbo = function () {
         console.log("Gasket Turbo Rest");
         return $http.get('/attrsreader/product/' + sku + '/gasket_turbo/?stats=' + _get_stats()).then(function (prom) {
@@ -285,6 +291,20 @@ magento_module.controller("ProductController", function ($scope,
             process_turbos_interchanges(turbo_gaskets);
           }
           $scope.turboGaskeKitTableParams = new NgTableParams({}, {dataset: turbo_gaskets});
+        });
+      };
+
+      $scope.init_standard_oversize = function () {
+        console.log("Standard Oversize Rest");
+        return $http.get('/attrsreader/product/' + sku + '/standard_oversize/').then(function (prom) {
+          var std_ovrs = [];
+          if (typeof prom.data == 'object') {
+            std_ovrs = prom.data.table;
+            $scope.original_part = prom.data.original_part || false;
+            $scope.std_reference = prom.data.reference;
+          }
+          $scope.standardOversizeTableParams = new NgTableParams({}, {dataset: std_ovrs});
+          $scope.originalPartTableParams = new NgTableParams({}, {dataset: [$scope.original_part]});
         });
       };
 
@@ -300,7 +320,6 @@ magento_module.controller("ProductController", function ($scope,
         });
       }
 
-
       $scope.init_kit_matrix = function () {
         return $http.get('/attrsreader/product/' + sku + '/kit_matrix/').then(function (prom) {
           if (typeof prom.data == 'object') {
@@ -314,11 +333,7 @@ magento_module.controller("ProductController", function ($scope,
           }
 
         });
-
       }
-
-
     }
-
   }
 )

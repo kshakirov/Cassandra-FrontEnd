@@ -1,0 +1,75 @@
+<div ng-if="is_journal_bearing()">
+  <div ng-init="init_standard_oversize()">
+    <h2>Standard Part - <a ng-href="/#/part/sku/{{original_part.sku}}">{{original_part.part_number}}</a></h2>
+    <table class="data-table" id="product-information-critical-table">
+      <thead>
+      <tr>
+        <th>Standard Dimensions</th>
+        <th>O/D Min</th>
+        <th>O/D Max</th>
+        <th>I/D Min</th>
+        <th>I/D Max</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr ng-if="original_part">
+        <td>Inches</td>
+        <td>{{original_part.maxInnerDiameter | number:4}}</td>
+        <td>{{original_part.maxOuterDiameter | number:4}}</td>
+        <td>{{original_part.minInnerDiameter | number:4}}</td>
+        <td>{{original_part.minOuterDiameter | number:4}}</td>
+      </tr>
+      <tr ng-if="original_part">
+        <td>Millimeteres</td>
+        <td>{{original_part.maxInnerDiameter * 2.54 | number:4}}</td>
+        <td>{{original_part.maxOuterDiameter * 2.54 | number:4}}</td>
+        <td>{{original_part.minInnerDiameter * 2.54 | number:4}}</td>
+        <td>{{original_part.minOuterDiameter * 2.54 | number:4}}</td>
+      </tr>
+      <tr ng-if="!original_part">
+        <td colspan="5" style="text-align: center"><b>No Results</b></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h2 style="padding-top: 15px">Standard/Oversize</h2>
+    <table ng-table="originalPartTableParams" template-pagination="custom/pager" class="table data-table"
+           show-filter="true">
+      <tr ng-repeat="item in $data" ng-class="selectedOversize(item, std_reference)">
+        <td width="20.5%" title="'O/D'" >
+          <span ng-bind-html="'STD'  | std_ovrsize"></span>
+        </td>
+        <td width="20.5%" title="'I/D'" >
+          <span ng-bind-html="'STD'  | std_ovrsize"> </span>
+        </td>
+        <td width="20.5%" title="'TI PART'" >
+          <a ng-href="/#/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
+        <td title="'INTERCHANGES'">
+          <span ng-bind-html="item.interchanges | parts_array_2_urls"> </span></td>
+      </tr>
+      <tr ng-if="$data.length == 0">
+        <td colspan="7" style="text-align: center"><b>No Results</b></td>
+      </tr>
+    </table>
+
+    <table ng-table="standardOversizeTableParams" template-pagination="custom/pager" class="table data-table"
+           show-filter="true">
+      <tr ng-repeat="item in $data" ng-class="selectedOversize(item, std_reference)">
+        <td title="'O/D'" filter="{ maxOuterDiameter: 'number'}" sortable="'maxOuterDiameter'">
+          <span ng-bind-html="item.maxOuterDiameter_out  | std_ovrsize"></span>
+        </td>
+        <td title="'I/D'" filter="{ minInnerDiameter: 'number'}" sortable="'minInnerDiameter'">
+          <span ng-bind-html="item.minInnerDiameter_out  | std_ovrsize"> </span>
+        </td>
+        <td title="'TI PART'" filter="{ part_number: 'text'}" sortable="'part_number'">
+          <a ng-href="/#/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
+        <td title="'INTERCHANGES'">
+          <span ng-bind-html="item.interchanges | parts_array_2_urls"> </span></td>
+      </tr>
+      <tr ng-if="$data.length == 0">
+        <td colspan="7" style="text-align: center"><b>No Results</b></td>
+      </tr>
+    </table>
+  </div>
+</div>
