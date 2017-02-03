@@ -84,6 +84,10 @@ li.componentSection { border-bottom: 3px solid #E41E00; }
 }
 
 
+.selected_std {
+  background-color: #DCDCDC;
+}
+
 .btn_pagination {
     background: #CCDAE3;
     background-image: -webkit-linear-gradient(top, #D7D9DB, #858F96);
