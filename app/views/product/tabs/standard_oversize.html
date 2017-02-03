@@ -22,10 +22,10 @@
       </tr>
       <tr ng-if="original_part">
         <td>Millimeteres</td>
-        <td>{{original_part.maxInnerDiameter * 25.4 | number:4}}</td>
+        <td>{{original_part.minOuterDiameter * 25.4 | number:4}}</td>
         <td>{{original_part.maxOuterDiameter * 25.4 | number:4}}</td>
         <td>{{original_part.minInnerDiameter * 25.4 | number:4}}</td>
-        <td>{{original_part.minOuterDiameter * 25.4 | number:4}}</td>
+        <td>{{original_part.maxInnerDiameter * 25.4 | number:4}}</td>
       </tr>
       <tr ng-if="!original_part">
         <td colspan="5" style="text-align: center"><b>No Results</b></td>
