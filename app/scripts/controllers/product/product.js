@@ -95,6 +95,15 @@ magento_module.controller("ProductController", function ($scope,
       })
     }
 
+  function make_flat_interchanges(stds) {
+    angular.forEach(stds, function (std) {
+      var interchages_flat = std.interchanges.map(function (interchange) {
+        return interchange.part_number;
+      })
+      std.interchanges_flat = interchages_flat;
+    })
+  }
+
 
     $scope.tab = 1;
     $scope.qty = 1;
@@ -302,6 +311,7 @@ magento_module.controller("ProductController", function ($scope,
             std_ovrs = prom.data.table;
             $scope.original_part = prom.data.original_part || false;
             $scope.std_reference = prom.data.reference;
+            make_flat_interchanges(std_ovrs);
           }
           $scope.standardOversizeTableParams = new NgTableParams({}, {dataset: std_ovrs});
           $scope.originalPartTableParams = new NgTableParams({}, {dataset: [$scope.original_part]});

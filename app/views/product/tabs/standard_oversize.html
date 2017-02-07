@@ -37,13 +37,13 @@
     <table ng-table="originalPartTableParams" template-pagination="custom/pager" class="table data-table"
            show-filter="true">
       <tr ng-repeat="item in $data" ng-class="selectedOversize(item, std_reference)">
-        <td width="20.5%" title="'O/D'" >
+        <td width="80px" title="'O/D'" >
           <span ng-bind-html="'STD'  | std_ovrsize"></span>
         </td>
-        <td width="20.5%" title="'I/D'" >
+        <td width="80px" title="'I/D'" >
           <span ng-bind-html="'STD'  | std_ovrsize"> </span>
         </td>
-        <td width="20.5%" title="'TI PART'" >
+        <td width="100px" title="'TI PART'" >
           <a ng-href="/#/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
         <td title="'INTERCHANGES'">
           <span ng-bind-html="item.interchanges | parts_array_2_urls"> </span></td>
@@ -56,15 +56,15 @@
     <table ng-table="standardOversizeTableParams" template-pagination="custom/pager" class="table data-table"
            show-filter="true">
       <tr ng-repeat="item in $data" ng-class="selectedOversize(item, std_reference)">
-        <td title="'O/D'" filter="{ maxOuterDiameter: 'number'}" sortable="'maxOuterDiameter'">
+        <td width="80px" title="''" filter="{ maxOuterDiameter: 'number'}" sortable="'maxOuterDiameter'">
           <span ng-bind-html="item.maxOuterDiameter_out  | std_ovrsize"></span>
         </td>
-        <td title="'I/D'" filter="{ minInnerDiameter: 'number'}" sortable="'minInnerDiameter'">
+        <td width="80px" title="''" filter="{ minInnerDiameter: 'number'}" sortable="'minInnerDiameter'">
           <span ng-bind-html="item.minInnerDiameter_out  | std_ovrsize"> </span>
         </td>
-        <td title="'TI PART'" filter="{ part_number: 'text'}" sortable="'part_number'">
+        <td width="100px" title="''" filter="{ part_number: 'text'}" sortable="'part_number'">
           <a ng-href="/#/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
-        <td title="'INTERCHANGES'">
+        <td title="''" filter="{ interchanges_flat: 'text'}" sortable="'interchanges'">
           <span ng-bind-html="item.interchanges | parts_array_2_urls"> </span></td>
       </tr>
       <tr ng-if="$data.length == 0">
