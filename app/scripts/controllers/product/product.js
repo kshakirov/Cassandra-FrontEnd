@@ -313,7 +313,7 @@ magento_module.controller("ProductController", function ($scope,
             $scope.std_reference = prom.data.reference;
             make_flat_interchanges(std_ovrs);
           }
-          $scope.standardOversizeTableParams = new NgTableParams({}, {dataset: std_ovrs});
+          $scope.standardOversizeTableParams = new NgTableParams({sorting: {maxOuterDiameter: "asc"}}, {dataset: std_ovrs});
           $scope.originalPartTableParams = new NgTableParams({}, {dataset: [$scope.original_part]});
         });
       };
