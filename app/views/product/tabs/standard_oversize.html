@@ -56,15 +56,15 @@
     <table ng-table="standardOversizeTableParams" template-pagination="custom/pager" class="table data-table"
            show-filter="true">
       <tr ng-repeat="item in $data" ng-class="selectedOversize(item, std_reference)">
-        <td width="80px" title="''" filter="{ maxOuterDiameter: 'number'}" sortable="'maxOuterDiameter'">
+        <td width="80px" title="''" filter="{ maxOuterDiameter: 'number'}" >
           <span ng-bind-html="item.maxOuterDiameter_out  | std_ovrsize"></span>
         </td>
-        <td width="80px" title="''" filter="{ minInnerDiameter: 'number'}" sortable="'minInnerDiameter'">
+        <td width="80px" title="''" filter="{ minInnerDiameter: 'number'}" >
           <span ng-bind-html="item.minInnerDiameter_out  | std_ovrsize"> </span>
         </td>
-        <td width="100px" title="''" filter="{ part_number: 'text'}" sortable="'part_number'">
+        <td width="100px" title="''" filter="{ part_number: 'text'}" >
           <a ng-href="/#/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
-        <td title="''" filter="{ interchanges_flat: 'text'}" sortable="'interchanges'">
+        <td title="''" filter="{ interchanges_flat: 'text'}" >
           <span ng-bind-html="item.interchanges | parts_array_2_urls"> </span></td>
       </tr>
       <tr ng-if="$data.length == 0">
