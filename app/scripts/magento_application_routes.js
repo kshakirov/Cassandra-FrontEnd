@@ -96,6 +96,10 @@ magento_module.config(function ($routeProvider) {
       templateUrl: VIEW_DIR + 'customer/checkout.html',
       controller: 'CustomerCheckoutController'
     })
+    .when('/customer/account/forgotpassword/', {
+      templateUrl: VIEW_DIR + 'customer/forgot_password.html',
+      controller: 'ForgotPasswordController'
+    })
     .when('/', {
       templateUrl: VIEW_DIR + 'home.html',
       controller: 'HomeController'

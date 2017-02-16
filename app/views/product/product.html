@@ -49,7 +49,7 @@
 
             <li><a ng-click="tab=6" ng-class="{'active':tab==6}">Interchangeable Parts</a></li>
             <li><a ng-click="tab=7" ng-class="{'active':tab==7}">Sales Notes</a></li>
-            <li><a ng-click="tab=8" ng-class="{'active':tab==8}">Non Standard</a></li>
+            <li ng-show="is_journal_bearing()"><a ng-click="tab=8" ng-class="{'active':tab==8}">Non Standard</a></li>
           </ul>
 
           <div class="tabs-container">
