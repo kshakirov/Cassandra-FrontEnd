@@ -134,6 +134,17 @@ magento_module.controller("CustomerLogin", function ($scope,
         console.log('Error')
       })
   }
+  $scope.createNewAccount = function () {
+    var data = {
+      email: $scope.new_customer_email
+    };
+    return $http.post("/frontend/customer/new/", data)
+      .then(function (promise) {
+       console.log(promise)
+      }, function (error) {
+        console.log('Error')
+      })
+  }
 
 })
 

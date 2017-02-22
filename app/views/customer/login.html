@@ -19,9 +19,24 @@
             <div class="col-1 new-users">
               <div class="content">
                 <h2>New Customers</h2>
-                <p>If you would like to create an account with Turbo International please email <a
-                  href="mailto:order@turbointernational.com">order@turbointernational.com</a> for assistance or fill out
-                  the form at <a href="/contact-us">Contact Us</a>.</p>
+                <p>If you would like to create an account with Turbo International please submit your email below
+                <ul class="form-list">
+                  <li>
+                    <label for="emailNewCustomer" class="required"><em>*</em>Email Address</label>
+                    <div class="input-box">
+                      <input
+                        ng-model="new_customer_email"
+                        type="text"
+                        name=""
+                        value=""
+                        id="emailNewCustomer"
+                        class="input-text required-entry validate-email"
+                        title="Email Address">
+                    </div>
+                  </li>
+
+                </ul>
+
               </div>
             </div>
             <div class="col-2 registered-users">
@@ -66,6 +81,17 @@
           <div class="col2-set">
             <div class="col-1 new-users">
               <div class="buttons-set">
+                <button
+                  ng-click="createNewAccount()"
+                  type="submit"
+                  class="button"
+                  title="Login"
+                  name="send"
+                  id="send1">
+                  <span>
+                    <span>Create Account</span>
+                  </span>
+                </button>
               </div>
             </div>
             <div class="col-2 registered-users">
