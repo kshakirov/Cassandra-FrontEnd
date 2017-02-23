@@ -7,8 +7,12 @@
   <ul ng-if="isAuthorized" class="links" ng-controller="ComparedProductsController">
     <li class="first"><a href="" ng-click="initModal()" >Compared Products</a></li>
     <li ><a href="/#/customer/account/" title="My Account">My Account</a></li>
-    <li><a href="/#/customer/account/wishlist/" title="My Wishlist (-)">My Wishlist ({{customer_data.wishlist}})</a></li>
-    <li><a href="/#/customer/cart/" title="My Cart (-)" class="top-link-cart">My Cart ({{customer_data.cart}})</a></li>
+    <li >
+      <a href="/#/customer/account/wishlist/" title="My Wishlist (-)">My Wishlist ({{}})</a>
+    </li>
+    <li ng-controller="CustomerCart" ng-init="getProductsCount()">
+        <a href="/#/customer/cart/" title="My Cart ()" class="top-link-cart">My Cart (<span>{{product_count}}</span>)</a>
+    </li>
     <li><a href="/#/customer/checkout/" title="Checkout" class="top-link-checkout">Checkout</a></li>
     <li class=" last"><a ng-click="logout()" href="" title="Log Out">Log Out</a></li>
   </ul>    </div>

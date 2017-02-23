@@ -95,15 +95,21 @@ magento_module.controller("ProductController", function ($scope,
       })
     }
 
-  function make_flat_interchanges(stds) {
-    angular.forEach(stds, function (std) {
-      var interchages_flat = std.interchanges.map(function (interchange) {
-        return interchange.part_number;
+    function make_flat_interchanges(stds) {
+      angular.forEach(stds, function (std) {
+        var interchages_flat = std.interchanges.map(function (interchange) {
+          return interchange.part_number;
+        })
+        std.interchanges_flat = interchages_flat;
       })
-      std.interchanges_flat = interchages_flat;
-    })
-  }
+    }
 
+
+    function get_products_count() {
+      return $http.get('/customer/cart/product/count').then(function (promise) {
+        return promise.data.count;
+      })
+    }
 
     $scope.tab = 1;
     $scope.qty = 1;
@@ -126,9 +132,9 @@ magento_module.controller("ProductController", function ($scope,
     }
 
     $scope.selectedOversize = function (item, original_part) {
-    if (item.sku == $scope.std_reference)
-      return 'selected_std';
-  }
+      if (item.sku == $scope.std_reference)
+        return 'selected_std';
+    }
 
     $scope.is_cartride = function () {
       if ($scope.product && $scope.product.part_type)
@@ -166,6 +172,11 @@ magento_module.controller("ProductController", function ($scope,
       $http.post('/customer/cart/product', product).then(function (response) {
         console.log("sent to cart");
         $scope.cart_message = $scope.product.name + " was added to your shopping cart."
+        return true;
+      }).then(function () {
+        get_products_count().then(function (promise) {
+          $rootScope.product_count = promise;
+        })
       })
     };
 
@@ -313,7 +324,10 @@ magento_module.controller("ProductController", function ($scope,
             $scope.std_reference = prom.data.reference;
             make_flat_interchanges(std_ovrs);
           }
-          $scope.standardOversizeTableParams = new NgTableParams({sorting: {maxOuterDiameter: "asc"}, count: 50}, {dataset: std_ovrs});
+          $scope.standardOversizeTableParams = new NgTableParams({
+            sorting: {maxOuterDiameter: "asc"},
+            count: 50
+          }, {dataset: std_ovrs});
           $scope.originalPartTableParams = new NgTableParams({}, {dataset: [$scope.original_part]});
         });
       };
