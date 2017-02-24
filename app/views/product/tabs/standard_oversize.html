@@ -80,7 +80,7 @@
 <div ng-if="is_piston_ring()">
   <div ng-init="init_standard_oversize()">
     <h2>Standard Part - <a ng-href="/#/part/sku/{{original_part.sku}}">{{original_part.part_number}}</a></h2>
-    <table class="data-table" id="product-information-critical-table">
+    <table class="data-table" id="product-information-critical-table-2">
       <thead>
       <tr>
         <th>Standard Dimensions</th>
@@ -96,13 +96,13 @@
         <td>Inches</td>
         <td>{{original_part.installedDiameterA | number:4}}</td>
         <td>{{original_part.gapBInstalledDiameter | number:4}}</td>
-        <td>{{original_part.minInnerDiameter | number:4}}</td>
+        <td>{{original_part.widthD | number:4}}</td>
       </tr>
       <tr ng-if="original_part">
         <td>Millimeteres</td>
         <td>{{original_part.installedDiameterA * 25.4 | number:4}}</td>
         <td>{{original_part.gapBInstalledDiameter * 25.4 | number:4}}</td>
-        <td>{{original_part.minInnerDiameter * 25.4 | number:4}}</td>
+        <td>{{original_part.widthD * 25.4 | number:4}}</td>
       </tr>
       <tr ng-if="!original_part">
         <td colspan="5" style="text-align: center"><b>No Results</b></td>
@@ -117,7 +117,10 @@
         <td width="80px" title="'O/D'" >
           <span ng-bind-html="'STD'  | std_ovrsize"></span>
         </td>
-        <td width="80px" title="'I/D'" >
+        <td width="80px" title="'I/Gap'" >
+          <span ng-bind-html="'STD'  | std_ovrsize"> </span>
+        </td>
+        <td width="80px" title="'Width'" >
           <span ng-bind-html="'STD'  | std_ovrsize"> </span>
         </td>
         <td width="100px" title="'TI PART'" >
@@ -138,6 +141,9 @@
         </td>
         <td width="80px" title="''" filter="{ gapBInstalledDiameter: 'number'}" >
           <span ng-bind-html="item.gapBInstalledDiameter_out  | std_ovrsize"> </span>
+        </td>
+        <td width="80px" title="''" filter="{ widthD: 'number'}" >
+          <span ng-bind-html="item.widthD_out  | std_ovrsize"> </span>
         </td>
         <td width="100px" title="''" filter="{ part_number: 'text'}" >
           <a ng-href="/#/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
