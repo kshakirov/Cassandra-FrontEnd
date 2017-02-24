@@ -76,3 +76,79 @@
     </table>
   </div>
 </div>
+
+<div ng-if="is_piston_ring()">
+  <div ng-init="init_standard_oversize()">
+    <h2>Standard Part - <a ng-href="/#/part/sku/{{original_part.sku}}">{{original_part.part_number}}</a></h2>
+    <table class="data-table" id="product-information-critical-table">
+      <thead>
+      <tr>
+        <th>Standard Dimensions</th>
+        <th>INSTALLED DIAMETER "A"</th>
+        <th>GAP "B" @ INSTALLED DIAMETER</th>
+        <th>WIDTH "D"</th>
+
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr ng-if="original_part">
+        <td>Inches</td>
+        <td>{{original_part.installedDiameterA | number:4}}</td>
+        <td>{{original_part.gapBInstalledDiameter | number:4}}</td>
+        <td>{{original_part.minInnerDiameter | number:4}}</td>
+      </tr>
+      <tr ng-if="original_part">
+        <td>Millimeteres</td>
+        <td>{{original_part.installedDiameterA * 25.4 | number:4}}</td>
+        <td>{{original_part.gapBInstalledDiameter * 25.4 | number:4}}</td>
+        <td>{{original_part.minInnerDiameter * 25.4 | number:4}}</td>
+      </tr>
+      <tr ng-if="!original_part">
+        <td colspan="5" style="text-align: center"><b>No Results</b></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h2 style="padding-top: 15px">Standard/Oversize</h2>
+    <table ng-table="originalPartTableParams" template-pagination="custom/pager" class="table data-table"
+           show-filter="true">
+      <tr ng-repeat="item in $data" ng-class="selectedOversize(item, std_reference)">
+        <td width="80px" title="'O/D'" >
+          <span ng-bind-html="'STD'  | std_ovrsize"></span>
+        </td>
+        <td width="80px" title="'I/D'" >
+          <span ng-bind-html="'STD'  | std_ovrsize"> </span>
+        </td>
+        <td width="100px" title="'TI PART'" >
+          <a ng-href="/#/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
+        <td title="'INTERCHANGES'">
+          <span ng-bind-html="item.interchanges | parts_array_2_urls"> </span></td>
+      </tr>
+      <tr ng-if="$data.length == 0">
+        <td colspan="7" style="text-align: center"><b>No Results</b></td>
+      </tr>
+    </table>
+
+    <table ng-table="standardOversizeTableParams" template-pagination="custom/pager" class="table data-table"
+           show-filter="true">
+      <tr ng-repeat="item in $data" ng-class="selectedOversize(item, std_reference)">
+        <td width="80px" title="''" filter="{ installedDiameterA: 'number'}" >
+          <span ng-bind-html="item.installedDiameterA_out  | std_ovrsize"></span>
+        </td>
+        <td width="80px" title="''" filter="{ gapBInstalledDiameter: 'number'}" >
+          <span ng-bind-html="item.gapBInstalledDiameter_out  | std_ovrsize"> </span>
+        </td>
+        <td width="100px" title="''" filter="{ part_number: 'text'}" >
+          <a ng-href="/#/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
+        <td title="''" filter="{ interchanges_flat: 'text'}" >
+          <span ng-bind-html="item.interchanges | parts_array_2_urls"> </span></td>
+      </tr>
+      <tr ng-if="$data.length == 0">
+        <td colspan="7" style="text-align: center"><b>No Results</b></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+

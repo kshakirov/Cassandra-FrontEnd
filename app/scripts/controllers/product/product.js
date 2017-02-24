@@ -151,6 +151,11 @@ magento_module.controller("ProductController", function ($scope,
         return $scope.product.part_type.toLowerCase() == 'journal bearing';
     };
 
+  $scope.is_piston_ring = function () {
+    if ($scope.product && $scope.product.part_type)
+      return $scope.product.part_type.toLowerCase() == 'piston ring';
+  };
+
     $scope.is_turbo = function () {
       if ($scope.product && $scope.product.part_type)
         return $scope.product.part_type.toLowerCase() == 'turbo';
