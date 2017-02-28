@@ -85,6 +85,7 @@
                 </td>
                 <!-- OEM Part Number -->
                 <td>
+                  <a ng-href="/#/part/sku/{{item.oem_part_sku}}">  {{item.oem_part}}</a>
                 </td>
                 <!-- Add to wishlist -->
                 <td class="a-center">
@@ -155,18 +156,19 @@
                   <strong>Grand Total</strong>
                 </td>
                 <td style="" class="a-right">
-                  <strong><span class="price">{{cart_data.subtotal}}</span></strong>
+                  <strong> <span class="regular-price" ng-bind-html='cart_data.subtotal | cart_price_filter: cart_data.currency '></span></strong>
                 </td>
               </tr>
               </tfoot>
               <tbody>
-              <tr>
-                <td style="" class="a-right" colspan="1">
-                  Subtotal
-                </td>
-                <td style="" class="a-right">
-                  <span class="regular-price" ng-bind-html='cart_data.subtotal | cart_price_filter: cart_data.currency '></span></td>
-              </tr>
+              <!--<tr>-->
+                <!--<td style="" class="a-right" colspan="1">-->
+                  <!--Subtotal-->
+                <!--</td>-->
+                <!--<td style="" class="a-right">-->
+                  <!--<span class="regular-price" ng-bind-html='cart_data.subtotal | cart_price_filter: cart_data.currency '></span>-->
+                <!--</td>-->
+              <!--</tr>-->
               </tbody>
             </table>
             <ul class="checkout-types">

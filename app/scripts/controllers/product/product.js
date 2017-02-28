@@ -166,6 +166,15 @@ magento_module.controller("ProductController", function ($scope,
         return $scope.product.manufacturer.toLowerCase() == 'turbo international';
     };
 
+function _get_price(sku) {
+  return $http.get('/customer/product/' + sku + '/price').then(function (promise) {
+    return [true, promise.data.price]
+  }, function (error) {
+    return [false]
+  });
+}
+
+
     $scope.addToCart = function (qty) {
 
       var product = {
@@ -232,16 +241,24 @@ magento_module.controller("ProductController", function ($scope,
         $scope.product = promise.data;
         $rootScope.image_part_type = $scope.product.part_type;
         $scope.applicationTableParams = new NgTableParams({}, {dataset: $scope.product.application_detail});
+      }).then(function (promise) {
+        if($scope.product.hasOwnProperty('ti_part_sku') && $scope.product.ti_part_sku) {
+          _get_price($scope.product.ti_part_sku).then(function (promise) {
+            $scope.authorised = promise[0];
+            $scope.price = promise[1]
+          });
+        }
+        else{
+          _get_price(sku).then(function (promise) {
+            $scope.authorised = promise[0];
+            $scope.price = promise[1]
+          });
+        }
       });
 
-      $http.get('/customer/product/' + sku + '/price').then(function (promise) {
-        $scope.price = promise.data.price;
-        console.log(promise.data.promise)
-        $scope.authorised = true;
-      }, function (error) {
-        console.log(error);
-        $scope.authorised = false;
-      });
+
+
+
 
 
       $http.post('/attrsreader/product/' + sku + '/where_used/', stats).then(function (prom) {
