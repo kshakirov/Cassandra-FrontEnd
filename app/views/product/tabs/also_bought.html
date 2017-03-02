@@ -1,0 +1,19 @@
+<div>
+
+<table class="data-table" >
+  <caption style="padding-top: 20px"><h2>Customers Who Bought This Product Also Bought</h2></caption>
+  <tbody>
+  <tr ng-repeat="item in also_bought" ng-if="$index < 10" ng-class-odd="'odd'" ng-class-even="'even'">
+    <td>
+        {{$index + 1}}
+    </td>
+    <td>  <a ng-href="/#/part/sku/{{item.sku}}">
+      {{item.name}}
+    </a></td>
+  </tr>
+  <tr ng-if="also_bought.length ==0 ">
+    <td > NO RESULTS</td>
+  </tr>
+  </tbody>
+</table>
+</div>

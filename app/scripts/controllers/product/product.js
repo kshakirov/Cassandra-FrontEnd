@@ -151,10 +151,10 @@ magento_module.controller("ProductController", function ($scope,
         return $scope.product.part_type.toLowerCase() == 'journal bearing';
     };
 
-  $scope.is_piston_ring = function () {
-    if ($scope.product && $scope.product.part_type)
-      return $scope.product.part_type.toLowerCase() == 'piston ring';
-  };
+    $scope.is_piston_ring = function () {
+      if ($scope.product && $scope.product.part_type)
+        return $scope.product.part_type.toLowerCase() == 'piston ring';
+    };
 
     $scope.is_turbo = function () {
       if ($scope.product && $scope.product.part_type)
@@ -166,13 +166,13 @@ magento_module.controller("ProductController", function ($scope,
         return $scope.product.manufacturer.toLowerCase() == 'turbo international';
     };
 
-function _get_price(sku) {
-  return $http.get('/customer/product/' + sku + '/price').then(function (promise) {
-    return [true, promise.data.price]
-  }, function (error) {
-    return [false]
-  });
-}
+    function _get_price(sku) {
+      return $http.get('/customer/product/' + sku + '/price').then(function (promise) {
+        return [true, promise.data.price]
+      }, function (error) {
+        return [false]
+      });
+    }
 
 
     $scope.addToCart = function (qty) {
@@ -242,23 +242,19 @@ function _get_price(sku) {
         $rootScope.image_part_type = $scope.product.part_type;
         $scope.applicationTableParams = new NgTableParams({}, {dataset: $scope.product.application_detail});
       }).then(function (promise) {
-        if($scope.product.hasOwnProperty('ti_part_sku') && $scope.product.ti_part_sku) {
+        if ($scope.product.hasOwnProperty('ti_part_sku') && $scope.product.ti_part_sku) {
           _get_price($scope.product.ti_part_sku).then(function (promise) {
             $scope.authorised = promise[0];
             $scope.price = promise[1]
           });
         }
-        else{
+        else {
           _get_price(sku).then(function (promise) {
             $scope.authorised = promise[0];
             $scope.price = promise[1]
           });
         }
       });
-
-
-
-
 
 
       $http.post('/attrsreader/product/' + sku + '/where_used/', stats).then(function (prom) {
@@ -269,6 +265,7 @@ function _get_price(sku) {
         }
         $scope.where_usedTableParams = new NgTableParams({}, {dataset: where_used});
       });
+
       $http.get('/attrsreader/product/' + sku + '/bom/?stats=' + _get_stats()).then(function (prom) {
         var boms = [];
         if (typeof prom.data == 'object') {
@@ -380,6 +377,14 @@ function _get_price(sku) {
 
         });
       }
+    }
+
+    $scope.initAlsoBought = function () {
+      var sku = $routeParams.sku;
+      $http.get("/customer/product/" + sku + "/also_bought/").then(function (promise) {
+        console.log(promise.data);
+          $scope.also_bought = promise.data;
+      })
     }
   }
 )
