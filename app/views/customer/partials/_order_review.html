@@ -79,13 +79,13 @@
         </td>
         <td class="a-right">
                     <span class="cart-price">
-                            <span class="regular-price" ng-bind-html='product.base_price_incl_tax | cart_price_filter: product.data.base_currency_code'></span>
+                            <span class="regular-price" ng-bind-html='product.price | cart_price_filter: product.data.base_currency_code'></span>
                      </span>
         </td>
-        <td class="a-center">{{product.qty_ordered}}</td>
+        <td class="a-center">{{product.quantity}}</td>
         <td class="a-right last">
                     <span class="cart-price">
-                            <span class="regular-price" ng-bind-html='product.base_row_total | cart_price_filter: product.data.base_currency_code'></span>
+                            <span class="regular-price" ng-bind-html='product.row_total | cart_price_filter: product.data.base_currency_code'></span>
                     </span>
         </td>
       </tr>
