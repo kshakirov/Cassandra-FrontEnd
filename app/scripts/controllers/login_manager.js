@@ -13,7 +13,7 @@ magento_module.controller("LoginManager", function ($scope, $http,
 
 
   function getCurrency() {
-    $http.get(backend_path + 'currency').then(function (promise) {
+    return $http.get(backend_path + 'currency').then(function (promise) {
       var current_currency = {
         symbol: _get_currency_symbol(promise.data.base),
         code: promise.data.base
@@ -58,15 +58,14 @@ magento_module.controller("LoginManager", function ($scope, $http,
   })
 
   $scope.selectCurrency = function (currency) {
-    var current_currency = {
-      symbol: _get_currency_symbol(currency.name),
-      code: currency.name
-    };
-    $cookies.putObject('ti_currency', current_currency);
-    console.log(currency);
-    console.log($cookies.getObject('ti_currency'));
-    $rootScope.$broadcast('currencyChanged');
+    getCurrency().then(function (promise) {
+      var current_currency = {
+        symbol: _get_currency_symbol(currency.name),
+        code: currency.name
+      };
+      $cookies.putObject('ti_currency', current_currency);
+      $rootScope.$broadcast('currencyChanged');
+    })
   }
-
 
 })

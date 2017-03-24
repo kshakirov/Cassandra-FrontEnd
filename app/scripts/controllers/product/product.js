@@ -235,6 +235,7 @@ magento_module.controller("ProductController", function ($scope,
       // var uri = _get_product_uri($routeParams);
       var sku = $routeParams.sku;
       $rootScope.image_sku = sku;
+      $rootScope.price_sku = sku;
       var stats = [_get_stats()];
 
       $http.post('/frontend/product', {sku: sku, stats: _get_stats()}).then(function (promise) {
@@ -243,6 +244,7 @@ magento_module.controller("ProductController", function ($scope,
         $scope.applicationTableParams = new NgTableParams({}, {dataset: $scope.product.application_detail});
       }).then(function (promise) {
         if ($scope.product.hasOwnProperty('ti_part_sku') && $scope.product.ti_part_sku) {
+          $rootScope.price_sku = $scope.product.ti_part_sku;
           _get_price($scope.product.ti_part_sku).then(function (promise) {
             $scope.authorised = promise[0];
             $scope.price = promise[1]
@@ -383,8 +385,19 @@ magento_module.controller("ProductController", function ($scope,
       var sku = $routeParams.sku;
       $http.get("/customer/product/" + sku + "/also_bought/").then(function (promise) {
         console.log(promise.data);
-          $scope.also_bought = promise.data;
+        $scope.also_bought = promise.data;
       })
     }
+
+  $scope.$on('currencyChanged', function (event, args) {
+      console.log("Currency Changed" + SKU);
+      _get_price($rootScope.price_sku).then(function (promise) {
+        $scope.authorised = promise[0];
+        $scope.price = promise[1] ;
+      });
+
+    });
+
+
   }
 )
