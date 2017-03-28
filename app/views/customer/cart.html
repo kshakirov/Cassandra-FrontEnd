@@ -95,7 +95,7 @@
                 <!-- Excluding tax price -->
                 <td class="a-right">
                             <span class="cart-price">
-                                        <span class="regular-price" ng-bind-html='item.unit_price | cart_price_filter: cart_data.currency '></span>
+                                        <span class="regular-price" ng-bind-html='item.unit_price | product_price_filter '></span>
                             </span>
                 </td>
                 <!-- Quantity -->
@@ -106,7 +106,7 @@
                 <!-- Subtotal -->
                 <td class="a-right">
                     <span class="cart-price">
-                        <span class="regular-price" ng-bind-html='item.subtotal | cart_price_filter: cart_data.currency '></span>
+                        <span class="regular-price" ng-bind-html='item.subtotal | product_price_filter  '></span>
                     </span>
                 </td>
                 <!-- Remove item -->
@@ -156,7 +156,7 @@
                   <strong>Grand Total</strong>
                 </td>
                 <td style="" class="a-right">
-                  <strong> <span class="regular-price" ng-bind-html='cart_data.subtotal | cart_price_filter: cart_data.currency '></span></strong>
+                  <strong> <span class="regular-price" ng-bind-html='cart_data.subtotal | product_price_filter  '></span></strong>
                 </td>
               </tr>
               </tfoot>

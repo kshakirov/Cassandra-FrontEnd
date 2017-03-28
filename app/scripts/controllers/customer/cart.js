@@ -11,6 +11,11 @@ magento_module.controller("CustomerCart", function ($scope,
     })
   }
 
+  function _get_current_currency() {
+    return $cookies.getObject('ti_currency');
+
+  }
+
 
   function get_products_count() {
     return $http.get('/customer/cart/product/count').then(function (promise) {
@@ -26,11 +31,9 @@ magento_module.controller("CustomerCart", function ($scope,
 
 
   $scope.init = function () {
-    console.log("Hi Cart");
     return load_cart().then(function (data) {
       $scope.cart_data = data;
       $scope.emptyCart = is_cart_empty(data);
-      console.log($scope.emptyCart);
     })
   }
 
@@ -80,5 +83,14 @@ magento_module.controller("CustomerCart", function ($scope,
       $rootScope.product_count = promise;
     })
   }
+
+  $scope.$on('currencyChanged', function (event, args) {
+    console.log("Currency Changed" );
+      $scope.init().then(function () {
+        $scope.cart_data.currency = _get_current_currency();
+      });
+
+    });
+
 
 })
