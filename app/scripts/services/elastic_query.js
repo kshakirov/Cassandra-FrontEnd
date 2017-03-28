@@ -36,6 +36,9 @@ magento_module.service('ElasticQuery', function ($cookies,
     function _capitalize_(input) {
         return (!!input) ? input.charAt(1).toUpperCase() + input.substr(2).toLowerCase() : '';
     }
+  function _capitalize_all(input) {
+    return (!!input) ? input.toUpperCase()  : '';
+  }
 
 
     function _add_catalog_visibility(must_array) {
@@ -110,6 +113,7 @@ magento_module.service('ElasticQuery', function ($cookies,
                 {wildcard: {"ti_part.ti_part_number_clean": query}},
                 {wildcard: {"oe_ref_urls.part_number_clean": query}},
                 {wildcard: {"manufacturer.name": _capitalize_(query)}},
+                {wildcard: {"not_external_part_number": query}},
                 {wildcard: {"turbo_type.name": query.toUpperCase()}}]
         };
         return persistent_query;
@@ -238,6 +242,7 @@ magento_module.service('ElasticQuery', function ($cookies,
                 {wildcard: {"ti_part.ti_part_number_clean": query}},
                 {wildcard: {"oe_ref_urls.part_number_clean": query}},
                 {wildcard: {"manufacturer.name": _capitalize_(query)}},
+                {wildcard: {"not_external_part_number": _capitalize_(query)}},
                 {wildcard: {"turbo_type.name": query.toUpperCase()}}]
 
 
