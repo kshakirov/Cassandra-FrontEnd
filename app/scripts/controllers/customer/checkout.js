@@ -40,9 +40,7 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
       order_id: null,
       billing_address: billing_address.value,
       shipping_address: shipping_address.value,
-      data: {
-        base_currency_code: get_currency_code(),
-      },
+      currency_code: get_currency_code(),
       products: _clear_products(order.products),
       subtotal: order.data.base_subtotal,
       special_instructions: order.special_instructions,
@@ -56,7 +54,6 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
   $scope.newAddress = false;
 
   $scope.placeOrder = function () {
-    console.log("HI placeOrdere");
     var order_data = create_order_date(this.shippingAddress, this.billingAddress, this.data);
     console.log(order_data);
     $http.post('/customer/order/save', order_data).then(function (promise) {

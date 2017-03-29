@@ -133,7 +133,7 @@
                 Subtotal
               </td>
               <td class="last a-right">
-                <span class="price">{{order.subtotal}}</span></td>
+                <span class="price" ng-bind-html="order.subtotal | cart_price_filter: order.currency_code "> </span>
             </tr>
             <tr class="shipping">
               <td colspan="5" class="a-right">
@@ -147,7 +147,9 @@
                 <strong>Grand Total</strong>
               </td>
               <td class="last a-right">
-                <strong><span class="price">{{order.grand_total}}</span></strong>
+                <strong>
+                  <span class="price" ng-bind-html="order.grand_total | cart_price_filter: order.currency_code "> </span>
+                </strong>
               </td>
             </tr>
             </tfoot>
@@ -172,7 +174,7 @@
                     <span class="price-excl-tax">
                                                     <span class="cart-price">
 
-                                            <span class="price"> {{product.price}}</span>
+                                                      <span class="price" ng-bind-html="product.price | cart_price_filter: order.currency_code "> </span>
                 </span>
 
 
@@ -188,7 +190,7 @@
                     <span class="price-excl-tax">
                                                     <span class="cart-price">
 
-                                            <span class="price">{{product.row_total}}</span>
+                                            <span class="price" ng-bind-html="product.row_total | cart_price_filter: order.currency_code "> </span>
                 </span>
 
 
