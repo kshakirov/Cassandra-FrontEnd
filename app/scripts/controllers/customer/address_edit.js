@@ -6,6 +6,12 @@ magento_module.controller("CustomerAddressEditController", function ($scope,
 
 
   var current_address = false;
+  $scope.log = {
+    address: {
+      success: false,
+      error: false
+    }
+  }
 
   function _get_address_type(address_id) {
     if (address_id == 1)
@@ -13,13 +19,25 @@ magento_module.controller("CustomerAddressEditController", function ($scope,
     return 'default_shipping_address';
   }
 
+  function not_empty_string(string) {
+    return string.length > 0;
+  }
+
+
+  function check_address_name(address, customer) {
+    if (address.hasOwnProperty('lastname') && not_empty_string(address.lastname)) {
+      return address.lastname;
+    }
+    return address.lastname = customer.firstname + " " + customer.lastname
+  }
+
   $scope.init = function () {
     current_address = $routeParams.id | false;
     $http.get("/customer/account").then(function (promise) {
       $scope.customer = promise.data;
-      if(current_address) {
+      if (current_address) {
         $scope.address = $scope.customer[_get_address_type(current_address)];
-        $scope.address.region = $scope.address.region || null;
+        $scope.address.lastname = check_address_name($scope.address, $scope.customer)
       }
       $scope.addressReady = true;
     })
@@ -30,8 +48,9 @@ magento_module.controller("CustomerAddressEditController", function ($scope,
     data[_get_address_type(current_address)] = customer[_get_address_type(current_address)];
     console.log(data);
     $http.put("/customer/account/", data).then(function (promise) {
-      console.log("Updated");
-      $location.path('customer/account/addressBook/')
+      $scope.log.address.success = true;
+    }, function (error) {
+      $scope.log.address.error = true;
     })
   }
 })

@@ -2,53 +2,30 @@
   <fieldset class="">
     <ul class="form-list">
       <li class="wide">
-        <label for="billing-address-select">Select a shipping address from your address book or enter a new
+        <label for="billing-address-select">Select a billing address from your address book or enter a new
           address.</label>
         <div class="input-box">
           <select name="billing_address_id" id="billing-address-select"
                   class="address-select validation-passed" title=""
+                  ng-change="toggleAddresses()"
                   ng-options="option.name for option in shippingAddresses track by option.id"
                   ng-model="shippingAddress">
           </select></div>
       </li>
-      <li id="billing-new-address-form" style="display: none;">
+      <li ng-if="newAddress" id="billing-new-address-form" >
         <fieldset>
-          <input type="hidden" name="billing[address_id]" value="2614" id="billing:address_id">
           <ul>
-            <li class="fields">
-              <div class="customer-name">
-                <div class="field name-firstname">
-                  <label for="billing:firstname" class="required"><em>*</em>First Name</label>
-                  <div class="input-box">
-                    <input type="text" id="billing:firstname" name="billing[firstname]"
-                           value="Kirill" title="First Name" maxlength="255"
-                           class="input-text required-entry validation-passed">
-                  </div>
-                </div>
-                <div class="field name-lastname">
-                  <label for="billing:lastname" class="required"><em>*</em>Last Name</label>
-                  <div class="input-box">
-                    <input type="text" id="billing:lastname" name="billing[lastname]"
-                           value="Shakirov" title="Last Name" maxlength="255"
-                           class="input-text required-entry validation-passed">
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="fields">
-              <div class="field">
-                <label for="billing:company">Company</label>
-                <div class="input-box">
-                  <input type="text" id="billing:company" name="billing[company]" value="Zoral"
-                         title="Company" class="input-text validation-passed">
-                </div>
+            <li class="wide">
+              <label  class="required"><em>*</em>Name</label>
+              <div class="input-box">
+                <input ng-model="address.lastname" type="text"
+                       class="input-text  required-entry">
               </div>
             </li>
             <li class="wide">
-              <label for="billing:street1" class="required"><em>*</em>Address</label>
+              <label  class="required"><em>*</em>Street</label>
               <div class="input-box">
-                <input type="text" title="Street Address" name="billing[street][]" id="billing:street1"
-                       value="not adress" class="input-text  required-entry validation-passed">
+                <input type="text" ng-model="shippingAddress.value.street"     class="input-text  required-entry validation-passed">
               </div>
             </li>
             <li class="wide">
@@ -61,26 +38,16 @@
               <div class="field">
                 <label for="billing:city" class="required"><em>*</em>City</label>
                 <div class="input-box">
-                  <input type="text" title="City" name="billing[city]" value="Alabama"
+                  <input type="text"  ng-model="shippingAddress.value.city"
                          class="input-text  required-entry validation-passed" id="billing:city">
                 </div>
               </div>
               <div class="field">
                 <label for="billing:region_id" class="required"><em>*</em>State/Province</label>
                 <div class="input-box">
-                  <select id="billing:region_id" name="billing[region_id]" title="State/Province"
-                          class="validate-select required-entry validation-passed" defaultvalue="1">
-                    <option value="">Please select region, state or province</option>
+                  <ang-select-usstates ng-model="shippingAddress.value.region_id" name="region_id" id="billing:region_id"></ang-select-usstates>
 
-                  </select>
-                  <script type="text/javascript">
-                    //<![CDATA[
-                    $('billing:region_id').setAttribute('defaultValue', "1");
-                    //]]>
-                  </script>
-                  <input type="text" id="billing:region" name="billing[region]" value="Alabama"
-                         title="State/Province" class="input-text required-entry validation-passed"
-                         style="display:none;">
+
                 </div>
               </div>
             </li>
@@ -88,33 +55,29 @@
               <div class="field">
                 <label for="billing:postcode" class="required"><em>*</em>Zip/Postal Code</label>
                 <div class="input-box">
-                  <input type="text" title="Zip/Postal Code" name="billing[postcode]"
-                         id="billing:postcode" value="123456"
+                  <input type="text"
+                         id="billing:postcode"  ng-model="shippingAddress.value.postcode"
                          class="input-text validate-zip-international  required-entry validation-passed">
                 </div>
               </div>
               <div class="field">
                 <label for="billing:country_id" class="required"><em>*</em>Country</label>
                 <div class="input-box">
-                  <select name="billing[country_id]" id="billing:country_id"
-                          class="validate-select validation-passed" title="Country">
-                    <option value=""></option>
-
-                  </select></div>
-              </div>
+                  <country-select data-ng-model="shippingAddress.value.country_id" id="billing:country_id"></country-select>
+                </div>
             </li>
             <li class="fields">
               <div class="field">
                 <label for="billing:telephone" class="required"><em>*</em>Telephone</label>
                 <div class="input-box">
-                  <input type="text" name="billing[telephone]" value="3434343434" title="Telephone"
+                  <input type="text" ng-model="shippingAddress.value.telephone"
                          class="input-text  required-entry validation-passed" id="billing:telephone">
                 </div>
               </div>
               <div class="field">
                 <label for="billing:fax">Fax</label>
                 <div class="input-box">
-                  <input type="text" name="billing[fax]" value="" title="Fax"
+                  <input type="text" ng-model="shippingAddress.value.telephone"
                          class="input-text validation-passed" id="billing:fax">
                 </div>
               </div>
@@ -129,21 +92,21 @@
           </ul>
         </fieldset>
       </li>
-      <li class="control">
-        <input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_yes" value="1"
-               checked="checked" title="Ship to this address"
-                class="radio validation-passed"><label
-        for="billing:use_for_shipping_yes">Ship to this address</label></li>
-      <li class="control">
-        <input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_no" value="0"
-               title="Ship to different address"
-               class="radio validation-passed"><label for="billing:use_for_shipping_no">Ship to different
-        address</label>
-      </li>
+      <!--<li class="control">-->
+      <!--<input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_yes" value="1"-->
+      <!--checked="checked" title="Ship to this address"-->
+      <!--class="radio validation-passed"><label-->
+      <!--for="billing:use_for_shipping_yes">Ship to this address</label></li>-->
+      <!--<li class="control">-->
+      <!--<input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_no" value="0"-->
+      <!--title="Ship to different address"-->
+      <!--class="radio validation-passed"><label for="billing:use_for_shipping_no">Ship to different-->
+      <!--address</label>-->
+      <!--</li>-->
     </ul>
     <div class="buttons-set" id="billing-buttons-container">
       <p class="required">* Required Fields</p>
-      <button type="button" title="Continue" class="button validation-passed" onclick="billing.save()">
+      <button type="button" title="Continue" class="button validation-passed" >
         <span><span>Continue</span></span></button>
     </div>
   </fieldset>
