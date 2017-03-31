@@ -96,8 +96,7 @@
 
                     <div ng-if="neww.price!='login'" class="price-box">
                         <span class="regular-price">
-                            <span class="price">
-                               {{neww.price | currency}}
+                             <span class="price" ng-bind-html='neww.price | product_price_filter '>
                             </span>
                         </span>
 

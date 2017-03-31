@@ -94,8 +94,7 @@
 
                     <div ng-if="featured.price!='login'" class="price-box">
                         <span class="regular-price">
-                            <span class="price">
-                               {{featured.price | currency}}
+                            <span class="price" ng-bind-html='featured.price | product_price_filter '>
                             </span>
                         </span>
 
