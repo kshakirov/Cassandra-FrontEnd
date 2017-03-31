@@ -55,15 +55,15 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
 
   $scope.placeOrder = function () {
     var order_data = create_order_date(this.shippingAddress, this.billingAddress, this.data);
-    console.log(order_data);
+    usSpinnerService.spin('spinner-order');
     $http.post('/customer/order/save', order_data).then(function (promise) {
-      console.log(promise);
       $scope.orderSent = true;
       $scope.order = promise.data;
       $scope.orderCreationError = _is_maiiled(promise.data);
+      usSpinnerService.stop('spinner-order');
     }, function (error) {
-      console.log(error);
       $scope.orderCreationError = true;
+      usSpinnerService.stop('spinner-order');
     })
   }
 
@@ -77,7 +77,6 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
   }
 
   $scope.init = function () {
-    console.log("Hi customer");
     $http.get('/customer/order/new').then(function (promise) {
       $scope.panes = _init();
       $scope.data = promise.data;
@@ -85,7 +84,6 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
       $scope.shippingAddresses = create_address_options(promise.data.data.shipping_address);
       $scope.billingAddress = $scope.billingAddresses[0];
       $scope.shippingAddress = $scope.shippingAddresses[0];
-      console.log($scope.data)
     })
 
   }
