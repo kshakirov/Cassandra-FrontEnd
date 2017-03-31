@@ -1,0 +1,20 @@
+<br/><br/> <br/>
+
+<div  class="box-collateral">
+  <h2 ng-if="hasNotes()">Sale Notes</h2>
+  <table ng-table="salesnotesTableParams" template-pagination="custom/pager" class="table data-table" >
+    <tr >
+      <td title="'DATE'" >
+        {{$data[0].create_date}}</td>
+      <td title="'NOTE'" >
+        {{$data[0].comment}}</td>
+    </tr>
+    <tr ng-if="$data.length > 1">
+      <td></td>
+      <td><a  ng-click="seeMoreNotes()" href="">See more ...</a></td>
+    </tr>
+    <tr ng-if="$data.length == 0">
+      <td colspan="7" style="text-align: center"><b>No Results</b></td>
+    </tr>
+  </table>
+</div>

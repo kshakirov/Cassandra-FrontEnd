@@ -320,7 +320,7 @@ magento_module.controller("ProductController", function ($scope,
         var sales_notes = []
         if (typeof prom.data == 'object')
           sales_notes = prom.data;
-
+        $scope.has_notes = sales_notes.length > 0;
         $scope.salesnotesTableParams = new NgTableParams({}, {dataset: sales_notes});
       });
 
@@ -407,6 +407,12 @@ magento_module.controller("ProductController", function ($scope,
 
     });
 
+    $scope.hasNotes = function () {
+      return $scope.has_notes;
+    };
 
+    $scope.seeMoreNotes = function () {
+      $scope.tab = 7;
+    };
   }
 )

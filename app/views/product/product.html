@@ -32,6 +32,8 @@
             </div>
             <h2 ng-if="is_turbo()">Major Components</h2>
             <div ng-if="is_turbo()" ng-include="'views/product/tabs/major_components.html'"></div>
+            <div  ng-if="hasNotes()" ng-include="'views/product/tabs/sales_notes_front.html?id=2'">
+            </div>
           </div>
         </div>
         <div class="product-img-box">
