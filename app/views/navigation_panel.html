@@ -5,7 +5,7 @@
     sales@turbointernational.com        </a>
 
   <ul ng-if="isAuthorized" class="links" ng-controller="ComparedProductsController">
-    <li class="first"><a href="" ng-click="initModal()" >Compared Products</a></li>
+    <li class="first"><a href="" ng-click="initModal()"  ng-init="initCount()">Compared Products (<span>{{compared_product_count}}</span>)</a></li>
     <li ><a href="/#/customer/account/" title="My Account">My Account</a></li>
     <li >
       <a href="/#/customer/account/wishlist/" title="My Wishlist (-)">My Wishlist ({{}})</a>

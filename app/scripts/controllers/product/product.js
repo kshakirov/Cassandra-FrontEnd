@@ -223,16 +223,25 @@ magento_module.controller("ProductController", function ($scope,
     };
 
 
+    function initCount() {
+      return $http.get("/customer/compared_product/count/").then(function (promise) {
+        return promise.data.count;
+      })
+    }
+
+
     $scope.addProductToComparedProducts = function (id) {
       var sku = $routeParams.sku;
       $http.put("/customer/compared_product/" + sku).then(function (promise) {
-        console.log(promise);
-
+        $scope.compared_message = $scope.product.part_number + " was added to your shopping cart."
+      }).then(function (promise) {
+        initCount().then(function (count) {
+          $rootScope.compared_product_count = count;
+        })
       })
     }
 
     $scope.init = function () {
-      // var uri = _get_product_uri($routeParams);
       var sku = $routeParams.sku;
       $rootScope.image_sku = sku;
       $rootScope.price_sku = sku;
@@ -389,11 +398,11 @@ magento_module.controller("ProductController", function ($scope,
       })
     }
 
-  $scope.$on('currencyChanged', function (event, args) {
+    $scope.$on('currencyChanged', function (event, args) {
       console.log("Currency Changed" + SKU);
       _get_price($rootScope.price_sku).then(function (promise) {
         $scope.authorised = promise[0];
-        $scope.price = promise[1] ;
+        $scope.price = promise[1];
       });
 
     });
