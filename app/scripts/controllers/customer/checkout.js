@@ -60,6 +60,7 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
       $scope.orderSent = true;
       $scope.order = promise.data;
       $scope.orderCreationError = _is_maiiled(promise.data);
+      $rootScope.product_count = 0;
       usSpinnerService.stop('spinner-order');
     }, function (error) {
       $scope.orderCreationError = true;
