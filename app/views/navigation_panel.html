@@ -7,9 +7,9 @@
   <ul ng-if="isAuthorized" class="links" ng-controller="ComparedProductsController">
     <li class="first"><a href="" ng-click="initModal()"  ng-init="initCount()">Compared Products (<span>{{compared_product_count}}</span>)</a></li>
     <li ><a href="/#/customer/account/" title="My Account">My Account</a></li>
-    <li >
-      <a href="/#/customer/account/wishlist/" title="My Wishlist (-)">My Wishlist ({{}})</a>
-    </li>
+    <!--<li >-->
+      <!--<a href="/#/customer/account/wishlist/" title="My Wishlist (-)">My Wishlist ({{}})</a>-->
+    <!--</li>-->
     <li ng-controller="CustomerCart" ng-init="getProductsCount()">
         <a href="/#/customer/cart/" title="My Cart ()" class="top-link-cart">My Cart (<span>{{product_count}}</span>)</a>
     </li>

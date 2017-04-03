@@ -185,9 +185,8 @@ var compareTo = function() {
 
       ngModel.$validators.compareTo = function(modelValue) {
         console.log(modelValue);
-        console.log("RRRRR");
         console.log(scope.otherModelValue);
-        //return modelValue == scope.otherModelValue;
+       return modelValue == scope.otherModelValue;
         return true;
       };
 

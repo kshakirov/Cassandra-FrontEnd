@@ -2,6 +2,11 @@ magento_module.controller("CustomerAccountInformationController", function ($sco
                                                                             $rootScope, $http) {
   $scope.passwordVisible = false;
 
+  $scope.msg = {
+    success: false,
+    error: false
+  };
+
   $scope.init = function () {
     $http.get("/customer/account").then(function (promise) {
       $scope.customer = promise.data;
@@ -25,9 +30,10 @@ magento_module.controller("CustomerAccountInformationController", function ($sco
   }
 
   function _update(url, data) {
-    $http.put(url, data).then(function (promise) {
+    return $http.put(url, data).then(function (promise) {
+      return true;
     }, function (error) {
-      console.log(error)
+      return $q.reject
     })
   }
 
@@ -41,9 +47,17 @@ magento_module.controller("CustomerAccountInformationController", function ($sco
     var data = _prepare_customer_gereral_data(customer);
     if (_is_password_changed(customer)) {
       _add_password_data(customer, data);
-      _update('/customer/account/password/', data);
+      _update('/customer/account/password/', data).then(function (promise) {
+        $scope.msg.success = true;
+      }, function (error) {
+        $scope.msg.error = true;
+      })
     } else {
-      _update('/customer/account/', data);
+      _update('/customer/account/', data).then(function () {
+        $scope.msg.success = true;
+      }, function (error) {
+        $scope.msg.success = true;
+      })
     }
     return data;
   }
