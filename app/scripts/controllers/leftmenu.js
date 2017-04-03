@@ -200,7 +200,6 @@ magento_module.controller("LeftMenu", function ($scope,
             name: filter.options.code + ': '  + filter.min + " - " + filter.max,
             type: 'price'
         };
-        console.log(current_filter);
         LeftMenuService.add_selected_deciaml_filter_to_current_filters(current_filter, $scope.current_filters);
         LeftMenuService.reaggregate_current_filters($scope.current_filters, $scope.original_filters, $scope.input_filters);
         $rootScope.$broadcast('filterChanged', [current_filter, $scope.current_filters]);

@@ -240,6 +240,11 @@ magento_module.service('ElasticQuery', function ($cookies,
         //m.match[filter.code] = filter.option_id;
         empty = true;
       }
+      else if (filter.code == 'manufacturer' && filter.option_id >= 0) {
+        m.match[filter.code + "." + "code"] = filter.option_id;
+        empty = false;
+      }
+
       else if (filter.code != 'part_type' && filter.option_id.length > 0) {
         m.match[filter.code + "." + "code"] = filter.option_id;
         empty = false;

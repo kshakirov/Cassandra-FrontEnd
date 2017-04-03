@@ -87,7 +87,7 @@ magento_module.service("FiltersAggregationService", function ($cookies) {
         };
         empty = false;
       }
-      else if (value.code == "manufacturer" && value.option_id.length > 0) {
+      else if (value.code == "manufacturer" && value.option_id > 0) {
         t.term["manufacturer.code"] = value.option_id;
         empty = false;
       }
