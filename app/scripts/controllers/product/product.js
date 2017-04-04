@@ -394,7 +394,7 @@ magento_module.controller("ProductController", function ($scope,
       var sku = $routeParams.sku;
       $http.get("/customer/product/" + sku + "/also_bought/").then(function (promise) {
         console.log(promise.data);
-        $scope.also_bought = promise.data;
+        $scope.also_bought =   new NgTableParams({}, {dataset: promise.data})
       })
     }
 
