@@ -390,11 +390,26 @@ magento_module.controller("ProductController", function ($scope,
       }
     }
 
+    function create_interchanges_filter(interchanges) {
+      if (interchanges) {
+        return interchanges.map(function (current) {
+          keys = Object.keys(current)
+          return current[keys[0]];
+        })
+      }
+    }
+
+    function _process_also_boughts(items) {
+      return items.map(function (item) {
+        item.interchanges_flat = create_interchanges_filter(item.interchanges)
+        return item
+      })
+    }
+
     $scope.initAlsoBought = function () {
       var sku = $routeParams.sku;
       $http.get("/customer/product/" + sku + "/also_bought/").then(function (promise) {
-        console.log(promise.data);
-        $scope.also_bought =   new NgTableParams({}, {dataset: promise.data})
+        $scope.also_bought =   new NgTableParams({}, {dataset: _process_also_boughts(promise.data)})
       })
     }
 

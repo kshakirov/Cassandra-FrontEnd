@@ -11,7 +11,7 @@
         {{item.part_type}}</td>
     <td title="'Description'" filter="{ description: 'text'}" sortable="'description'" >
       {{item.description}}</td>
-      <td  title="'Interchanges'" filter="{ price: 'number'}" sortable="'price'">
+      <td  title="'Interchanges'" filter="{ interchanges_flat: 'text'}" sortable="'interchanges_flat'">
           <span ng-repeat="interchange  in item.interchanges">
             <a ng-repeat="(key,value) in interchange" ng-href="/#/part/sku/{{key}}">{{value}}</a>
           </span>
