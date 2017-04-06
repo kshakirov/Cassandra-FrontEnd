@@ -63,10 +63,13 @@
     </div>
   <div ng-if="orderSent" class="main">
     <div class="col-main">
-      <div ng-if="orderCreationError">
+      <div>
         <ul class="messages">
-          <li class="error-msg">
-            <ul><li><span>Order is not sent, check your email</span></li></ul>
+          <li ng-if="orderCreationError" class="error-msg">
+            <ul><li><span>The order is not  yet sent to your email address, we will send it later.</span></li></ul>
+          </li>
+          <li ng-if="orderCreationSucces" class="success-msg">
+            <ul><li><span>The order is  sent to your email address</span></li></ul>
           </li>
         </ul>
       </div>
