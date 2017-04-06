@@ -68,27 +68,27 @@
           <li ng-if="orderCreationError" class="error-msg">
             <ul><li><span>The order is not  yet sent to your email address, we will send it later.</span></li></ul>
           </li>
-          <li ng-if="orderCreationSucces" class="success-msg">
+          <li ng-if="orderCreationSuccess" class="success-msg">
             <ul><li><span>The order is  sent to your email address</span></li></ul>
           </li>
         </ul>
       </div>
       <div class="page-title">
-        <h1>Your order has been received.</h1>
+
       </div>
       <h2 class="sub-title">Thank you for your purchase!</h2>
 
       <p>Your order # is: <a ng-href="/#/customer/order/{{order.order_id}}/view">{{order.order_id}}</a>.</p>
       <p>You will receive an order confirmation email with details of your order and a link to track its progress.</p>
       <p>
-        Click <a ng-href="/#/customer/order/{{order.order_id}}/print/" >here to print</a> a copy of your order confirmation. </p>
+        Click <a href=""  ng-click="printOrder(order.order_id)" >here to print</a> a copy of your order confirmation. </p>
 
 
-      <div class="buttons-set">
-        <button type="button" class="button" title="Continue Shopping"
-                onclick="window.location='http://www.turbointernational.com/'">
-          <span><span>Continue Shopping</span></span></button>
-      </div>
+      <!--<div class="buttons-set">-->
+        <!--<button type="button" class="button" title="Continue Shopping"-->
+                <!--onclick="window.location='http://www.turbointernational.com/'">-->
+          <!--<span><span>Continue Shopping</span></span></button>-->
+      <!--</div>-->
     </div>
   </div>
   </div>

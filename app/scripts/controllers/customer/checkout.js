@@ -13,7 +13,7 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
   function create_address_options(address) {
     //var address = address.data.billing_address;
     return [
-      {id: 1, name: Object.values(address).join(","), value: address},
+      {id: 1, name: Object.keys(address).map(function(key) {return address[key];}).join(","), value: address},
       {id: 2, name: "New Address", value: address}
     ]
   }
@@ -59,7 +59,8 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
     $http.post('/customer/order/save', order_data).then(function (promise) {
       $scope.orderSent = true;
       $scope.order = promise.data;
-      $scope.orderCreationError = _is_maiiled(promise.data);
+      $scope.orderCreationError = !$scope.order.mailed;
+      $scope.orderCreationSuccess  = $scope.order.mailed;
       $rootScope.product_count = 0;
       usSpinnerService.stop('spinner-order');
     }, function (error) {
@@ -75,6 +76,12 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
 
   function _is_maiiled(response) {
     return !response.mailed;
+  }
+
+  $scope.printOrder = function (order_id) {
+    console.log("PRINT")
+    var w = window.open('/frontend/order/' + order_id + '/print');
+    w.print();
   }
 
   $scope.init = function () {

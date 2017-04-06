@@ -13,8 +13,7 @@
   </ul>
   <ul class="links ng-scope">
     <li class="first"><a href="/#/customer/account/" title="My Account">My Account</a></li>
-    <li><a href="/#/customer/account/wishlist/" title="My Wishlist (-)">My Wishlist (7 items)</a></li>
-    <li><a href="/#/customer/cart/" title="My Cart (-)" class="top-link-cart">My Cart (5 items)</a></li>
+    <li ng-controller="CustomerCart"><a href="/#/customer/cart/" title="My Cart (-)" class="top-link-cart">My Cart (<span>{{product_count}}</span>)</a></li>
     <li><a href="/#/customer/checkout/" title="Checkout" class="top-link-checkout">Checkout</a></li>
     <li class=" last"><a href="/customer/account/logout/" title="Log Out">Log Out</a></li>
   </ul>        <div class="grid-row">
