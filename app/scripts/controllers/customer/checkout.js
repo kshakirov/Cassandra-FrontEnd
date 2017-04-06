@@ -69,8 +69,12 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
     })
   }
 
-  $scope.toggleAddresses = function (address) {
-    $scope.newAddress = !$scope.newAddress;
+  $scope.toggleAddresses = function (address_code) {
+    if(address_code) {
+      $scope.newBillingAddress = !$scope.newBillingAddress;
+    }else{
+      $scope.newSippingAddress = !$scope.newSippingAddress;
+    }
   };
 
 
