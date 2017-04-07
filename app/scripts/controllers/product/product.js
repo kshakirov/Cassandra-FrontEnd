@@ -185,7 +185,7 @@ magento_module.controller("ProductController", function ($scope,
 
       $http.post('/customer/cart/product', product).then(function (response) {
         console.log("sent to cart");
-        $scope.cart_message = $scope.product.name + " was added to your shopping cart."
+        $scope.cart_message = $scope.product.part_number + " was added to your shopping cart."
         return true;
       }).then(function () {
         get_products_count().then(function (promise) {

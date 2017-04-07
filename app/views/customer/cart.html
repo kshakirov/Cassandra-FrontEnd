@@ -44,7 +44,7 @@
                 <th rowspan="1"><span class="nobr">TI Part #</span></th>
                 <th rowspan="1"><span class="nobr">OEM Part #</span></th>
                 <!-- <th rowspan="1"></th>-->
-                <th rowspan="1" class="a-center"><span class="nobr">Move to Wishlist</span></th>
+                <!--<th rowspan="1" class="a-center"><span class="nobr">Move to Wishlist</span></th>-->
                 <th class="a-center" colspan="1"><span class="nobr">Unit Price</span></th>
                 <th rowspan="1" class="a-center">Qty</th>
                 <th class="a-center" colspan="1">Subtotal</th>
@@ -88,10 +88,10 @@
                   <a ng-href="/#/part/sku/{{item.oem_part_sku}}">  {{item.oem_part}}</a>
                 </td>
                 <!-- Add to wishlist -->
-                <td class="a-center">
-                  <a href="http://localhost/wishlist/index/fromcart/item/1976/"
-                     class="link-wishlist use-ajax">Move</a>
-                </td>
+                <!--<td class="a-center">-->
+                  <!--<a href="http://localhost/wishlist/index/fromcart/item/1976/"-->
+                     <!--class="link-wishlist use-ajax">Move</a>-->
+                <!--</td>-->
                 <!-- Excluding tax price -->
                 <td class="a-right">
                             <span class="cart-price">
@@ -100,8 +100,7 @@
                 </td>
                 <!-- Quantity -->
                 <td class="a-center">
-                  <input ng-model="item.qty" name="cart[1976][qty]" size="4" title="Qty" class="input-text qty"
-                         maxlength="12">
+                  <input  ng-model="item.qty"    numbers-only="" title="Qty"  class="input-text qty"     ng-change="recalculateCart(item, item.qty)">
                 </td>
                 <!-- Subtotal -->
                 <td class="a-right">

@@ -12,13 +12,18 @@ magento_module.directive('numbersOnly', function () {
           if (transformedInput !== text) {
             ngModelCtrl.$setViewValue(transformedInput);
             ngModelCtrl.$render();
-          }else{
+          } else {
             transformedInput = parseFloat(transformedInput);
+            if (transformedInput == 0) {
+              transformedInput = 1
+            }
           }
           return transformedInput;
+        }else {
+          return 1
         }
-        return undefined;
       }
+
       ngModelCtrl.$parsers.push(fromUser);
     }
   };

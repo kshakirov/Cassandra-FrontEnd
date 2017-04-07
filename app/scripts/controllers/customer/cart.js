@@ -28,6 +28,37 @@ magento_module.controller("CustomerCart", function ($scope,
     })
   }
 
+  function _update_cart(cart_data) {
+    var data = {cart: cart_data}
+    return $http.post('/customer/cart/', data).then(function (promise) {
+      return promise;
+    })
+  }
+
+  function _recalculate_rows(cart_items) {
+    var items = {};
+    var ks_vs = Object.keys(cart_items).map(function (key) {
+      var current = cart_items[key];
+      current.subtotal = parseInt(current.qty) * parseFloat(current.unit_price)
+      current.subtotal = current.subtotal.toString();
+      return [key, current]
+    });
+    angular.forEach(ks_vs, function (value, key) {
+      items[value[0]] = value[1];
+    })
+    return items;
+  }
+
+  function _recalcultae_grand_total(items) {
+    var subtotals = Object.keys(items).map(function (key) {
+      var item = items[key]
+      return parseFloat(item.subtotal);
+    })
+    return subtotals.reduce(function (grand_total, subtotal) {
+      return grand_total + subtotal;
+    })
+  }
+
   function is_cart_empty(cart) {
     if (cart && cart.hasOwnProperty('items'))
       return Object.keys(cart.items) == 0;
@@ -58,7 +89,7 @@ magento_module.controller("CustomerCart", function ($scope,
   $scope.checkout = function () {
     var currency = _get_current_currency();
     set_cart_currency(currency.code).then(function (promise) {
-       $location.path("/customer/checkout")
+      $location.path("/customer/checkout")
     })
 
   }
@@ -68,7 +99,12 @@ magento_module.controller("CustomerCart", function ($scope,
   }
 
   $scope.updateCart = function () {
-    $scope.init();
+    _update_cart(this.cart_data).then(function (promise) {
+      get_products_count().then(function (promise) {
+        $rootScope.product_count = promise;
+      })
+    });
+
   }
 
   $scope.reEmptyCart = function () {
@@ -91,13 +127,19 @@ magento_module.controller("CustomerCart", function ($scope,
     })
   }
 
-  $scope.$on('currencyChanged', function (event, args) {
-    console.log("Currency Changed" );
-      $scope.init().then(function () {
-        $scope.cart_data.currency = _get_current_currency();
-      });
+  $scope.recalculateCart = function (item, qty) {
+    item.qty = qty;
+    this.cart_data.items = _recalculate_rows(this.cart_data.items)
+    this.cart_data.subtotal = _recalcultae_grand_total(this.cart_data.items);
+  }
 
+  $scope.$on('currencyChanged', function (event, args) {
+    console.log("Currency Changed");
+    $scope.init().then(function () {
+      $scope.cart_data.currency = _get_current_currency();
     });
+
+  });
 
 
 })
