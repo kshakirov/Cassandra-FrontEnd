@@ -29,9 +29,10 @@
               </div>
             </li>
             <li class="wide">
+              <label  class="required">Company</label>
               <div class="input-box">
-                <input type="text" title="Street Address 2" name="billing[street][]"
-                       id="billing:street2" value="" class="input-text validation-passed">
+                <input type="text"
+                       ng-model="shippingAddresses[1].value.company" class="input-text validation-passed">
               </div>
             </li>
             <li class="fields">
@@ -43,11 +44,10 @@
                 </div>
               </div>
               <div class="field">
-                <label for="billing:region_id" class="required"><em>*</em>State/Province</label>
+                <label  class="required"><em>*</em>State/Province</label>
                 <div class="input-box">
-                  <ang-select-usstates ng-model="shippingAddresses[1].value.region_id" name="region_id" id="billing:region_id"></ang-select-usstates>
-
-
+                  <ang-select-usstates ng-if="shippingAddresses[1].value.country_id=='US'" ng-model="shippingAddresses[1].value.region_id" name="region_id"></ang-select-usstates>
+                  <input ng-if="shippingAddresses[1].value.country_id!='US'" ng-model="shippingAddresses[1].value.region_id"/>
                 </div>
               </div>
             </li>
