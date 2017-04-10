@@ -7,25 +7,25 @@
                 <div class="input-box">
                     <select name="billing_address_id" id="billing-address-select"
                             class="address-select validation-passed" title=""
-                            ng-change="toggleAddresses(true)"
+                            ng-change="toggleBillingAddress()"
                             ng-options="option.name for option in billingAddresses track by option.id"
                             ng-model="billingAddress">
                     </select></div>
             </li>
-            <li ng-if="newBillingAddress" id="billing-new-address-form" >
+            <li ng-if="newBillingAddressFlag" id="billing-new-address-form" >
                 <fieldset>
                     <ul>
                       <li class="wide">
                         <label  class="required"><em>*</em>Name</label>
                         <div class="input-box">
-                          <input ng-model="address.lastname" type="text"
+                          <input ng-model="billingAddresses[1].value.lastname" type="text"
                                  class="input-text  required-entry">
                         </div>
                       </li>
                         <li class="wide">
                             <label  class="required"><em>*</em>Street</label>
                             <div class="input-box">
-                                <input type="text" ng-model="billingAddress.value.street"     class="input-text  required-entry validation-passed">
+                                <input type="text" ng-model="billingAddresses[1].value.street"     class="input-text  required-entry validation-passed">
                             </div>
                         </li>
                         <li class="wide">
@@ -38,14 +38,14 @@
                             <div class="field">
                                 <label for="billing:city" class="required"><em>*</em>City</label>
                                 <div class="input-box">
-                                    <input type="text"  ng-model="billingAddress.value.city"
+                                    <input type="text"  ng-model="billingAddresses[1].value.city"
                                            class="input-text  required-entry validation-passed" id="billing:city">
                                 </div>
                             </div>
                             <div class="field">
                                 <label for="billing:region_id" class="required"><em>*</em>State/Province</label>
                                 <div class="input-box">
-                                  <ang-select-usstates ng-model="billingAddress.value.region_id" name="region_id" id="billing:region_id"></ang-select-usstates>
+                                  <ang-select-usstates ng-model="billingAddresses[1].value.region_id" name="region_id" id="billing:region_id"></ang-select-usstates>
 
 
                                 </div>
@@ -56,39 +56,39 @@
                                 <label for="billing:postcode" class="required"><em>*</em>Zip/Postal Code</label>
                                 <div class="input-box">
                                     <input type="text"
-                                           id="billing:postcode"  ng-model="billingAddress.value.postcode"
+                                           id="billing:postcode"  ng-model="billingAddresses[1].value.postcode"
                                            class="input-text validate-zip-international  required-entry validation-passed">
                                 </div>
                             </div>
                             <div class="field">
                                 <label for="billing:country_id" class="required"><em>*</em>Country</label>
                                 <div class="input-box">
-                                  <country-select data-ng-model="billingAddress.value.country_id" id="billing:country_id"></country-select>
+                                  <country-select data-ng-model="billingAddresses[1].value.country_id" id="billing:country_id"></country-select>
                             </div>
                         </li>
                         <li class="fields">
                             <div class="field">
                                 <label for="billing:telephone" class="required"><em>*</em>Telephone</label>
                                 <div class="input-box">
-                                    <input type="text" ng-model="billingAddress.value.telephone"
+                                    <input type="text" ng-model="billingAddresses[1].value.telephone"
                                            class="input-text  required-entry validation-passed" id="billing:telephone">
                                 </div>
                             </div>
                             <div class="field">
                                 <label for="billing:fax">Fax</label>
                                 <div class="input-box">
-                                    <input type="text" ng-model="billingAddress.value.telephone"
+                                    <input type="text" ng-model="billingAddresses[1].value.fax"
                                            class="input-text validation-passed" id="billing:fax">
                                 </div>
                             </div>
                         </li>
-                        <li class="control">
-                            <input type="checkbox" name="billing[save_in_address_book]" value="1"
-                                   title="Save in address book" id="billing:save_in_address_book"
+                        <!--<li class="control">-->
+                            <!--<input type="checkbox" name="billing[save_in_address_book]" value="1"-->
+                                   <!--title="Save in address book" id="billing:save_in_address_book"-->
 
-                                   class="checkbox validation-passed"><label for="billing:save_in_address_book">Save in
-                            address book</label>
-                        </li>
+                                   <!--class="checkbox validation-passed"><label for="billing:save_in_address_book">Save in-->
+                            <!--address book</label>-->
+                        <!--</li>-->
                     </ul>
                 </fieldset>
             </li>

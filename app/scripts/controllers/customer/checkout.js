@@ -11,12 +11,18 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
   }
 
   function create_address_options(address) {
-    //var address = address.data.billing_address;
+    var new_address = {};
+    angular.copy(address, new_address);
     return [
-      {id: 1, name: Object.keys(address).map(function(key) {return address[key];}).join(","), value: address},
-      {id: 2, name: "New Address", value: address}
+      {
+        id: 1, name: Object.keys(address).map(function (key) {
+        return address[key];
+      }).join(","), value: address
+      },
+      {id: 2, name: "New Address", value: new_address}
     ]
   }
+
 
   function get_currency_code() {
     var currency = $cookies.getObject('ti_currency');
@@ -34,6 +40,7 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
     })
   }
 
+
   function create_order_date(shipping_address, billing_address, order) {
     return {
       customer_id: null,
@@ -49,9 +56,15 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
     }
   }
 
+  function _set_actual_address(addresses, index) {
+    return addresses[index];
+  }
+
   $scope.order = {};
 
-  $scope.newAddress = false;
+  $scope.newBillingAddressFlag = false;
+  $scope.newShippingAddressFlag = false;
+
 
   $scope.placeOrder = function () {
     var order_data = create_order_date(this.shippingAddress, this.billingAddress, this.data);
@@ -60,7 +73,7 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
       $scope.orderSent = true;
       $scope.order = promise.data;
       $scope.orderCreationError = !$scope.order.mailed;
-      $scope.orderCreationSuccess  = $scope.order.mailed;
+      $scope.orderCreationSuccess = $scope.order.mailed;
       $rootScope.product_count = 0;
       usSpinnerService.stop('spinner-order');
     }, function (error) {
@@ -69,21 +82,31 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
     })
   }
 
-  $scope.toggleAddresses = function (address_code) {
-    if(address_code) {
-      $scope.newBillingAddress = !$scope.newBillingAddress;
-    }else{
-      $scope.newSippingAddress = !$scope.newSippingAddress;
+
+
+  $scope.toggleBillingAddress = function () {
+    $scope.newBillingAddressFlag = !$scope.newBillingAddressFlag;
+    $scope.applyAddress = true;
+    if ($scope.newBillingAddressFlag) {
+      $scope.billingAddress = _set_actual_address($scope.billingAddresses, 1);
+    } else {
+      $scope.billingAddress = _set_actual_address($scope.billingAddresses, 0);
     }
+    $scope.applyAddress = false
   };
 
-
-  function _is_maiiled(response) {
-    return !response.mailed;
-  }
+  $scope.toggleShippingAddress = function () {
+    $scope.newShippingAddressFlag = !$scope.newShippingAddressFlag;
+    $scope.applyAddress = true;
+    if ($scope.newShippingAddressFlag) {
+      $scope.shippingAddress = _set_actual_address($scope.shippingAddresses, 1);
+    } else {
+      $scope.shippingAddress = _set_actual_address($scope.shippingAddresses, 0);
+    }
+    $scope.applyAddress = false
+  };
 
   $scope.printOrder = function (order_id) {
-    console.log("PRINT")
     var w = window.open('/frontend/order/' + order_id + '/print');
     w.print();
   }
