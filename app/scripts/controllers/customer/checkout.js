@@ -60,10 +60,25 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
     return addresses[index];
   }
 
-  $scope.order = {};
+  function prepare_task_data(order, customer_data) {
+    return {
+      order_id: order.order_id,
+      email: customer_data.data.email
+    }
+  }
 
+  function add_order_email_task(data) {
+      $http.post('/customer/order/email', data).then(function (promise) {
+        return promise
+      }, function (error) {
+        console.log(error)
+      })
+  }
+
+  $scope.order = {};
   $scope.newBillingAddressFlag = false;
   $scope.newShippingAddressFlag = false;
+
 
 
   $scope.placeOrder = function () {
@@ -72,13 +87,15 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
     $http.post('/customer/order/save', order_data).then(function (promise) {
       $scope.orderSent = true;
       $scope.order = promise.data;
-      $scope.orderCreationError = !$scope.order.mailed;
-      $scope.orderCreationSuccess = $scope.order.mailed;
       $rootScope.product_count = 0;
       usSpinnerService.stop('spinner-order');
+      return $scope.order;
     }, function (error) {
       $scope.orderCreationError = true;
       usSpinnerService.stop('spinner-order');
+    }).then(function (promise) {
+        var data = prepare_task_data(promise, $scope.data);
+        add_order_email_task(data)
     })
   }
 
