@@ -5,11 +5,11 @@ magento_module.service("FilterModel", function ($http) {
         })
     }
 
-    // this.init_by_parts_product_filters = function (part_type) {
-    //     return $http.get('/elastic/critical/index/partsfilters?part_type=' + part_type).then(function (promise) {
-    //         return promise.data;
-    //     })
-    // }
+    this.init_by_parts_product_filters = function (part_type) {
+        return $http.get('/frontend/menu/part_type/filter?part_type=' + part_type).then(function (promise) {
+            return promise.data;
+        })
+    }
 
     this.init_by_manufacturer_product_filters = function (args) {
         return $http.get('/frontend/menu/manufacturer/filter?part_type=' + args[1] + '&manufacturer=' + args[0]).then(function (promise) {
