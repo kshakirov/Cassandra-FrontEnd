@@ -154,15 +154,15 @@ magento_module.service('ElasticQuery', function ($cookies,
     var query = '*' + _remove_non_alpha_numeric(query.toLowerCase()) + '*';
     var bool = { must: {bool: {
       should: [
+        {wildcard: {"ti_part.ti_part_number": query}},
         {wildcard: {"oe_ref_urls.part_number": query}},
+        {wildcard: {"ti_part.ti_part_number_clean": query}},
         {wildcard: {"oe_ref_urls.part_number_clean": query}},
+        {wildcard: {"not_external_part_number": query}},
         {wildcard: {"manufacturer.name": _capitalize_(query)}},
         {wildcard: {"turbo_type.name": query.toUpperCase()}}]
     }}};
     bool.must.bool.must_not = { term: {invisible_in_search: true}};
-    bool.must.bool.should.push(_add_not_external_manfr_filter("ti_part.ti_part_number", query))
-    bool.must.bool.should.push(_add_not_external_manfr_filter("ti_part.ti_part_number_clean", query))
-    bool.must.bool.should.push(_add_external_manfr_filter("not_external_part_number", query))
     persistent_query.body.query.filtered.query.bool = bool;
     return persistent_query;
   }

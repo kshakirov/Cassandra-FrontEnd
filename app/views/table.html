@@ -15,8 +15,9 @@
             <span ng-if="item.code=='chra'" ng-bind-html=" item.value | chra_2_links"> </span>
 
             <span ng-if="item.value[0].hasOwnProperty('code')">{{item.value[0].name | int_array_or_string}}</span>
-            <span ng-if="item.code=='oe_ref_urls'"><span ng-repeat="ref in item.value track by $index"><a
-                    ng-href="#/part/sku/{{ref.sku}}">{{ref.part_number | uppercase}}</a>{{$index | oe_ref_coma: item.value.length}}</span></span>
+            <span ng-if="item.code=='oe_ref_urls'" >
+              <span ng-bind-html='item.value | or_ref_urls_filter'></span>
+            </span>
 
             <span ng-if="item.value.hasOwnProperty('value') || item.value==''" ng-bind-html='item.value | tolerance'>
 
