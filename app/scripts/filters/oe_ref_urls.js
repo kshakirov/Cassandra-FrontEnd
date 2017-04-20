@@ -14,13 +14,16 @@ magento_module.filter('or_ref_urls_filter', function ($cookies, $filter) {
     if (input) {
       if (typeof input == 'object' && input.length > 0) {
         html = create_array_of_urls(input).join(", ");
+      } else if(input.length == 0){
+          html = ''
+
       } else {
         html = '<a  href="#/part/sku/' + input.sku + '">' + input.part_number + '</a>'
       }
     }
     return html
   };
-  or_ref_urls_filter.$stateful = true;
+  //or_ref_urls_filter.$stateful = true;
   return or_ref_urls_filter;
 });
 
