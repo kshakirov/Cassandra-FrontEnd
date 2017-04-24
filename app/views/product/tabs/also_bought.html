@@ -23,7 +23,7 @@
       </td>
     </tr>
 
-    <tr ng-if="$data.length == 0">
+    <tr ng-if="!data || $data.length  == 0 ">
       <td colspan="2" style="text-align: center"><b>No Results</b></td>
     </tr>
   </table>

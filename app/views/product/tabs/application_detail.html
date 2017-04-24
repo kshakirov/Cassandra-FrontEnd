@@ -1,7 +1,7 @@
 <!--<h1>Additional Information</h1>-->
 
 <table ng-table="applicationTableParams" template-pagination="custom/pager" class="table data-table" show-filter="true">
-    <tr ng-repeat="app in $data track by $index">
+    <tr ng-repeat="app in $data">
         <td title="'Make'" filter="{ make: 'text'}" sortable="'make'">
             {{app.make}}</td>
         <td title="'Model'" filter="{ model: 'text'}" sortable="'model'">
