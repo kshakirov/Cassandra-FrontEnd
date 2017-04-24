@@ -336,7 +336,7 @@ magento_module.controller("ProductController", function ($scope,
         console.log("Gasket Turbo Rest");
         return $http.get('/attrsreader/product/' + sku + '/gasket_turbo/?stats=' + _get_stats()).then(function (prom) {
           var turbo_gaskets = [];
-          if (typeof prom.data == 'object') {
+          if (typeof prom.data == 'object' && prom.data.hasOwnProperty('part_number')) {
             turbo_gaskets.push(prom.data);
             process_turbos_interchanges(turbo_gaskets);
           }
