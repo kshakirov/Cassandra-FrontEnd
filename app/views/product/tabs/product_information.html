@@ -20,7 +20,7 @@
     </tr>
     <tr class="even">
       <th class="label">Name</th>
-      <td class="data last">{{product.name}}</td>
+      <td class="data last">{{product.name || product.part_type + " - " + product.part_number}}</td>
     </tr>
     <tr class="last odd">
       <th class="label">Description</th>
