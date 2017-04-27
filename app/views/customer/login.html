@@ -5,11 +5,11 @@
         <div class="page-title" >
           <h1>Login</h1>
         </div>
-        <ul ng-if="isNotAuthorized" class="messages">
+        <ul ng-if="error.flag" class="messages">
           <li class="error-msg">
             <ul>
               <li>
-                <span>Invalid login or password.</span>
+                <span>{{error.msg}}</span>
               </li>
             </ul>
           </li>

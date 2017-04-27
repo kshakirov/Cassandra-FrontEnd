@@ -1,5 +1,5 @@
 magento_module.controller("CustomerAccountInformationController", function ($scope,
-                                                                            $rootScope, $http) {
+                                                                            $rootScope, $http, $q) {
   $scope.passwordVisible = false;
 
   $scope.msg = {
@@ -31,9 +31,7 @@ magento_module.controller("CustomerAccountInformationController", function ($sco
 
   function _update(url, data) {
     return $http.put(url, data).then(function (promise) {
-      return true;
-    }, function (error) {
-      return $q.reject
+      return promise;
     })
   }
 
@@ -53,10 +51,13 @@ magento_module.controller("CustomerAccountInformationController", function ($sco
         $scope.msg.error = true;
       })
     } else {
-      _update('/customer/account/', data).then(function () {
+      _update('/customer/account/', data).then(function (promise) {
         $scope.msg.success = true;
+        $scope.msg.error = false;
       }, function (error) {
-        $scope.msg.success = true;
+        $scope.msg.error = true;
+        $scope.msg.success = false;
+        $scope.msg.body = error.data.message;
       })
     }
     return data;

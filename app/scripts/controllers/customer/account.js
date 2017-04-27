@@ -7,12 +7,12 @@ magento_module.controller("CustomerAccountController", function ($scope,
     $http.get("/customer/account").then(function (promise) {
       $scope.customer = promise.data;
       usSpinnerService.stop('spinner-account');
-      $rootScope.customerSideBar =1;
+      $rootScope.customerSideBar = 1;
     })
   }
 
   $scope.changePassword = function () {
-      $location.path('/customer/account/information')
+    $location.path('/customer/account/information')
   }
 
   $scope.editAddress = function (id) {
@@ -22,22 +22,19 @@ magento_module.controller("CustomerAccountController", function ($scope,
 
 
 magento_module.controller("CustomerAccountSideBarController", function ($scope,
-                                                                 $rootScope) {
+                                                                        $rootScope) {
   $scope.init = function () {
     console.log("CustomerAccountSideBarController")
   };
 
   $scope.getClassByMenuItem = function (id) {
-    if($rootScope.customerSideBar == id)
+    if ($rootScope.customerSideBar == id)
       return '';
     else
       return '';
   }
 
 })
-
-
-
 
 
 magento_module.controller("CustomerOrdersController", function ($scope,
@@ -103,56 +100,11 @@ magento_module.controller("CustomerWishlistController", function ($scope,
 
 
 
-magento_module.controller("CustomerLogin", function ($scope,
-                                                     $rootScope, $http,
-                                                     $cookies, $location) {
-
-  $scope.init = function () {
-    console.log("Hi Login");
-  }
-
-
-  $scope.submitPassword = function () {
-    var data = {
-      customer_email: $scope.customer_email,
-      password: $scope.password
-    };
-    return $http.post("/frontend/customer/login", data)
-      .then(function (promise) {
-        if (promise.data.result == 'success') {
-          console.log(promise);
-          $cookies.putObject('token', promise.data.token);
-          $rootScope.$broadcast('loginDone', true);
-          $scope.isNotAuthorized = false;
-          $location.path("/customer/account/");
-        }else{
-          $scope.isNotAuthorized = true;
-        }
-
-      }, function (error) {
-          $scope.isNotAuthorized = true;
-        console.log('Error')
-      })
-  }
-  $scope.createNewAccount = function () {
-    var data = {
-      email: $scope.new_customer_email
-    };
-    return $http.post("/frontend/customer/new/", data)
-      .then(function (promise) {
-       console.log(promise)
-      }, function (error) {
-        console.log('Error')
-      })
-  }
-
-})
-
 
 magento_module.controller("CustomerOrderViewController", function ($scope,
-                                                                $routeParams, $http,
-                                                                usSpinnerService,
-                                                                $cookies) {
+                                                                   $routeParams, $http,
+                                                                   usSpinnerService,
+                                                                   $cookies) {
   $scope.init = function () {
     console.log("Hi customer");
     var id = $routeParams.id;
@@ -175,23 +127,23 @@ magento_module.controller("CustomerOrderViewController", function ($scope,
 })
 
 
-var compareTo = function() {
+var compareTo = function () {
   return {
     require: "ngModel",
     scope: {
       otherModelValue: "=compareTo"
     },
-    link: function(scope, element, attributes, ngModel) {
+    link: function (scope, element, attributes, ngModel) {
 
-      ngModel.$validators.compareTo = function(modelValue) {
+      ngModel.$validators.compareTo = function (modelValue) {
         console.log(modelValue);
         console.log(scope.otherModelValue);
-       return modelValue == scope.otherModelValue;
+        return modelValue == scope.otherModelValue;
         return true;
       };
 
-      scope.$watch("otherModelValue", function() {
-        var result  = ngModel.$validate();
+      scope.$watch("otherModelValue", function () {
+        var result = ngModel.$validate();
         console.log(result);
       });
     }
