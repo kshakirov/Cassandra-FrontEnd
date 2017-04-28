@@ -2,28 +2,49 @@ magento_module.controller("ForgotPasswordController", function ($scope,
                                                                 $rootScope, $http,
                                                                 $timeout, $window) {
 
-  $scope.password_reset = false;
-  $scope.resetPassword = function (email_address) {
-    console.log("resetPassword");
-    console.log(email_address);
-    var payload = {email: email_address};
-    $http.post("/frontend/customer/password/reset/", payload).then(function (promise) {
-      console.log(promise);
-      $scope.password_reset_message = "Your Password Is Resetted Email with new credential sent to " + email_address;
-      $scope.password_reset = true;
+  $scope.action_result = {
+    success: {
+      flag: false,
+      message: "Your Password Is Resetted Email with new credential sent to "
+    },
+    error: {
+      flag: false,
+      msg: ""
+    }
+  }
+
+  function _reset_password(payload) {
+    return $http.post("/frontend/customer/password/reset/", payload).then(function (promise) {
+      return promise;
     })
   }
 
+  function notify_success(action_result) {
+    action_result.success.flag = true;
+  }
 
+  function notify_error(action_result, error) {
+    action_result.error.flag = true;
+    action_result.error.message = error.data.message;
+  }
 
-  // $scope.reloadRoute = function () {
-  //   console.log("set to reload");
-  //   $timeout(function () {
-  //     console.log("reloading");
-  //     $window.location.reload();
-  //   }, 30000)
-  //
-  // }
+  function unnotify_error(action_result) {
+    action_result.error.flag = false;
+  }
 
+  function unnotify_success(action_result) {
+    action_result.success.flag = false;
+  }
+
+  $scope.resetPassword = function (email_address) {
+    var payload = {email: email_address};
+    _reset_password(payload).then(function (promise) {
+        notify_success($scope.action_result);
+        unnotify_error($scope.action_result);
+    }, function (error) {
+      notify_error($scope.action_result, error);
+      unnotify_success($scope.action_result);
+    })
+  }
 
 })
