@@ -5,92 +5,62 @@
         <h1>My Orders</h1>
     </div>
 
-    <div class="pager">
 
-        <p class="amount">
-            <strong>2 Item(s)</strong>
-        </p>
+  <table ng-table="ordersTableParams" template-pagination="custom/pager" class="table data-table" show-filter="true">
+    <tr ng-repeat="order in $data">
+      <td title="'ORDER'" filter="{ order_id: 'text'}" sortable="'order_id'">
+        <a ng-href="/#/customer/order/{{order.order_id}}/view">{{order.order_id}}</a></td>
+      <td title="'DATE'" filter="{ updated_at: 'text'}" sortable="'updated_at'">
+        {{order.updated_at}}</td>
+      <td title="'SHIP TO'" filter="{ shipping_address.lastname: 'text'}" sortable="'order.shipping_address.lastname'">
+        {{order.shipping_address.lastname}}</td>
+      <td title="'ORDER TOTAL'" filter="{ grand_total: 'number'}" sortable="'grand_total'">
+        {{order.grand_total}}</td>
+      <td title="'ORDER STATUS'" filter="{ status: 'text'}" sortable="'status'">
+        {{order.status}}</td>
+    </tr>
+    <tr ng-if="$data.length == 0">
+      <td colspan="7" style="text-align: center"><b>No Results</b></td>
+    </tr>
+  </table>
 
-        <div class="limiter">
-            <label>Show</label>
-            <select onchange="setLocation(this.value)">
-                <option value="http://localhost/sales/order/history/?limit=10" selected="selected">
-                    10
-                </option>
-                <option value="http://localhost/sales/order/history/?limit=20">
-                    20
-                </option>
-                <option value="http://localhost/sales/order/history/?limit=50">
-                    50
-                </option>
-            </select> per page
-        </div>
+  <!-- Pager Template -->
+  <script type="text/ng-template" id="custom/pager">
+    <div>
+      <div style="float: left; width: 400px;">
 
-
+                    <span ng-repeat="page in pages"
+                          ng-class="{'disabled': !page.active, 'previous': page.type == 'prev', 'next': page.type == 'next'}"
+                          ng-show="page.type == 'prev' || page.type == 'next'" ng-switch="page.type">
+                        <a ng-switch-when="prev" ng-click="params.page(page.number)" href="">&laquo; Previous</a>
+                        <a ng-switch-when="next" ng-click="params.page(page.number)" href="">Next &raquo;</a>
+                    </span>
+      </div>
+      <div style="float: left; width: 460px; padding-left: 240px">
+        <ul ng-if="pages.length > 1">
+          <li>
+            <div class="btn-group btn-group-sm">
+              <button type="button" ng-class="{'active':params.count() == 10}" ng-click="params.count(10)"
+                      class="btn_pagination">10
+              </button>
+              <button type="button" ng-class="{'active':params.count() == 25}" ng-click="params.count(25)"
+                      class="btn_pagination">25
+              </button>
+              <button type="button" ng-class="{'active':params.count() == 50}" ng-click="params.count(50)"
+                      class="btn_pagination">50
+              </button>
+              <button type="button" ng-class="{'active':params.count() == 100}"
+                      ng-click="params.count(100)"
+                      class="btn_pagination">100
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-
-    <table class="data-table" id="my-orders-table">
-        <colgroup>
-            <col width="1">
-            <col width="1">
-            <col>
-            <col width="1">
-            <col width="1">
-            <col width="1">
-        </colgroup>
-        <thead>
-        <tr class="first last">
-            <th>Order #</th>
-            <th>Date</th>
-            <th>Ship To</th>
-            <th><span class="nobr">Order Total</span></th>
-            <th><span class="nobr">Order Status</span></th>
-            <th>&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="order in orders">
-            <td>{{order.order_id}}</td>
-            <td><span class="nobr">{{order.data.created_at}}</span></td>
-            <td>{{order.data.shipping_address_id}}</td>
-            <td><span class="price">{{order.data.base_grand_total}}</span></td>
-            <td><em>{{order.data.status}}</em></td>
-            <td class="a-center last">
-                <span class="nobr"><a ng-href="/#/customer/order/{{order.order_id}}/view">View Order</a>
-                                                            <span class="separator">|</span> <a
-                            href="http://localhost/sales/order/reorder/order_id/303/" class="link-reorder">Reorder</a>
-                                </span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+  </script>
 
 
-    <div class="pager">
-
-        <p class="amount">
-            <strong>2 Item(s)</strong>
-        </p>
-
-        <div class="limiter">
-            <label>Show</label>
-            <select onchange="setLocation(this.value)">
-                <option value="http://localhost/sales/order/history/?limit=10" selected="selected">
-                    10
-                </option>
-                <option value="http://localhost/sales/order/history/?limit=20">
-                    20
-                </option>
-                <option value="http://localhost/sales/order/history/?limit=50">
-                    50
-                </option>
-            </select> per page
-        </div>
 
 
-    </div>
-
-    <div class="buttons-set">
-
-    </div>
 </div>

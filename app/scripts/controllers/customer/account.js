@@ -37,20 +37,6 @@ magento_module.controller("CustomerAccountSideBarController", function ($scope,
 })
 
 
-magento_module.controller("CustomerOrdersController", function ($scope,
-                                                                $rootScope, $http,
-                                                                usSpinnerService,
-                                                                $cookies) {
-  $scope.init = function () {
-    console.log("Hi customer");
-    usSpinnerService.spin('spinner-orders');
-    $http.get("/customer/order").then(function (promise) {
-      console.log(promise);
-      $scope.orders = promise.data;
-      usSpinnerService.stop('spinner-orders');
-    })
-  }
-})
 
 
 magento_module.controller("CustomerWishlistController", function ($scope,
