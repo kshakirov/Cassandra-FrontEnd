@@ -49,8 +49,8 @@ magento_module.controller("Menus", function ($scope, $http,
   };
 
   $scope.getComponentListItemClass = function (item) {
-    if (item[3])
-      return item[3];
+    if(item[0].search('Turb')>=0)
+      return "componentSection";
     return ""
   };
 
