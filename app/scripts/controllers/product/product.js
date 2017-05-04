@@ -15,7 +15,7 @@ magento_module.controller("ProductController", function ($scope,
     }
 
     function _create_link_to_product(product) {
-      return "<a href='#/part/sku/" + product.sku + " '>" + product.partNumber + "</a>"
+      return "<a href='#/part/sku/" + product.sku + "'>" + product.partNumber + "</a>"
     }
 
     function _add_see_more_item(links_array) {
