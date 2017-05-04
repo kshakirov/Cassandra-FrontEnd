@@ -23,8 +23,12 @@
       </td>
     </tr>
 
-    <tr ng-if="!$data || $data.length  == 0 ">
-      <td colspan="2" style="text-align: center"><b>No Results</b></td>
+    <tr ng-if="(!$data || $data.length  == 0) && isAuthorised() ">
+      <td colspan="5" style="text-align: center"><b>No Results</b></td>
+    </tr>
+
+    <tr ng-if="!isAuthorised()">
+      <td colspan="5" style="text-align: center"><a href="/#/customer/account/login">Login</a> To See Results</td>
     </tr>
   </table>
 </div>
