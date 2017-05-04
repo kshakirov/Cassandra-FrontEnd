@@ -10,11 +10,10 @@ magento_module.controller("CustomerLogin", function ($scope,
     msg: ''
   }
 
-  $scope.submitPassword = function () {
-    var data = {
-      customer_email: $scope.customer_email,
-      password: $scope.password
-    };
+
+
+
+  function _submitPassword(data) {
     return $http.post("/frontend/customer/login", data)
       .then(function (promise) {
           $cookies.putObject('token', promise.data.token);
@@ -26,6 +25,28 @@ magento_module.controller("CustomerLogin", function ($scope,
         $scope.error.msg = error.data.message;
       })
   }
+
+
+  $scope.submitPasswordByEnterClick = function (event, customer_email, password) {
+    if (event.which === 13){
+      var data = {
+        customer_email:customer_email,
+        password: password
+      };
+      return _submitPassword(data);
+    }
+  }
+
+  $scope.submitPassword = function () {
+    var data = {
+      customer_email: $scope.customer_email,
+      password: $scope.password
+    };
+     return _submitPassword(data);
+  }
+
+
+
   $scope.createNewAccount = function () {
     var data = {
       email: $scope.new_customer_email
