@@ -3,8 +3,7 @@ magento_module.controller("CustomerLogin", function ($scope,
                                                      $cookies, $location) {
 
   $scope.init = function () {
-    console.log("Hi Login");
-  }
+  };
 
   $scope.error = {
     flag: false,
@@ -21,7 +20,6 @@ magento_module.controller("CustomerLogin", function ($scope,
           $cookies.putObject('token', promise.data.token);
           $rootScope.$broadcast('loginDone', true);
           $scope.isNotAuthorized = false;
-          $location.path("/customer/account/");
           $scope.error.flag = false;
       }, function (error) {
         $scope.error.flag = true;

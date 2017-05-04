@@ -33,18 +33,16 @@ magento_module.controller("LoginManager", function ($scope, $http,
   $scope.selectedCurrency = $scope.currencyOptions[0];
 
   $scope.initManager = function () {
-    console.log("Hi init manager");
     getCurrency();
     return $http.get('/customer/data').then(function (promise) {
-      console.log(promise.data);
       $scope.customer = promise.data;
       $scope.isAuthorized = true;
+      $rootScope.back();
     })
   }
 
   $scope.logout = function () {
     $cookies.remove('token');
-    console.log("Logout");
     $scope.isAuthorized = false;
     $scope.customer.name = " to Turbo International";
     $location.path('/#/');
@@ -52,7 +50,6 @@ magento_module.controller("LoginManager", function ($scope, $http,
 
   $scope.$on('loginDone', function (event, args) {
     if (args) {
-      console.log(args);
       $scope.initManager();
     }
   })
