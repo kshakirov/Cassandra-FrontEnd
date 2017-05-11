@@ -6,7 +6,7 @@ var magento_module = angular.module('MagentoApp', ['rzModule',
 
 magento_module.service('ElasticSearch', function (esFactory) {
     function _get_hostname() {
-        var host = location.hostname + ":10000";
+        var host = location.hostname;
             return host
     }
     var hostname = _get_hostname();

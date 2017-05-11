@@ -76,6 +76,12 @@ magento_module.controller("HomeController", function ($scope,
     })
   }
 
+  function get_products_count() {
+    return $http.get('/customer/cart/product/count').then(function (promise) {
+      return promise.data.count;
+    })
+  }
+
   /* ********************Main Part**********************************/
   $scope.init_new_products = function () {
     return _init_new_products().then(function (promise) {
@@ -96,12 +102,24 @@ magento_module.controller("HomeController", function ($scope,
     });
   }
 
-  $scope.addToCart = function (id) {
-    var url = '/checkout/cart/add/product/' + id + '/';
-    $http.get(url).then(function (promise) {
-      console.log(promise);
+
+  $scope.addToCart = function (fn_product) {
+    fn_product.part_number = fn_product.name;
+    var product = {
+      product: fn_product,
+      price: fn_product.price,
+      qty: 1
+    };
+
+    $http.post('/customer/cart/product', product).then(function (response) {
+    }).then(function () {
+      get_products_count().then(function (promise) {
+        $rootScope.product_count = promise;
+      })
     })
-  }
+  };
+
+
   $scope.isTurboModelVisible = function (featured) {
     return featured.part_type == "Cartridge" || featured.part_type == "Gasket"
   }
