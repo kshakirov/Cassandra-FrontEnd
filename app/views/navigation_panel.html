@@ -11,7 +11,7 @@
       <!--<a href="/#/customer/account/wishlist/" title="My Wishlist (-)">My Wishlist ({{}})</a>-->
     <!--</li>-->
     <li ng-controller="CustomerCart" ng-init="getProductsCount()">
-        <a href="/#/customer/cart/" title="My Cart ()" class="top-link-cart">My Cart (<span>{{product_count}}</span>)</a>
+        <a href="/#/customer/cart/" title="My Cart ()" class="top-link-cart">My Cart (<span>{{product_count || 0}}</span>)</a>
     </li>
     <li><a href="/#/customer/checkout/" title="Checkout" class="top-link-checkout">Checkout</a></li>
     <li class=" last"><a ng-click="logout()" href="" title="Log Out">Log Out</a></li>
