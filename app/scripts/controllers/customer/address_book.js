@@ -3,7 +3,6 @@ magento_module.controller("CustomerAddressBookController", function ($scope,
                                                                      usSpinnerService,
                                                                      $location) {
   $scope.init = function () {
-    console.log("Hi customer");
     usSpinnerService.spin('spinner-account');
     $http.get("/customer/account").then(function (promise) {
       console.log(promise);

@@ -42,15 +42,16 @@ magento_module.controller("CustomerAddressEditController", function ($scope,
       $scope.addressReady = true;
     })
   }
+  
 
   $scope.save = function (customer) {
     var data = {id: customer.id, firstname: customer.firstname, lastname: customer.lastname};
     data[_get_address_type(current_address)] = customer[_get_address_type(current_address)];
-    console.log(data);
-    $http.put("/customer/account/", data).then(function (promise) {
+    $http.put("/customer/account/address/", data).then(function (promise) {
       $scope.log.address.success = true;
     }, function (error) {
       $scope.log.address.error = true;
+      $scope.log.address.error_message = error.data.message;
     })
   }
 })

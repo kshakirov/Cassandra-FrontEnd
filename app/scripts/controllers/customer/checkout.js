@@ -10,15 +10,18 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
       {header: 'Order Review', content: "Hi order review"}];
   }
 
+  function _format_address(address) {
+      return address.street + ", " + address.city + ", " + address.region_id + ", "
+        + address.country_id + ", " + address.postcode
+  }
+
+
   function create_address_options(address) {
     var new_address = {};
     angular.copy(address, new_address);
     return [
       {
-        id: 1, name: Object.keys(address).map(function (key) {
-        return address[key];
-      }).join(","), value: address
-      },
+        id: 1, name: _format_address(address), value: new_address},
       {id: 2, name: "New Address", value: new_address}
     ]
   }
