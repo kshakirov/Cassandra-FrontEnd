@@ -116,7 +116,7 @@ magento_module.controller("CustomerCart", function ($scope,
         $scope.emptyCart = is_cart_empty(data);
       });
       get_products_count().then(function (promise) {
-        $rootScope.product_count = promise;
+        $rootScope.product_count = promise || 0;
       })
     })
   }
