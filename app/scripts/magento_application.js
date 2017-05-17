@@ -1,6 +1,7 @@
 var magento_module = angular.module('MagentoApp', ['rzModule',
     'angularSpinner', 'elasticsearch', 'ngRoute', 'ngCookies',
-    'ngTouch', 'ngAnimate', 'ngFader', 'angular-preload-image', 'ngSanitize', 'ngDialog', 'ngTable', 'angular-spinkit', 'vAccordion','countrySelect']);
+    'ngTouch', 'ngAnimate', 'ngFader', 'angular-preload-image', 'ngSanitize', 'ngDialog', 'ngTable', 'angular-spinkit', 'vAccordion',
+  'angular-directive-select-usstates','countrySelect']);
 
 
 magento_module.service('ElasticSearch', function (esFactory) {
