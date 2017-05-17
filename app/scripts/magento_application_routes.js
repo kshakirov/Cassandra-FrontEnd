@@ -25,11 +25,11 @@ magento_module.config(function ($routeProvider) {
       controller: 'ByPartsProductTable'
     })
     .when('/part/id/:id', {
-      templateUrl: VIEW_DIR + '/product/product.html',
+      templateUrl: VIEW_DIR + 'product/product.html',
       controller: 'ProductController'
     })
     .when('/part/sku/:sku', {
-      templateUrl: VIEW_DIR + '/product/product.html',
+      templateUrl: VIEW_DIR + 'product/product.html',
       controller: 'ProductController'
     })
     .when('/parts/application/:application_id', {
