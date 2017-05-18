@@ -1,5 +1,4 @@
-(function () {
-    'use strict';
+
     angular.module('ngFader', [])
       .directive('ngFader', function($interval) {
 
@@ -8,7 +7,7 @@
 		//Set your interval time. 4000 = 4 seconds
 		scope.setTime = 4000;
 
-		//List your images here. 
+		//List your images here.
 		scope.images = [ {
 			src: 'http://www.turbointernational.com/media/bannerslider/d/e/design1.jpg',
 			alt: 'Main'
@@ -27,7 +26,7 @@
 		//Pagination dots - gets number of images
         scope.numberOfImages = scope.images.length;
         scope.dots = function(num) {
-          return new Array(num);   
+          return new Array(num);
         };
 
         //Pagination - click on dots and change image
@@ -65,7 +64,7 @@
           	scope.startSlider();
           }
         };
-        
+
         scope.startSlider = function(){
           scope.intervalPromise = $interval(scope.autoSlider, scope.setTime);
           scope.activeStart = true;
@@ -78,7 +77,7 @@
         		return "show";
         	}
         };
-        
+
 
 	}
 
@@ -87,35 +86,35 @@
 	    scope: false,
 	    template: '<div class="ng-fader">'+
 	    		//images will render here
-			'<ul>' + 
-				'<li ng-repeat="image in images" ng-click="toggleStartStop()" ng-swipe-right="sliderBack()" ng-swipe-left="sliderForward()"><img data-ng-src="{{image.src}}" data-ng-alt="{{image.alt}}" ng-class="show($index)"/></li>' + 
-			'</ul>' + 
+			'<ul>' +
+				'<li ng-repeat="image in images" ng-click="toggleStartStop()" ng-swipe-right="sliderBack()" ng-swipe-left="sliderForward()"><img data-ng-src="{{image.src}}" data-ng-alt="{{image.alt}}" ng-class="show($index)"/></li>' +
+			'</ul>' +
 			//pagination dots will render here
-			'<div class="ng-fader-pagination">' + 
-				'<ul>' + 
-					'<li ng-repeat="i in dots(numberOfImages) track by $index" ng-class="{current: selectedImage==$index}" ng-click="setSelected($index)"></li>' + 
-				'</ul>' + 
-			'</div>' + 
+			'<div class="ng-fader-pagination">' +
+				'<ul>' +
+					'<li ng-repeat="i in dots(numberOfImages) track by $index" ng-class="{current: selectedImage==$index}" ng-click="setSelected($index)"></li>' +
+				'</ul>' +
+			'</div>' +
 			//controls are here
-			'<div class="ng-fader-controls">' + 
-				'<ul>' + 
-					'<li ng-click="sliderBack()">' + 
-						'<i class="ngfader-back"></i>' + 
-					'</li>' + 
-					'<li ng-click="stopSlider()">' + 
-						'<i class="ngfader-pause" ng-class="{\'active\': activePause}"></i>' + 
-					'</li>' + 
-					'<li ng-click="startSlider()">' + 
-						'<i class="ngfader-play"  ng-class="{\'active\': activeStart}"></i>' + 
-					'</li>' + 
-					'<li ng-click="sliderForward()">' + 
-						'<i class="ngfader-forward"></i>' + 
-					'</li>' + 
-				'</ul>' + 
+			'<div class="ng-fader-controls">' +
+				'<ul>' +
+					'<li ng-click="sliderBack()">' +
+						'<i class="ngfader-back"></i>' +
+					'</li>' +
+					'<li ng-click="stopSlider()">' +
+						'<i class="ngfader-pause" ng-class="{\'active\': activePause}"></i>' +
+					'</li>' +
+					'<li ng-click="startSlider()">' +
+						'<i class="ngfader-play"  ng-class="{\'active\': activeStart}"></i>' +
+					'</li>' +
+					'<li ng-click="sliderForward()">' +
+						'<i class="ngfader-forward"></i>' +
+					'</li>' +
+				'</ul>' +
 			'</div>' +
 		'</div>',
 		link: link
 	  };
       });
 
-}());
+
