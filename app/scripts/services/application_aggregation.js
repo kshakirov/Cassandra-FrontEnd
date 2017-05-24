@@ -1,7 +1,7 @@
-magento_module.service('ApplicationAggregationService', function () {
+magento_module.service('ApplicationAggregationService', function ($rootScope) {
 
     var query = {
-        index: 'magento_product',
+        index:  $rootScope.elastic_index,
         size: 0,
         from: 0,
         body: {}

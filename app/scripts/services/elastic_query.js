@@ -1,7 +1,8 @@
 magento_module.service('ElasticQuery', function ($cookies,
-                                                 UnitsService, ApplicationService, PageSize) {
+                                                 UnitsService, ApplicationService, 
+                                                 PageSize, $rootScope) {
   var persistent_query = {
-    index: 'magento_product',
+    index: $rootScope.elastic_index,
     size: PageSize.getPageSize(),
     from: 0,
     stats: 'no stats',
@@ -364,7 +365,7 @@ magento_module.service('ElasticQuery', function ($cookies,
 
   this.getCritDimRanges = function (filters, part_type_id, stats) {
     var query = {
-      index: 'magento_product',
+      index: $rootScope.elastic_index,
       size: PageSize.getPageSize(),
       from: 0,
       stats: stats,

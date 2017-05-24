@@ -1,6 +1,6 @@
-magento_module.service("FiltersAggregationService", function ($cookies) {
+magento_module.service("FiltersAggregationService", function ($cookies, $rootScope) {
   var query = {
-    index: 'magento_product',
+    index: $rootScope.elastic_index,
     size: 0,
     from: 0,
     body: {}
@@ -198,7 +198,7 @@ magento_module.service("FiltersAggregationService", function ($cookies) {
 
   this.createCritDimFilterQuery = function (filter, limitations) {
     var local_query = {
-      index: 'magento_product',
+      index:  $rootScope.elastic_index,
       size: 0,
       from: 0,
       body: {
@@ -236,7 +236,7 @@ magento_module.service("FiltersAggregationService", function ($cookies) {
 
   this.createCritDimFilterQueryBatch = function (filters, limitations) {
     var local_query = {
-      index: 'magento_product',
+      index:  $rootScope.elastic_index,
       size: 0,
       from: 0,
       body: {

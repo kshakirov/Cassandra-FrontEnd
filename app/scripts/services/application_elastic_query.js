@@ -1,6 +1,6 @@
-magento_module.service("ApplicationElasticQuery", function () {
+magento_module.service("ApplicationElasticQuery", function ($rootScope) {
     var query = {
-        index: 'magento_product',
+        index:  $rootScope.elastic_index,
         size: 10,
         from: 0,
         stats: 'no stats',

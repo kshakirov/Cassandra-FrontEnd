@@ -28,5 +28,7 @@ magento_module.run(function ($rootScope, $location) {
     }
   };
 
+  $rootScope.elastic_index = 'turbointernational_development'
+
 
 });
