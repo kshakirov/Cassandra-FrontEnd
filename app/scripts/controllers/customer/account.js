@@ -1,13 +1,16 @@
 magento_module.controller("CustomerAccountController", function ($scope,
                                                                  $rootScope, $http,
                                                                  usSpinnerService,
-                                                                 $location) {
+                                                                 $location,$window) {
   $scope.init = function () {
     usSpinnerService.spin('spinner-account');
     $http.get("/customer/account").then(function (promise) {
       $scope.customer = promise.data;
       usSpinnerService.stop('spinner-account');
       $rootScope.customerSideBar = 1;
+    }, function (error) {
+        console.log(error);
+        $location.path('/customer/account/login/')
     })
   }
 
