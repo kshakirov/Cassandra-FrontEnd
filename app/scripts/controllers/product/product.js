@@ -111,6 +111,13 @@ magento_module.controller("ProductController", function ($scope,
       })
     }
 
+    function _get_part_number(product) {
+        if (product.manufacturer.toLowerCase() == 'turbo international'){
+          return product.part_number;
+        }
+      return product.ti_part_number;
+    }
+
     $scope.tab = 1;
     $scope.qty = 1;
     $rootScope.pageTitle = ": Product";
@@ -183,9 +190,11 @@ magento_module.controller("ProductController", function ($scope,
         qty: qty
       };
 
+      var part_number = _get_part_number(product.product);
+
       $http.post('/customer/cart/product', product).then(function (response) {
         console.log("sent to cart");
-        $scope.cart_message = $scope.product.part_number + " was added to your shopping cart."
+        $scope.cart_message = part_number + " was added to your shopping cart."
         return true;
       }).then(function () {
         get_products_count().then(function (promise) {

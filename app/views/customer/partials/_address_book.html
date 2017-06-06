@@ -13,13 +13,9 @@
                     <h3>Default Billing Address</h3>
                     <address>
                         {{customer.firstname}} {{customer.lastname}}<br>
-                        {{customer.default_billing_address.company}}<br>
+
                         {{customer.default_billing_address.street}}<br>
-
-
-                        {{customer.default_billing_address.city}},<br>
-                      {{customer.default_billing_address.region_id}},<br>
-                        {{customer.default_billing_address.postcode}}<br>
+                        {{customer.default_billing_address.city}}, {{customer.default_billing_address.region_id}},{{customer.default_billing_address.postcode}}<br>
                         {{customer.default_billing_address.country_id}}<br>
                         T: {{customer.default_billing_address.telephone}}
 
@@ -31,13 +27,9 @@
                     <h3>Default Shipping Address</h3>
                     <address>
                         {{customer.firstname}} {{customer.lastname}}<br>
-                        {{customer.default_shipping_address.company}}<br>
+
                         {{customer.default_shipping_address.street}}<br>
-
-
-                        {{customer.default_shipping_address.city}},<br>
-                      {{customer.default_shipping_address.region_id}},<br>
-                        {{customer.default_shipping_address.postcode}}<br>
+                        {{customer.default_shipping_address.city}}, {{customer.default_shipping_address.region_id}}, {{customer.default_shipping_address.postcode}}<br>
                         {{customer.default_shipping_address.country_id}}<br>
                         T: {{customer.default_shipping_address.telephone}}
 

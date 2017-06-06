@@ -5,7 +5,7 @@ magento_module.controller("ForgotPasswordController", function ($scope,
   $scope.action_result = {
     success: {
       flag: false,
-      message: "Your Password Is Resetted Email with new credential sent to "
+      message: "Your password has been reset. You will receive an email with your new password."
     },
     error: {
       flag: false,
