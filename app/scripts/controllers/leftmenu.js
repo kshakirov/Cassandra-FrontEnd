@@ -164,7 +164,8 @@ magento_module.controller("LeftMenu", function ($scope,
             $scope.removeFilterFromCurrentFilters(LeftMenuService.prepare_filter_to_remove(selected_filter_str), $scope.current_filters);
         else {
             LeftMenuService.add_selected_filter_to_current_filters(selected_filter_str, $scope.current_filters);
-            LeftMenuService.reaggregate_current_integer_filters($scope.current_filters, $scope.original_filters, $scope.filters);
+            LeftMenuService.reaggregate_current_integer_filters($scope.current_filters, 
+              $scope.original_filters, $scope.filters, selected_filter_str);
             $rootScope.$broadcast('intFilterChanged', $scope.current_filters);
         }
     }

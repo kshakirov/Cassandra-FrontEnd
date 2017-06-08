@@ -63,48 +63,50 @@ magento_module.service("FiltersAggregationService", function ($cookies, $rootSco
     return {term: {"manufacturer.name": 'Turbo International'}};
   }
 
-  function _add_aggregation_filters(limitations) {
+  function _add_aggregation_filters(limitations, filter) {
     var terms = [];
     terms.push(_add_visibility_filter());
     angular.forEach(limitations, function (value, key) {
-      var t = {term: {}};
-      var empty = true;
-      if (value.code == "turbo_type" && value.name.length > 0) {
-        t.term["turbo_type.name"] = value.name;
-        empty = false;
+      if(value.code != filter.code) {
+        var t = {term: {}};
+        var empty = true;
+        if (value.code == "turbo_type" && value.name.length > 0) {
+          t.term["turbo_type.name"] = value.name;
+          empty = false;
+        }
+        else if (value.code == "query_string" && value.option_id.length > 0) {
+          var query = '*' + value.option_id.toLowerCase() + '*';
+          t = {
+            bool: {
+              should: [{wildcard: {"ti_part.ti_part_number": query}},
+                {wildcard: {"oe_ref_urls.part_number": query}},
+                {wildcard: {"manufacturer.name": _capitalize_(query)}},
+                {wildcard: {"ti_part.ti_part_number_clean": query}},
+                {wildcard: {"oe_ref_urls.part_number_clean": query}},
+                {wildcard: {"turbo_type.name": query.toUpperCase()}}]
+            }
+          };
+          empty = false;
+        }
+        else if (value.code == "manufacturer" && value.option_id > 0) {
+          t.term["manufacturer.code"] = value.option_id;
+          empty = false;
+        }
+        else if (value.code == "part_type" && value.option_id > 0) {
+          t.term["part_type"] = value.option_id;
+          empty = false;
+        }
+        else if (value.code == "is_clearance" && value.option_id.length > 0) {
+          t.term["is_clearance"] = value.option_id;
+          empty = false;
+        }
+        else if (value.code == 'application') {
+          t = value.value;
+          empty = false;
+        }
+        if (!empty)
+          terms.push(t);
       }
-      else if (value.code == "query_string" && value.option_id.length > 0) {
-        var query = '*' + value.option_id.toLowerCase() + '*';
-        t = {
-          bool: {
-            should: [{wildcard: {"ti_part.ti_part_number": query}},
-              {wildcard: {"oe_ref_urls.part_number": query}},
-              {wildcard: {"manufacturer.name": _capitalize_(query)}},
-              {wildcard: {"ti_part.ti_part_number_clean": query}},
-              {wildcard: {"oe_ref_urls.part_number_clean": query}},
-              {wildcard: {"turbo_type.name": query.toUpperCase()}}]
-          }
-        };
-        empty = false;
-      }
-      else if (value.code == "manufacturer" && value.option_id > 0) {
-        t.term["manufacturer.code"] = value.option_id;
-        empty = false;
-      }
-      else if (value.code == "part_type" && value.option_id.length > 0) {
-        t.term["part_type"] = value.option_id;
-        empty = false;
-      }
-      else if (value.code == "is_clearance" && value.option_id.length > 0) {
-        t.term["is_clearance"] = value.option_id;
-        empty = false;
-      }
-      else if (value.code == 'application') {
-        t = value.value;
-        empty = false;
-      }
-      if (!empty)
-        terms.push(t);
     })
     return terms
   }
@@ -189,7 +191,7 @@ magento_module.service("FiltersAggregationService", function ($cookies, $rootSco
     var local_query = {};
     angular.copy(manufacturer_query, local_query);
     local_query.aggs.manufacturer_type.filter = {bool: {must: []}};
-    local_query.aggs.manufacturer_type.filter.bool.must = _add_aggregation_filters(limitations);
+    local_query.aggs.manufacturer_type.filter.bool.must = _add_aggregation_filters(limitations, filter);
     local_query.aggs.manufacturer_type.aggs.turbo_type.terms = _add_aggregation_subject(filter);
     query.body = local_query;
     return query;
