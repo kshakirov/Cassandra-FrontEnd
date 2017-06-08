@@ -1,8 +1,8 @@
 <!doctype html>
-<html>
+<html  ng-app="MagentoApp">
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title page-title="TURBOINTERNATIONAL"></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="styles/button.css">
   <!-- endbuild -->
 </head>
-<body ng-app="MagentoApp">
+<body>
 <div class="wrapper">
 
   <div class="page">
@@ -83,8 +83,9 @@
 <!-- endbuild -->
 
 
-<!-- build:js({.tmp,app}) scripts/scripts.js -->
 
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="../bower_components/ng-page-title/dist/ng-page-title.js"></script>
 <script src="scripts/directives/angular-select-state.js"></script>
 <script src="scripts/directives/angular-directive-select-usstates.js"></script>
 <script src="scripts/magento_application.js"></script>
