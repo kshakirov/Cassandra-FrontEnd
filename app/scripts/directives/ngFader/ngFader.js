@@ -9,13 +9,13 @@
 
 		//List your images here.
 		scope.images = [ {
-			src: 'http://www.turbointernational.com/media/bannerslider/d/e/design1.jpg',
+			src: 'images/bannerslider/design1.jpg',
 			alt: 'Main'
 		}, {
-			src: 'http://www.turbointernational.com/media/bannerslider/d/e/design2.jpg',
+			src: 'images/bannerslider/design2.jpg',
 			alt: 'Main'
 		},{
-			src: 'http://www.turbointernational.com/media/bannerslider/d/e/design3.jpg',
+			src: 'images/bannerslider/design3.jpg',
 			alt: 'Main'
 		}];
 
