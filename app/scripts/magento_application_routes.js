@@ -88,6 +88,13 @@ magento_module.config(function ($routeProvider) {
       },
       controller: 'ApplicationController'
     })
+    .when('/faq/', {
+      templateUrl: VIEW_DIR + 'faq.html',
+      data: {
+        pageTitle: "TURBO: FAQ"
+      },
+      controller: 'ApplicationController'
+    })
     .when('/customer/account/', {
       templateUrl: VIEW_DIR + 'customer/dashboard.html',
       data: {
