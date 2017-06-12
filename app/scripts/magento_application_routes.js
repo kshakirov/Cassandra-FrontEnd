@@ -95,6 +95,13 @@ magento_module.config(function ($routeProvider) {
       },
       controller: 'ApplicationController'
     })
+    .when('/how-turbos-work/', {
+      templateUrl: VIEW_DIR + 'how_turbos_work.html',
+      data: {
+        pageTitle: "TURBO: HOW WORK"
+      },
+      controller: 'ApplicationController'
+    })
     .when('/customer/account/', {
       templateUrl: VIEW_DIR + 'customer/dashboard.html',
       data: {
