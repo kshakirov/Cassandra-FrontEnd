@@ -88,6 +88,20 @@ magento_module.config(function ($routeProvider) {
       },
       controller: 'ApplicationController'
     })
+    .when('/quality-assurance/', {
+      templateUrl: VIEW_DIR + 'quality_assurance.html',
+      data: {
+        pageTitle: "TURBO: QUALITY ASSURANCE"
+      },
+      controller: 'ApplicationController'
+    })
+    .when('/whats-new/', {
+      templateUrl: VIEW_DIR + 'what_s_new.html',
+      data: {
+        pageTitle: "TURBO: QUALITY ASSURANCE"
+      },
+      controller: 'ApplicationController'
+    })
     .when('/faq/', {
       templateUrl: VIEW_DIR + 'faq.html',
       data: {
