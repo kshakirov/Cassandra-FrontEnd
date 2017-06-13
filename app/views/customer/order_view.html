@@ -23,7 +23,8 @@
                 <h2>Shipping Address</h2>
               </div>
               <div class="box-content">
-                <address>{{order.shipping_address.lastname}}<br>
+                <address>
+                  {{order.shipping_address.name ||order.shipping_address.lastname}}<br>
                   {{order.shipping_address.company}}<br>
                   {{order.shipping_address.street}}<br>
 
@@ -55,7 +56,8 @@
                 <h2>Billing Address</h2>
               </div>
               <div class="box-content">
-                <address>{{order.billing_address.lastname}}<br>
+                <address>
+                  {{order.billing_address.name || order.billing_address.lastname}}<br>
                   {{order.billing_address.company}}<br>
                   {{order.billing_address.street}}<br>
 

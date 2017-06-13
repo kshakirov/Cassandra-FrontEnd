@@ -7,7 +7,7 @@
         <div class="col-1" >
           <h4>Billing Address</h4>
           <address>
-            {{billingAddress.value.lastname}}<br>
+            {{billingAddress.value.name || billingAddress.value.lastname}}<br>
             {{billingAddress.value.street}}<br>
 
 
@@ -21,7 +21,7 @@
         <div class="col-2">
           <h4>Shipping Address</h4>
           <address>
-            {{shippingAddress.value.lastname}}<br>
+            {{shippingAddress.value.name || shippingAddress.value.lastname}}<br>
             {{shippingAddress.value.street}}<br>
 
 
