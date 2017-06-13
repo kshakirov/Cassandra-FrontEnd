@@ -25,10 +25,10 @@ magento_module.controller("CustomerAddressEditController", function ($scope,
 
 
   function check_address_name(address, customer) {
-    if (address.hasOwnProperty('lastname') && not_empty_string(address.lastname)) {
-      return address.lastname;
+    if (address.hasOwnProperty('name') && not_empty_string(address.name)) {
+      return address.name;
     }
-    return address.lastname = customer.firstname + " " + customer.lastname
+    return address.name = customer.firstname + " " + customer.lastname
   }
 
   $scope.init = function () {
@@ -37,7 +37,7 @@ magento_module.controller("CustomerAddressEditController", function ($scope,
       $scope.customer = promise.data;
       if (current_address) {
         $scope.address = $scope.customer[_get_address_type(current_address)];
-        $scope.address.lastname = check_address_name($scope.address, $scope.customer)
+        $scope.address.name = check_address_name($scope.address, $scope.customer)
       }
       $scope.addressReady = true;
     })
