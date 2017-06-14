@@ -12,7 +12,7 @@
                 <li class="item">
                     <h3>Default Billing Address</h3>
                     <address>
-                        {{customer.firstname}} {{customer.lastname}}<br>
+                      {{customer.default_billing_address.name || customer.default_billing_address.lastname}}<br>
 
                         {{customer.default_billing_address.street}}<br>
                         {{customer.default_billing_address.city}}, {{customer.default_billing_address.region_id}},{{customer.default_billing_address.postcode}}<br>
@@ -26,7 +26,7 @@
                 <li class="item">
                     <h3>Default Shipping Address</h3>
                     <address>
-                        {{customer.firstname}} {{customer.lastname}}<br>
+                      {{customer.default_shipping_address.name || customer.default_shipping_address.lastname}}<br>
 
                         {{customer.default_shipping_address.street}}<br>
                         {{customer.default_shipping_address.city}}, {{customer.default_shipping_address.region_id}}, {{customer.default_shipping_address.postcode}}<br>
