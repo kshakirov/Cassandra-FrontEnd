@@ -10,9 +10,27 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
       {header: 'Order Review', content: "Hi order review"}];
   }
 
+
+  function _create_empty_address() {
+    return {
+      city: '',
+      country_id: '',
+      name: '',
+      postcode: '',
+      region_id: '',
+      street: '',
+      telephone: ''
+    }
+  }
+
+
   function _format_address(address) {
-      return address.street + ", " + address.city + ", " + address.region_id + ", "
-        + address.country_id + ", " + address.postcode
+    if (address == null) {
+
+      return "";
+    }
+    return address.street + ", " + address.city + ", " + address.region_id + ", "
+      + address.country_id + ", " + address.postcode
   }
 
 
@@ -21,7 +39,8 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
     angular.copy(address, new_address);
     return [
       {
-        id: 1, name: _format_address(address), value: new_address},
+        id: 1, name: _format_address(address), value: new_address
+      },
       {id: 2, name: "New Address", value: new_address}
     ]
   }
@@ -71,11 +90,11 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
   }
 
   function add_order_email_task(data) {
-      $http.post('/customer/order/email', data).then(function (promise) {
-        return promise
-      }, function (error) {
-        console.log(error)
-      })
+    $http.post('/customer/order/email', data).then(function (promise) {
+      return promise
+    }, function (error) {
+      console.log(error)
+    })
   }
 
   $scope.order = {};
@@ -83,9 +102,47 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
   $scope.newShippingAddressFlag = false;
 
 
+  function _check_main_fields(address) {
+    var fields = ['country_id', 'city', 'postcode', 'street', 'name'];
+    var result = {verified: true, field: null};
+    for (var i = 0; i < 5; i++) {
+      if (!address.value.hasOwnProperty(fields[i]) ||
+        address.value[fields[i]].length < 1) {
+        result.verified = false;
+        result.field = fields[i];
+        return result;
+      }
+    }
+    return result
+  }
+
+  function _check_address(address, address_type) {
+    var verified = _check_main_fields(address, address_type);
+    if (!verified.verified) {
+      verified.address = address_type;
+      return verified
+    }
+    return verified;
+
+  }
+
+  function _compose_err(verified) {
+    return "Check " + verified.address + ": " + verified.field;
+  }
 
   $scope.placeOrder = function () {
-    var order_data = create_order_date(this.shippingAddress, this.billingAddress, this.data);
+    var verified_ba = _check_address($scope.billingAddress, 'Billing Address');
+    if (!verified_ba.verified) {
+      $scope.address_error = _compose_err(verified_ba);
+      return false;
+    }
+    var verified_sa = _check_address($scope.shippingAddress, 'Shipping Address');
+    if (!verified_sa.verified) {
+      $scope.address_error = _compose_err(verified_sa);
+      return false;
+    }
+
+    var order_data = create_order_date($scope.shippingAddress, $scope.billingAddress, $scope.data);
     usSpinnerService.spin('spinner-order');
     $http.post('/customer/order/save', order_data).then(function (promise) {
       $scope.orderSent = true;
@@ -97,11 +154,10 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
       $scope.orderCreationError = true;
       usSpinnerService.stop('spinner-order');
     }).then(function (promise) {
-        var data = prepare_task_data(promise, $scope.data);
-        add_order_email_task(data)
+      var data = prepare_task_data(promise, $scope.data);
+      add_order_email_task(data)
     })
   }
-
 
 
   $scope.toggleBillingAddress = function () {
@@ -129,7 +185,8 @@ magento_module.controller("CustomerCheckoutController", function ($scope,
   $scope.printOrder = function (order_id) {
     var w = window.open('/frontend/order/' + order_id + '/print');
     w.print();
-  }
+  };
+
 
   $scope.init = function () {
     $http.get('/customer/order/new').then(function (promise) {

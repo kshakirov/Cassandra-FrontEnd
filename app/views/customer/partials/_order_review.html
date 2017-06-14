@@ -9,13 +9,11 @@
           <address>
             {{billingAddress.value.name || billingAddress.value.lastname}}<br>
             {{billingAddress.value.street}}<br>
-
-
-            {{billingAddress.value.city}},<br>
-            {{billingAddress.value.region_id}},<br>
+            {{billingAddress.value.city}}<br>
+            {{billingAddress.value.region_id}}<br ng-if="billingAddress.value.region_id">
             {{billingAddress.value.postcode}}<br>
             {{billingAddress.value.country_id}}<br>
-            T: {{billingAddress.value.telephone}}
+            <span ng-if="billingAddress.value.telephone.length > 0">T:</span>{{billingAddress.value.telephone}}
           </address>
         </div>
         <div class="col-2">
@@ -23,13 +21,11 @@
           <address>
             {{shippingAddress.value.name || shippingAddress.value.lastname}}<br>
             {{shippingAddress.value.street}}<br>
-
-
-            {{shippingAddress.value.city}},<br>
-            {{shippingAddress.value.region_id}},<br>
+            {{shippingAddress.value.city}}<br>
+            {{shippingAddress.value.region_id}}<br ng-if="shippingAddress.value.region_id">
             {{shippingAddress.value.postcode}}<br>
             {{shippingAddress.value.country_id}}<br>
-            T: {{shippingAddress.value.telephone}}
+            <span ng-if="shippingAddress.value.telephone.length > 0">T:</span>{{shippingAddress.value.telephone}}
 
           </address>
         </div>

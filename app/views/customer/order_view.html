@@ -25,14 +25,11 @@
               <div class="box-content">
                 <address>
                   {{order.shipping_address.name ||order.shipping_address.lastname}}<br>
-                  {{order.shipping_address.company}}<br>
+                  {{order.shipping_address.company}}<br ng-if="order.shipping_address.company">
                   {{order.shipping_address.street}}<br>
-
-
-                  {{order.shipping_address.city}}, {{order.shipping_address.region_id}},
+                  {{order.shipping_address.city}}, {{order.shipping_address.region_id}}<span ng-if="order.shipping_address.region_id">,</span>{{order.shipping_address.country_id}}<br>
                   {{order.shipping_address.postcode}}<br>
-                  {{order.shipping_address.country}}<br>
-                  T: {{order.shipping_address.telephone}}
+                  <span ng-if="order.shipping_address.telephone">T:</span> {{order.shipping_address.telephone}}
 
                 </address>
               </div>
@@ -58,14 +55,11 @@
               <div class="box-content">
                 <address>
                   {{order.billing_address.name || order.billing_address.lastname}}<br>
-                  {{order.billing_address.company}}<br>
+                  {{order.billing_address.company}}<br ng-if="order.billing_address.company">
                   {{order.billing_address.street}}<br>
-
-
-                  {{order.billing_address.city}}, {{order.billing_address.region_id}},
+                  {{order.billing_address.city}},  {{order.billing_address.region_id}}<span ng-if="order.billing_address.region_id">,</span>{{order.billing_address.country_id}}<br>
                   {{order.billing_address.postcode}}<br>
-                  {{order.billing_address.country}}<br>
-                  T: {{order.billing_address.telephone}}
+                  <span ng-if="order.billing_address.telephone">T:</span>{{order.billing_address.telephone}}
 
                 </address>
               </div>
