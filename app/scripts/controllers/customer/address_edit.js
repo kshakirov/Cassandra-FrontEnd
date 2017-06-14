@@ -37,12 +37,10 @@ magento_module.controller("CustomerAddressEditController", function ($scope,
 
 
   function check_address_name(address, customer) {
-    if (address) {
-      if (address.hasOwnProperty('name') && not_empty_string(address.name)) {
-        return address.name;
-      }
-      return address.name = customer.firstname + " " + customer.lastname
+    if (address.hasOwnProperty('name') && not_empty_string(address.name)) {
+      return address.name;
     }
+    return address.name = customer.firstname + " " + customer.lastname
   }
 
   $scope.init = function () {
@@ -50,14 +48,11 @@ magento_module.controller("CustomerAddressEditController", function ($scope,
     $http.get("/customer/account").then(function (promise) {
       $scope.customer = promise.data;
       if (current_address) {
-        $scope.address = $scope.customer[_get_address_type(current_address)];
-        if ($scope.address) {
-          $scope.address.name = check_address_name($scope.address, $scope.customer)
-        } else {
+        if ($scope.customer[_get_address_type(current_address)] == null) {
           $scope.customer[_get_address_type(current_address)] = _create_empty_address();
-          $scope.address = $scope.customer[_get_address_type(current_address)];
-          $scope.address.name = check_address_name($scope.address, $scope.customer)
         }
+        $scope.address = $scope.customer[_get_address_type(current_address)];
+        $scope.address.name = check_address_name($scope.address, $scope.customer)
       }
       $scope.addressReady = true;
     })
