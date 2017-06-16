@@ -37,7 +37,6 @@ magento_module.controller("LoginManager", function ($scope, $http,
     return $http.get('/customer/data').then(function (promise) {
       $scope.customer = promise.data;
       $scope.isAuthorized = true;
-      $rootScope.back();
     })
   }
 
@@ -50,7 +49,10 @@ magento_module.controller("LoginManager", function ($scope, $http,
 
   $scope.$on('loginDone', function (event, args) {
     if (args) {
-      $scope.initManager();
+      getCurrency();
+      $scope.initManager().then(function (promise) {
+        $rootScope.back();
+      })
     }
   })
 
