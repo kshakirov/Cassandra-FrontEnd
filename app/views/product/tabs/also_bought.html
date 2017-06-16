@@ -16,7 +16,7 @@
             <a ng-repeat="(key,value) in interchange" ng-href="/#/part/sku/{{key}}">{{value}}</a>
           </span>
       </td>
-    <td title="'Price'" filter="{ price: 'number'}" sortable="'price'" >
+    <td title="'Price'" filter="{ price: 'number'}" sortable="'price'" style="text-align: right">
       <span class="cart-price">
                                         <span class="regular-price" ng-bind-html='item.price | product_price_filter '></span>
                             </span>
