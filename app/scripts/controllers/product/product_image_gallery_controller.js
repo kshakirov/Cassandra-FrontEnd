@@ -19,6 +19,7 @@ magento_module.controller("ProductImageGalleryController", function ($scope,
     var img_urls = images.map(function (img) {
       return _create_url(sku, img.id)
     })
+    img_urls.push("/imageserver/product/" + sku + "/image/1000/1000");
     return img_urls.join(',');
   }
 

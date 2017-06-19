@@ -6,7 +6,6 @@ magento_module.controller("ProductMainImageController", function ($scope,
     };
 
     $scope.clickToOpen = function () {
-        console.log("Hi")
         ngDialog.open({ template: 'templateId' });
     };
 })
