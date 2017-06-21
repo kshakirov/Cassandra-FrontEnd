@@ -11,9 +11,9 @@
     </li>
     <li ng-if="is_cartride()"><strong>Turbo Serviced:</strong> <span ng-bind-html=tiServiced></span></li>
     <li ng-if="is_turbo() || is_cartride()">
-        <strong>Turbo Type:</strong>{{product.turbo_type | int_array_or_string}}
+        <strong>Turbo Type:</strong> {{product.turbo_type | int_array_or_string}}
     </li>
     <li ng-if="!is_turbo() && !is_cartride()">
-        <strong>Turbo Types:</strong>{{product.turbo_type | int_array_or_string}}
+        <strong>Turbo Types:</strong> {{product.turbo_type | int_array_or_string}}
     </li>
 </ul>
