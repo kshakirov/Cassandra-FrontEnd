@@ -25,7 +25,7 @@ magento_module.controller("CustomerAccountInformationController", function ($sco
     return {
       id: customer.id,
       firstname: customer.firstname,
-      lastname: customer.lastname, email: customer.email,
+      lastname: customer.lastname, email: customer.email.toLowerCase(),
     }
   }
 
