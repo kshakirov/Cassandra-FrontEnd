@@ -37,7 +37,7 @@ magento_module.controller("ForgotPasswordController", function ($scope,
   }
 
   $scope.resetPassword = function (email_address) {
-    var payload = {email: email_address};
+    var payload = {email: email_address.toLowerCase()};
     _reset_password(payload).then(function (promise) {
         notify_success($scope.action_result);
         unnotify_error($scope.action_result);

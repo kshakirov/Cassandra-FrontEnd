@@ -33,7 +33,7 @@ magento_module.controller("CustomerLogin", function ($scope,
   $scope.submitPasswordByEnterClick = function (event, customer_email, password) {
     if (event.which === 13) {
       var data = {
-        customer_email: customer_email,
+        customer_email: customer_email.toLowerCase(),
         password: password
       };
       return _submitPassword(data);
@@ -42,7 +42,7 @@ magento_module.controller("CustomerLogin", function ($scope,
 
   $scope.submitPassword = function () {
     var data = {
-      customer_email: $scope.customer_email,
+      customer_email: $scope.customer_email.toLowerCase(),
       password: $scope.password
     };
     return _submitPassword(data);
