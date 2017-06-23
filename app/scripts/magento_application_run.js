@@ -22,6 +22,8 @@ magento_module.run(function ($rootScope, $location) {
     $rootScope.flags = {catalog: false};
     var history = [];
 
+    $rootScope.fingerprint = new Fingerprint({screen_resolution: true}).get();
+
     $rootScope.$on('$routeChangeSuccess', function () {
       if (history.length < 10) {
         history.push($location.$$path);
