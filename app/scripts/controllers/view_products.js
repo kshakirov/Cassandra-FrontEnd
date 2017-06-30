@@ -6,26 +6,27 @@ magento_module.controller("ViewedProductsController", function ($scope,
   function _get_customer_products() {
     return $http.get('/customer/product/viewed').then(function (promise) {
       console.log(promise.data);
-      $scope.viewedProducts = promise.data;
-      $scope.loaded = true;
+      return promise.data;
     })
   }
 
   function _get_visitor_products() {
     return $http.get('/frontend/product/viewed').then(function (promise) {
       console.log(promise.data);
-      $scope.viewedProducts = promise.data;
-      $scope.loaded = true;
+      return promise.data;
     })
   }
 
   $scope.init = function () {
     var token = $cookies.getObject('token');
-    var visitor_id = $cookies.getObject('visitorid');
     if (!angular.isUndefined(token))
-      return _get_customer_products();
-    else if (!angular.isUndefined(visitor_id))
-      return _get_visitor_products();
+      return _get_customer_products().then(function (promise) {
+        $scope.viewed_products = promise;
+      });
+    else
+      return _get_visitor_products().then(function (promise) {
+        $scope.viewed_products = promise;
+      });
   }
 
 })
