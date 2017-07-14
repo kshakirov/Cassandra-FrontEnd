@@ -88,10 +88,11 @@ magento_module.controller("CustomerCart", function ($scope,
 
   $scope.checkout = function () {
     var currency = _get_current_currency();
-    set_cart_currency(currency.code).then(function (promise) {
-      $location.path("/customer/checkout")
+    _update_cart(this.cart_data).then(function (promise) {
+      set_cart_currency(currency.code).then(function (promise) {
+        $location.path("/customer/checkout")
+      })
     })
-
   }
 
   $scope.redirectToCatalog = function () {
@@ -105,7 +106,7 @@ magento_module.controller("CustomerCart", function ($scope,
       })
     });
 
-  }
+  };
 
   $scope.reEmptyCart = function () {
     $http.delete('/customer/cart').then(function () {
