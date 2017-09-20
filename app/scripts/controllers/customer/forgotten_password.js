@@ -11,7 +11,7 @@ magento_module.controller("ForgotPasswordController", function ($scope,
       flag: false,
       msg: ""
     }
-  }
+  };
 
   function _reset_password(payload) {
     return $http.post("/frontend/customer/password/reset/", payload).then(function (promise) {

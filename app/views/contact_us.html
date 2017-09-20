@@ -11,6 +11,22 @@
     </ul>
   </div>
   <div class="col-main">
+    <div>
+      <ul class="messages">
+        <li class="success-msg" ng-if="action_result.success.flag">
+          <ul>
+            <li><span>{{action_result.success.message}}</span></li>
+          </ul>
+        </li>
+        <li class="error-msg" ng-if="action_result.error.flag">
+          <ul>
+            <li>
+              <span>{{action_result.error.message}}</span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
     <div class="std"><p><strong>Turbo International</strong>&nbsp;services the worldwide turbo aftermarket through a
       network of distributors.</p>
       <p><span></span></p>
