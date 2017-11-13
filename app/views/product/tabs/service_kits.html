@@ -2,7 +2,7 @@
     <!--<h1>Service Kits</h1>-->
     <table ng-table="serviceKitsTableParams" template-pagination="custom/pager" class="data-table" show-filter="true">
         <tr ng-repeat="sk in $data">
-            <td title="'Cartridge OE Part #'" filter="{ partNumber: 'text'}" sortable="'part_number'">
+            <td title="'Part #'" filter="{ partNumber: 'text'}" sortable="'part_number'">
                 <a href="/#/part/sku/{{sk.sku}}">{{sk.part_number}}</a>
             </td>
             <td title="'TI Part'" filter="{ ti_part_number: 'text'}" sortable="'ti_part_number'">
