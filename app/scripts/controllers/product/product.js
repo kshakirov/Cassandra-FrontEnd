@@ -168,6 +168,11 @@ magento_module.controller("ProductController", function ($scope,
         return $scope.product.part_type.toLowerCase() == 'turbo';
     };
 
+  $scope.is_actuator = function () {
+    if ($scope.product && $scope.product.part_type)
+      return $scope.product.part_type.toLowerCase() == 'actuator';
+  };
+
     $scope.is_Ti_manufactured = function () {
       if ($scope.product && $scope.product.manufacturer)
         return $scope.product.manufacturer.toLowerCase() == 'turbo international';
@@ -212,7 +217,7 @@ magento_module.controller("ProductController", function ($scope,
     $scope.getWhereUsedHeader = function () {
       if ($scope.is_turbo()) {
         return "OE Part"
-      } else if ($scope.is_cartride()) {
+      } else if ($scope.is_cartride() || $scope.is_actuator()) {
         return "Turbo OE Part"
       } else {
         return "Cartridge OE Part"
