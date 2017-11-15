@@ -2,7 +2,7 @@
   <!--<h1>Service Kits</h1>-->
   <table ng-table="gasketKitTurbosTableParams" template-pagination="custom/pager" class="data-table" show-filter="true">
     <tr ng-repeat="turbo in $data">
-      <td title="'Turbo OE Part #'" filter="{ partNumber: 'text'}" sortable="'part_number'">
+      <td title="'Turbo OE Part #'" filter="{ part_number: 'text'}" sortable="'part_number'">
         <a href="/#/part/sku/{{turbo.id}}">{{turbo.part_number}}</a>
       </td>
       <td title="'TI Part'" filter="{ ti_part_number: 'text'}" sortable="'ti_part_number'">
@@ -14,10 +14,10 @@
       <td title="'Interchanges'" filter="{ interchanges: 'text'}" sortable="'interchanges'">
         {{turbo.interchanges}}
       </td>
-      <td title="'Manufacturer'" filter="{ description: 'text'}" sortable="'manufacturer'">
+      <td title="'Manufacturer'" filter="{ manufacturer: 'text'}" sortable="'manufacturer'">
         {{turbo.manufacturer}}
       </td>
-      <td title="'Turbo Type'" filter="{ description: 'text'}" sortable="'turbo_type'">
+      <td title="'Turbo Type'" filter="{ turbo_type: 'text'}" sortable="'turbo_type'">
         {{turbo.turbo_type}}
       </td>
 
