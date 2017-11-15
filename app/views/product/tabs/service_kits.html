@@ -15,7 +15,7 @@
                 <span  ng-bind-html="sk.prices | ti_price_filter"> </span>
             </td>
         </tr>
-        <tr ng-if="!data || $data.length  == 0 ">
+        <tr ng-if="!$data || $data.length  == 0 ">
             <td colspan="7" style="text-align: center"><b>No Results</b></td>
         </tr>
     </table>
