@@ -4,7 +4,7 @@ magento_module.filter('or_ref_urls_filter', function ($cookies, $filter) {
   function create_array_of_urls(urls) {
     return urls.map(
       function (url) {
-        return '<a  href="#/part/sku/' + url.sku + '">' + url.part_number + '</a>'
+        return '<a  href="/part/sku/' + url.sku + '">' + url.part_number + '</a>'
       })
   }
 
@@ -18,7 +18,7 @@ magento_module.filter('or_ref_urls_filter', function ($cookies, $filter) {
           html = ''
 
       } else {
-        html = '<a  href="#/part/sku/' + input.sku + '">' + input.part_number + '</a>'
+        html = '<a  href="/part/sku/' + input.sku + '">' + input.part_number + '</a>'
       }
     }
     return html

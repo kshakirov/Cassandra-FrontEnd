@@ -3,7 +3,7 @@ magento_module.filter('ti_arr_2_urls', function () {
         var limit = ti_skus.length;
         var urls_string = "";
         for(var i=0;i < limit; i++){
-            urls_string = urls_string + '<a href="#/part/sku/' + ti_skus[i] + ' ">'+  ti_part_numbers[i] + '</a>';
+            urls_string = urls_string + '<a href="/part/sku/' + ti_skus[i] + ' ">'+  ti_part_numbers[i] + '</a>';
             if(i< limit -1){
                 urls_string = urls_string + ", ";
             }

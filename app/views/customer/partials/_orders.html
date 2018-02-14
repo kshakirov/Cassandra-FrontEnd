@@ -9,7 +9,7 @@
   <table ng-table="ordersTableParams" template-pagination="custom/pager" class="table data-table" show-filter="true">
     <tr ng-repeat="order in $data">
       <td title="'ORDER'" filter="{ order_id: 'text'}" sortable="'order_id'">
-        <a ng-href="/#/customer/order/{{order.order_id}}/view">{{order.order_id}}</a></td>
+        <a ng-href="/customer/order/{{order.order_id}}/view">{{order.order_id}}</a></td>
       <td title="'DATE'" filter="{ updated_at: 'text'}" sortable="'updated_at'">
         {{order.updated_at}}</td>
       <td title="'SHIP TO'" filter="{ shipping_address.lastname: 'text'}" sortable="'order.shipping_address.lastname'">

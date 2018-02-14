@@ -2,10 +2,10 @@
     <table ng-table="where_usedTableParams" template-pagination="custom/pager" class="data-table" show-filter="true">
         <tr ng-repeat="bom in $data">
             <td title="getWhereUsedHeader()" filter="{ partNumber: 'text'}" sortable="'partNumber'">
-                <a href="/#/part/sku/{{bom.sku}}">{{bom.partNumber}}</a>
+                <a href="/part/sku/{{bom.sku}}">{{bom.partNumber}}</a>
             </td>
             <td title="'TI Part'" filter="{ tiPartNumber: 'text'}" sortable="'tiPartNumber'">
-                <a href="/#/part/sku/{{bom.tiSku}}">{{bom.tiPartNumber}}</a>
+                <a href="/part/sku/{{bom.tiSku}}">{{bom.tiPartNumber}}</a>
             </td>
             <td title="'Description'" filter="{ description: 'text'}" sortable="'description'">
                 {{bom.description}}

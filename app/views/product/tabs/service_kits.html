@@ -3,10 +3,10 @@
     <table ng-table="serviceKitsTableParams" template-pagination="custom/pager" class="data-table" show-filter="true">
         <tr ng-repeat="sk in $data">
             <td title="'Part #'" filter="{ partNumber: 'text'}" sortable="'part_number'">
-                <a href="/#/part/sku/{{sk.sku}}">{{sk.part_number}}</a>
+                <a href="/part/sku/{{sk.sku}}">{{sk.part_number}}</a>
             </td>
             <td title="'TI Part'" filter="{ ti_part_number: 'text'}" sortable="'ti_part_number'">
-                <a href="/#/part/sku/{{sk.tiSku}}">{{sk.ti_part_number}}</a>
+                <a href="/part/sku/{{sk.tiSku}}">{{sk.ti_part_number}}</a>
             </td>
             <td title="'Description'" filter="{ description: 'text'}" sortable="'description'">
                 {{sk.description}}

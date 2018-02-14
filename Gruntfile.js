@@ -9,6 +9,11 @@
 
 module.exports = function (grunt) {
 
+  require('time-grunt')(grunt);
+
+  // HTML5 Enabling
+  var modRewrite = require('connect-modrewrite');
+
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -80,6 +85,9 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
+              modRewrite([
+                '!\\.html|\\.js|\\.css|\\.png|\\.jpg|\\.eot|\\.otf|\\.svg|\\.ttf|\\.woff$ /index.html [L]'
+              ]),
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',

@@ -33,7 +33,7 @@ magento_module.filter('ti_price_filter', function ($cookies, $filter) {
     }
 
     function _render_login() {
-        return '<a href="/#/customer/account/login">Login</a>';
+        return '<a href="/customer/account/login">Login</a>';
     }
 
     return function (input, row) {

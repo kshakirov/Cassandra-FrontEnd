@@ -7,7 +7,7 @@
     <tr ng-repeat="row in rows" ng-class-odd="'odd'" ng-class-even="'even'">
         <td ng-repeat="item in row track by $index">
             <span ng-if="item.code=='ti_part'">
-                <a href="#/part/sku/{{item.value.ti_sku}}">{{item.value.ti_part_number | uppercase}}</a>
+                <a href="/part/sku/{{item.value.ti_sku}}">{{item.value.ti_part_number | uppercase}}</a>
             </span>
             <span ng-if="item.code=='ti_chra'" ng-bind-html=" item.value | chra_2_links">
 
@@ -36,7 +36,7 @@
             </div>
             <span
                     ng-if="item.hasOwnProperty('price') && item.price=='Unauthorized'">
-                      <a href="/#/customer/account/login">Login</a>
+                      <a href="/customer/account/login">Login</a>
             </span>
         </td>
     </tr>

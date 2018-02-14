@@ -6,13 +6,13 @@
       <tr>
         <th ng-repeat="col in cols" class="rotate" ng-class="selectedCols(col)">
           <div><span>
-                          <a ng-href="/#/part/sku/{{col.sku}}">{{col.title}}</a>
+                          <a ng-href="/part/sku/{{col.sku}}">{{col.title}}</a>
                       </span>
           </div>
         </th>
       </tr>
       <tr ng-repeat="row in kit_matrix">
-        <td ng-class="selectedColsDesc(row)"><a ng-href="/#/part/sku/{{row.sku}}">{{row.part_number}}</a></td>
+        <td ng-class="selectedColsDesc(row)"><a ng-href="/part/sku/{{row.sku}}">{{row.part_number}}</a></td>
         <td ng-class="selectedColsDesc(row)">{{row.part_type}}</td>
         <td ng-class="selectedColsDesc(row)">{{row.description}}</td>
         <td

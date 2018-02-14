@@ -7,7 +7,7 @@
     <li><strong>Part Number:</strong> {{product.part_number}}</li>
     <li ng-if="product.ti_part_number">
         <strong>Compatible TI Part:</strong>
-        <a ng-href="/#/part/sku/{{product.ti_part_sku}}">{{product.ti_part_number}}</a>
+        <a ng-href="/part/sku/{{product.ti_part_sku}}">{{product.ti_part_number}}</a>
     </li>
     <li ng-if="is_cartride()"><strong>Turbo Serviced:</strong> <span ng-bind-html=tiServiced></span></li>
     <li ng-if="is_turbo() || is_cartride()">

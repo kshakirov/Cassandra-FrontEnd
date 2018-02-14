@@ -33,7 +33,7 @@ magento_module.filter('parts_array_2_urls', function ($filter) {
     function _create_url_array(parts) {
         var links = parts.sort(compare_alphanumerics);
         links  = links.map(function (current, index, parts) {
-            return '<a href="#/part/sku/' + current.sku + ' ">' + current.part_number + '</a>'
+            return '<a href="/part/sku/' + current.sku + ' ">' + current.part_number + '</a>'
         })
         return links.join(", ");
     }

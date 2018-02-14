@@ -12,7 +12,7 @@ magento_module.controller("SearchController", function ($scope,
 
     function _search(query) {
         if (_is_outside_of_magento())
-            $window.location.assign('/#/parts/search/' + query);
+            $window.location.assign('/parts/search/' + query);
         else
             $location.path('/parts/search/' + query)
     }

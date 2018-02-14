@@ -44,7 +44,7 @@ magento_module.controller("LoginManager", function ($scope, $http,
     $cookies.remove('token');
     $scope.isAuthorized = false;
     $scope.customer.name = " to Turbo International";
-    $location.path('/#/');
+    $location.path('/');
   }
 
   $scope.$on('loginDone', function (event, args) {

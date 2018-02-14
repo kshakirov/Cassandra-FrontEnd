@@ -2,7 +2,7 @@
 <table ng-table="interchangeTableParams" template-pagination="custom/pager" class="table data-table" show-filter="true">
     <tr ng-repeat="interchange in $data">
         <td title="'Part'" filter="{ id: 'number'}" sortable="'id'">
-            <a href="/#/part/sku/{{interchange.id}}">{{interchange.part_number}}</a></td>
+            <a href="/part/sku/{{interchange.id}}">{{interchange.part_number}}</a></td>
         <td title="'Description'" filter="{ description: 'text'}" sortable="'description'">
             {{interchange.description}}</td>
         <td title="'Manufacturer'" filter="{ manufacturer: 'text'}" sortable="'manufacturer'">

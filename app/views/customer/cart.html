@@ -6,7 +6,7 @@
       </div>
       <div class="cart-empty">
         <p>You have no items in your shopping cart.</p>
-        <p>Click <a ng-href="/#/">here</a> to continue shopping.</p>
+        <p>Click <a ng-href="/">here</a> to continue shopping.</p>
       </div>
     </div>
     <div ng-if="!emptyCart"  class="col-main">
@@ -71,7 +71,7 @@
               <tbody>
               <tr ng-repeat="(key, item) in cart_data.items" class="first last odd">
                 <!-- Product image -->
-                <td><a ng-href="/#/part/sku/{{key}}" title="{{item.name}}" class="product-image"><img
+                <td><a ng-href="/part/sku/{{key}}" title="{{item.name}}" class="product-image"><img
                   ng-src="/imageserver/product/{{key}}/image/75/50" width="75"
                   height="50" alt="{{item.name}}"></a></td>
                 <!-- Part Type -->
@@ -81,11 +81,11 @@
                 </td>
                 <!-- TI Part Number -->
                 <td>
-                  <a style="white-space: nowrap;" ng-href="/#/part/sku/{{key}}">{{item.ti_part}}</a>
+                  <a style="white-space: nowrap;" ng-href="/part/sku/{{key}}">{{item.ti_part}}</a>
                 </td>
                 <!-- OEM Part Number -->
                 <td>
-                  <a ng-href="/#/part/sku/{{item.oem_part_sku}}">  {{item.oem_part}}</a>
+                  <a ng-href="/part/sku/{{item.oem_part_sku}}">  {{item.oem_part}}</a>
                 </td>
                 <!-- Add to wishlist -->
                 <!--<td class="a-center">-->

@@ -6,21 +6,21 @@
 
   <ul ng-if="isAuthorized" class="links" ng-controller="ComparedProductsController">
     <li class="first"><a href="" ng-click="initModal()"  ng-init="initCount()">Compared Products (<span>{{compared_product_count}}</span>)</a></li>
-    <li ><a href="/#/customer/account/" title="My Account">My Account</a></li>
+    <li ><a href="/customer/account/" title="My Account">My Account</a></li>
     <!--<li >-->
-      <!--<a href="/#/customer/account/wishlist/" title="My Wishlist (-)">My Wishlist ({{}})</a>-->
+      <!--<a href="/customer/account/wishlist/" title="My Wishlist (-)">My Wishlist ({{}})</a>-->
     <!--</li>-->
     <li ng-controller="CustomerCart" ng-init="getProductsCount()">
-        <a href="/#/customer/cart/" title="My Cart ()" class="top-link-cart">My Cart (<span>{{product_count || 0}}</span>)</a>
+        <a href="/customer/cart/" title="My Cart ()" class="top-link-cart">My Cart (<span>{{product_count || 0}}</span>)</a>
     </li>
-    <li><a href="/#/customer/checkout/" title="Checkout" class="top-link-checkout">Checkout</a></li>
+    <li><a href="/customer/checkout/" title="Checkout" class="top-link-checkout">Checkout</a></li>
     <li class=" last"><a ng-click="logout()" href="" title="Log Out">Log Out</a></li>
   </ul>    </div>
 <div class="header">
   <h1 class="logo">
     <strong>
       Turbo International            </strong>
-    <a href="/#/" title="Turbo International" class="logo">
+    <a href="/" title="Turbo International" class="logo">
       <img src="images/ti-logo_100x77.jpg" alt="Turbo International">
     </a>
   </h1>

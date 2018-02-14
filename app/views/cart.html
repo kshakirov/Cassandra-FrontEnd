@@ -14,7 +14,7 @@
         <p class="block-subtitle">Recently added item(s)</p>
         <ol id="cart-sidebar" class="mini-products-list">
             <li class="item last odd" ng-repeat="item in cart_wigdet.items">
-                <a ng-href="/#/part/sku/{{item.sku}}"
+                <a ng-href="/part/sku/{{item.sku}}"
                    title=""
                    class="product-image">
                     <img ng-src="/imageserver/product/{{item.sku}}/image/75/50" width="55" height="50" alt="">
@@ -22,7 +22,7 @@
                 <div class="product-details">
                     <a href="/checkout/cart/delete/id/{{item.id}}" title="Remove This Item" onclick="return confirm('Are you sure you would like to remove this item from the shopping cart?');" class="btn-remove">Remove This Item</a>
                     <a href="/checkout/cart/configure/id/{{item.id}}"  title="Edit item" class="btn-edit">Edit item</a>
-                    <p class="product-name"><a ng-href="/#/part/sku/{{item.sku}}"> {{item.name}}</a></p>
+                    <p class="product-name"><a ng-href="/part/sku/{{item.sku}}"> {{item.name}}</a></p>
                     <strong>{{item.qty}}</strong> x
 
 

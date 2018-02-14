@@ -5,11 +5,11 @@
                 {{bom.part_type}}
             </td>
             <td title="'Part'"  sortable="'oe_part_number_sort_field'">
-                <a  href="#/part/sku/{{bom.oe_sku}}">{{bom.oe_part_number}}</a>
+                <a  href="/part/sku/{{bom.oe_sku}}">{{bom.oe_part_number}}</a>
             </td>
 
             <td title="'TI Part'"  sortable="'part_number'">
-                <a  href="#/part/sku/{{bom.sku}}">{{bom.part_number}}</a>
+                <a  href="/part/sku/{{bom.sku}}">{{bom.part_number}}</a>
             </td>
             <td title="'Interch Part'"  sortable="'interchanges'">
                 <span ng-bind-html='bom.interchanges | parts_array_2_urls'></span>

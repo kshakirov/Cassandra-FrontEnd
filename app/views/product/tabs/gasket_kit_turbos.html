@@ -3,10 +3,10 @@
   <table ng-table="gasketKitTurbosTableParams" template-pagination="custom/pager" class="data-table" show-filter="true">
     <tr ng-repeat="turbo in $data">
       <td title="'Turbo OE Part #'" filter="{ part_number: 'text'}" sortable="'part_number'">
-        <a href="/#/part/sku/{{turbo.id}}">{{turbo.part_number}}</a>
+        <a href="/part/sku/{{turbo.id}}">{{turbo.part_number}}</a>
       </td>
       <td title="'TI Part'" filter="{ ti_part_number: 'text'}" sortable="'ti_part_number'">
-        <a href="/#/part/sku/{{turbo.ti_id}}">{{turbo.ti_part_number}}</a>
+        <a href="/part/sku/{{turbo.ti_id}}">{{turbo.ti_part_number}}</a>
       </td>
       <td title="'Description'" filter="{ description: 'text'}" sortable="'description'">
         {{turbo.description}}

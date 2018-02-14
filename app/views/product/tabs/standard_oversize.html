@@ -1,6 +1,6 @@
 <div ng-if="is_journal_bearing()">
   <div ng-init="init_standard_oversize()">
-    <h2>Standard Part - <a ng-href="/#/part/sku/{{original_part.sku}}">{{original_part.part_number}}</a></h2>
+    <h2>Standard Part - <a ng-href="/part/sku/{{original_part.sku}}">{{original_part.part_number}}</a></h2>
     <table class="data-table" id="product-information-critical-table">
       <thead>
       <tr>
@@ -47,7 +47,7 @@
           <span ng-bind-html="'STD'  | std_ovrsize"> </span>
         </td>
         <td width="100px" title="'TI PART'" >
-          <a ng-href="/#/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
+          <a ng-href="/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
         <td title="'INTERCHANGES'">
           <span ng-bind-html="item.interchanges | parts_array_2_urls"> </span></td>
       </tr>
@@ -66,7 +66,7 @@
           <span ng-bind-html="item.minInnerDiameter_out  | std_ovrsize"> </span>
         </td>
         <td width="100px" title="''" filter="{ part_number: 'text'}" >
-          <a ng-href="/#/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
+          <a ng-href="/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
         <td title="''" filter="{ interchanges_flat: 'text'}" >
           <span ng-bind-html="item.interchanges | parts_array_2_urls"> </span></td>
       </tr>
@@ -79,7 +79,7 @@
 
 <div ng-if="is_piston_ring()">
   <div ng-init="init_standard_oversize()">
-    <h2>Standard Part - <a ng-href="/#/part/sku/{{original_part.sku}}">{{original_part.part_number}}</a></h2>
+    <h2>Standard Part - <a ng-href="/part/sku/{{original_part.sku}}">{{original_part.part_number}}</a></h2>
     <table class="data-table" id="product-information-critical-table-2">
       <thead>
       <tr>
@@ -122,7 +122,7 @@
           <span ng-bind-html="'STD'  | std_ovrsize"> </span>
         </td>
         <td width="100px" title="'TI PART'" >
-          <a ng-href="/#/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
+          <a ng-href="/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
         <td title="'INTERCHANGES'">
           <span ng-bind-html="item.interchanges | parts_array_2_urls"> </span></td>
       </tr>
@@ -142,7 +142,7 @@
           <span ng-bind-html="item.widthD_out  | std_ovrsize"> </span>
         </td>
         <td width="100px" title="''" filter="{ part_number: 'text'}" >
-          <a ng-href="/#/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
+          <a ng-href="/part/sku/{{item.sku}}">{{item.part_number }}</a></td>
         <td title="''" filter="{ interchanges_flat: 'text'}" >
           <span ng-bind-html="item.interchanges | parts_array_2_urls"> </span></td>
       </tr>

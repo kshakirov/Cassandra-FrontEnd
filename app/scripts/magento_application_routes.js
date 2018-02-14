@@ -1,7 +1,7 @@
-var VIEW_DIR = 'views/';
+var VIEW_DIR = '/views/';
 
 // configure our routes
-magento_module.config(function ($routeProvider) {
+magento_module.config(function ($routeProvider, $locationProvider) {
   $routeProvider
   // route for the start page
     .when('/parttype/:id/parts/critical/:unit?', {
@@ -82,7 +82,7 @@ magento_module.config(function ($routeProvider) {
       controller: 'ApplicationController'
     })
     .when('/about-us/', {
-      templateUrl: VIEW_DIR + 'about_us.html',
+      templateUrl:   '/views/about_us.html',
       data: {
         pageTitle: "TURBO: ABOUT US"
       },
@@ -205,4 +205,9 @@ magento_module.config(function ($routeProvider) {
       controller: 'HomeController'
     })
     .otherwise({redirectTo: '/'});
+
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  });
 });

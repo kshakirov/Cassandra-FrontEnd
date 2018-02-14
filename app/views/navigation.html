@@ -13,7 +13,7 @@
           <ul ng-class="getClass($index)">
             <li ng-repeat="part in stdParts"  ng-class="getComponentListItemClass(part)">
               <a  ng-click="createBreadcrumb('Manufacturer', manufacturer[0] + ' / ' + part[0])"
-                  ng-href="#/manufacturer/{{manufacturer[1] }}/parttype/{{part[1]}}/parts">{{part[0]}}</a>
+                  ng-href="/manufacturer/{{manufacturer[1] }}/parttype/{{part[1]}}/parts">{{part[0]}}</a>
             </li>
           </ul>
         </li>
@@ -24,7 +24,7 @@
       <ul ng-mouseover="getMouseOverAction('component')" ng-class="getOverClass('component', 'shown-sub')">
         <li ng-repeat="part in stdParts"  ng-class="getComponentListItemClass(part)">
           <a ng-click="createBreadcrumb('Component', part[0])"
-             ng-href="/#/parttype/{{part[1]}}/parts/standard" >
+             ng-href="/parttype/{{part[1]}}/parts/standard" >
             {{part[0]}}
           </a>
         </li>
@@ -37,7 +37,7 @@
         <li ng-repeat="part in criticalParts">
           <a
             ng-click="createBreadcrumb('Critical Dimensions', part[0])"
-            ng-href="/#/parttype/{{part[1]}}/parts/critical" >
+            ng-href="/parttype/{{part[1]}}/parts/critical" >
             {{part[0]}}
           </a>
         </li>
@@ -46,21 +46,21 @@
     </li>
 
 
-    <li><a href="/#/application">Applications</a></li>
+    <li><a href="/application">Applications</a></li>
     <li><a
-      href="/#/clearance/1">
+      href="/clearance/1">
       Clearance
     </a>
     </li>
     <li>
       <a
         ng-click="createBreadcrumb('Catalog')"
-        href="/#/parts">
+        href="/parts">
         Catalog
       </a>
     </li>
-    <li><a href="/#/about-us">About Us</a></li>
-    <li><a href="/#/contact-us">Contact Us</a></li>
-    <li><a href="/#/customer/account/login">Login</a></li>
+    <li><a href="/about-us">About Us</a></li>
+    <li><a href="/contact-us">Contact Us</a></li>
+    <li><a href="/customer/account/login">Login</a></li>
   </ul>
 </div>
