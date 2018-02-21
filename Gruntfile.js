@@ -121,7 +121,18 @@ module.exports = function (grunt) {
       dist: {
         options: {
           open: true,
-          base: '<%= yeoman.dist %>'
+          base: '<%= yeoman.dist %>',
+          middleware: function (connect) {
+            return [
+              connect.static('robots.txt'),
+              modRewrite([
+                '^/robots.txt /robots.txt',
+               '!\\.html|\\.js|\\.css|\\.png|\\.jpg|\\.eot|\\.otf|\\.svg|\\.ttf|\\.woff$ /index.html [L]'
+              ]),
+              connect.static(appConfig.dist)
+            ]
+
+          }
         }
       }
     },
@@ -348,6 +359,7 @@ module.exports = function (grunt) {
         options: {
           module: 'MagentoApp',
           htmlmin: '<%= htmlmin.dist.options %>',
+          //prefix: '/',
           usemin: 'scripts/scripts.js'
         },
         cwd: '<%= yeoman.app %>',
@@ -432,7 +444,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+      return grunt.task.run([ 'connect:dist:keepalive']);
     }
 
     grunt.task.run([
