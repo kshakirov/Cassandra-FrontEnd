@@ -359,7 +359,7 @@ module.exports = function (grunt) {
         options: {
           module: 'MagentoApp',
           htmlmin: '<%= htmlmin.dist.options %>',
-          //prefix: '/',
+          prefix: '',
           usemin: 'scripts/scripts.js'
         },
         cwd: '<%= yeoman.app %>',

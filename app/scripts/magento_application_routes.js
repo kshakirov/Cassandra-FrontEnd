@@ -1,4 +1,4 @@
-var VIEW_DIR = '/views/';
+var VIEW_DIR = 'views/';
 
 // configure our routes
 magento_module.config(function ($routeProvider, $locationProvider) {
