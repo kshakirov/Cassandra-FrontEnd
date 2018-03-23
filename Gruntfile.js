@@ -86,7 +86,7 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
               modRewrite([
-                '!\\.html|\\.js|\\.css|\\.png|\\.jpg|\\.eot|\\.otf|\\.svg|\\.ttf|\\.woff$ /index.html [L]'
+                '!\\.html|\\.js|\\.css|\\.png|\\.gif|\\.jpg|\\.eot|\\.otf|\\.svg|\\.ttf|\\.woff$ /index.html [L]'
               ]),
               connect.static('.tmp'),
               connect().use(
@@ -127,7 +127,7 @@ module.exports = function (grunt) {
               connect.static('robots.txt'),
               modRewrite([
                 '^/robots.txt /robots.txt',
-               '!\\.html|\\.js|\\.css|\\.png|\\.jpg|\\.eot|\\.otf|\\.svg|\\.ttf|\\.woff$ /index.html [L]'
+               '!\\.html|\\.js|\\.css|\\.png|\\.jpg|\\.gif|\\.eot|\\.otf|\\.svg|\\.ttf|\\.woff$ /index.html [L]'
               ]),
               connect.static(appConfig.dist)
             ]
