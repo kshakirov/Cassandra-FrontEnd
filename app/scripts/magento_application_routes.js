@@ -82,7 +82,7 @@ magento_module.config(function ($routeProvider, $locationProvider) {
       controller: 'ApplicationController'
     })
     .when('/about-us/', {
-      templateUrl:   '/views/about_us.html',
+      templateUrl: VIEW_DIR + 'about_us.html',
       data: {
         pageTitle: "TURBO: ABOUT US"
       },
