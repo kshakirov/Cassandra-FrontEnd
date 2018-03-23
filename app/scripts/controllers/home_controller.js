@@ -19,7 +19,7 @@ magento_module.controller("HomeController", function ($scope,
         } else {
           string = m;
         }
-      })
+      });
       return string || "";
     } else {
       return array
@@ -42,6 +42,10 @@ magento_module.controller("HomeController", function ($scope,
     return _create_string_from_array(turbo_types);
   }
 
+  function _create_url(product) {
+    return "/part/sku/" + product.sku;
+  }
+
   function _process_products(featured_products) {
     var products = featured_products;
     angular.forEach(products, function (product, product_key) {
@@ -50,7 +54,8 @@ magento_module.controller("HomeController", function ($scope,
       product.oe_ref_urls = _create_oe_ref_urls_string(product.oe_ref_urls);
       product.turbo_type = _create_turbo_type_string(product.turbo_type);
       product.sku = product.sku;
-    })
+      product.url = _create_url(product);
+    });
     return products;
   }
 
