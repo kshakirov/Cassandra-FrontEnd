@@ -24,24 +24,24 @@ magento_module.run(function ($rootScope, $location) {
 
     $rootScope.fingerprint = new Fingerprint({screen_resolution: true}).get();
 
-    // $rootScope.$on('$routeChangeSuccess', function () {
-    //   if (history.length < 10) {
-    //     history.push($location.$$path);
-    //   } else {
-    //     history = history.splice(-4);
-    //     history.push($location.$$path);
-    //   }
-    // });
-    //
-    //
-    // $rootScope.back = function () {
-    //   var prevUrl = _get_prev_url(history);
-    //   if (_is_login_url(prevUrl)) {
-    //     $location.path("/");
-    //   } else {
-    //     $location.path(prevUrl);
-    //   }
-    // };
+    $rootScope.$on('$routeChangeSuccess', function () {
+      if (history.length < 10) {
+        history.push($location.$$path);
+      } else {
+        history = history.splice(-4);
+        history.push($location.$$path);
+      }
+    });
+
+
+    $rootScope.back = function () {
+      var prevUrl = _get_prev_url(history);
+      if (_is_login_url(prevUrl)) {
+        $location.path("/");
+      } else {
+        $location.path(prevUrl);
+      }
+    };
 
     $rootScope.elastic_index = 'turbointernational_development'
 
