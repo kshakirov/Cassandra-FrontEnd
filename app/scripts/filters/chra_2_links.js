@@ -12,15 +12,16 @@ magento_module.filter('chra_2_links', function () {
             return  output = '<b><font color="red"> N/A </font></b>';
         } else {
             angular.forEach(chras, function (chra) {
+              chra.url = chra.url.replace("/#","");
                 if (output) {
                     output += ', ' + '<a href="' + chra.url + '">' + chra.part_number + '</a>';
                 } else {
                     output = '<a href="' + chra.url + '">' + chra.part_number + '</a>';
                 }
-            })
+            });
             return output ? output : ""
         }
-        ;
+
     }
 });
 
