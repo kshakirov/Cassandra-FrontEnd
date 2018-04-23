@@ -5,7 +5,7 @@
         <ul class="messages">
           <li class="success-msg">
             <ul>
-              <li><span>{{cart_message}}</span></li>
+              <li><span>{{cart_message}}</span>&nbsp;&nbsp;<a href="/customer/cart/"> Go to My Shopping Cart</a></a></li>
             </ul>
           </li>
         </ul>
@@ -32,7 +32,7 @@
             </div>
             <h2 ng-if="is_turbo()">Major Components</h2>
             <div ng-if="is_turbo()" ng-include="'views/product/tabs/major_components.html'"></div>
-            <div  ng-if="hasNotes()" ng-include="'views/product/tabs/sales_notes_front.html'">
+            <div ng-if="hasNotes()" ng-include="'views/product/tabs/sales_notes_front.html'">
             </div>
           </div>
         </div>
@@ -51,7 +51,8 @@
 
             <li><a ng-click="tab=6" ng-class="{'active':tab==6}">Interchangeable Parts</a></li>
             <li><a ng-click="tab=7" ng-class="{'active':tab==7}">Sales Notes</a></li>
-            <li ng-show="is_journal_bearing() || is_piston_ring()"><a ng-click="tab=8" ng-class="{'active':tab==8}">Non Standard</a></li>
+            <li ng-show="is_journal_bearing() || is_piston_ring()"><a ng-click="tab=8" ng-class="{'active':tab==8}">Non
+              Standard</a></li>
           </ul>
 
           <div class="tabs-container">
