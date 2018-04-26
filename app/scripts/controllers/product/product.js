@@ -7,7 +7,8 @@ magento_module.controller("ProductController", function ($scope,
                                                          ElasticSearch,
                                                          $timeout,
                                                          $filter,
-                                                         KitMatrixService) {
+                                                         KitMatrixService,
+                                                         $window) {
 
     function _get_stats() {
       var stats = $cookies.getObject('stats');
@@ -76,7 +77,7 @@ magento_module.controller("ProductController", function ($scope,
     function get_matrix_skus(cols) {
       var skus = cols.map(function (col) {
         return col.sku;
-      })
+      });
       return skus;
     }
 
@@ -84,7 +85,7 @@ magento_module.controller("ProductController", function ($scope,
       if (turbo.interchanges) {
         var strs_array = turbo.interchanges.map(function (t) {
           return t.part_number
-        })
+        });
         return strs_array.join(", ");
       }
     }
@@ -99,7 +100,7 @@ magento_module.controller("ProductController", function ($scope,
       angular.forEach(stds, function (std) {
         var interchages_flat = std.interchanges.map(function (interchange) {
           return interchange.part_number;
-        })
+        });
         std.interchanges_flat = interchages_flat;
       })
     }
@@ -112,15 +113,15 @@ magento_module.controller("ProductController", function ($scope,
     }
 
     function _get_part_number(product) {
-        if (product.manufacturer.toLowerCase() == 'turbo international'){
-          return product.part_number;
-        }
+      if (product.manufacturer.toLowerCase() == 'turbo international') {
+        return product.part_number;
+      }
       return product.ti_part_number;
     }
 
     $scope.tab = 1;
     $scope.qty = 1;
-    $rootScope.pageTitle = ": Product";
+    //$rootScope.pageTitle = ": Product";
 
     $scope.idSelectedPart = null;
     $scope.setSelectPart = function (idSelectedPart, col, index) {
@@ -168,10 +169,10 @@ magento_module.controller("ProductController", function ($scope,
         return $scope.product.part_type.toLowerCase() == 'turbo';
     };
 
-  $scope.is_actuator = function () {
-    if ($scope.product && $scope.product.part_type)
-      return $scope.product.part_type.toLowerCase() == 'actuator';
-  };
+    $scope.is_actuator = function () {
+      if ($scope.product && $scope.product.part_type)
+        return $scope.product.part_type.toLowerCase() == 'actuator';
+    };
 
     $scope.is_Ti_manufactured = function () {
       if ($scope.product && $scope.product.manufacturer)
@@ -253,6 +254,23 @@ magento_module.controller("ProductController", function ($scope,
           $rootScope.compared_product_count = count;
         })
       })
+    };
+
+
+    function create_meta_description(product) {
+      var meta = document.createElement('meta');
+      meta.setAttribute('name', "Description");
+      var content = "Product: " + product.part_number +
+        ", Category: " + product.part_type +
+        " , Manufacturer: " + product.manufacturer +
+        "  , Description: " + product.description;
+      meta.setAttribute('content', content);
+      return meta;
+    }
+
+    function create_page_title(product) {
+      return product.manufacturer + " " + product.part_type + " " +
+        product.part_number;
     }
 
     $scope.init = function () {
@@ -263,6 +281,9 @@ magento_module.controller("ProductController", function ($scope,
 
       $http.post('/frontend/product', {sku: sku, stats: _get_stats()}).then(function (promise) {
         $scope.product = promise.data;
+        $window.document.title = create_page_title($scope.product);
+        document.getElementsByTagName('head')[0].appendChild(create_meta_description($scope.product));
+        create_meta_description($scope.product);
         $rootScope.image_part_type = $scope.product.part_type;
         $scope.applicationTableParams = new NgTableParams({}, {dataset: $scope.product.application_detail});
       }).then(function (promise) {
@@ -423,7 +444,7 @@ magento_module.controller("ProductController", function ($scope,
     $scope.initAlsoBought = function () {
       var sku = $routeParams.sku;
       $http.get("/customer/product/" + sku + "/also_bought/").then(function (promise) {
-        $scope.also_bought =   new NgTableParams({}, {dataset: _process_also_boughts(promise.data)})
+        $scope.also_bought = new NgTableParams({}, {dataset: _process_also_boughts(promise.data)})
       })
     }
 
