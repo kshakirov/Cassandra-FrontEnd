@@ -268,6 +268,18 @@ magento_module.controller("ProductController", function ($scope,
       return meta;
     }
 
+    function remove_description_to_head() {
+      var head = document.getElementsByTagName('head');
+      var metas = head[0].children;
+       angular.forEach(metas,function(e){
+         if(e.getAttribute('name')=='Description') {
+           console.log(e.getAttribute('name'));
+           e.remove();
+           console.log("Removed")
+         }
+      });
+    }
+
     function create_page_title(product) {
       return product.manufacturer + " " + product.part_type + " " +
         product.part_number;
@@ -282,7 +294,9 @@ magento_module.controller("ProductController", function ($scope,
       $http.post('/frontend/product', {sku: sku, stats: _get_stats()}).then(function (promise) {
         $scope.product = promise.data;
         $window.document.title = create_page_title($scope.product);
+        remove_description_to_head();
         document.getElementsByTagName('head')[0].appendChild(create_meta_description($scope.product));
+
         create_meta_description($scope.product);
         $rootScope.image_part_type = $scope.product.part_type;
         $scope.applicationTableParams = new NgTableParams({}, {dataset: $scope.product.application_detail});
