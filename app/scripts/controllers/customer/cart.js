@@ -29,7 +29,7 @@ magento_module.controller("CustomerCart", function ($scope,
   }
 
   function _update_cart(cart_data) {
-    var data = {cart: cart_data}
+    var data = {cart: cart_data};
     return $http.post('/customer/cart/', data).then(function (promise) {
       return promise;
     })
@@ -39,8 +39,8 @@ magento_module.controller("CustomerCart", function ($scope,
     var items = {};
     var ks_vs = Object.keys(cart_items).map(function (key) {
       var current = cart_items[key];
-      current.subtotal = parseInt(current.qty) * parseFloat(current.unit_price)
-      current.subtotal = current.subtotal.toString();
+      current.subtotal = parseInt(current.qty) * parseFloat(current.unit_price);
+      current.subtotal = current.subtotal.toFixed(2);
       return [key, current]
     });
     angular.forEach(ks_vs, function (value, key) {
@@ -120,19 +120,19 @@ magento_module.controller("CustomerCart", function ($scope,
         $rootScope.product_count = promise || 0;
       })
     })
-  }
+  };
 
   $scope.getProductsCount = function () {
     get_products_count().then(function (promise) {
       $rootScope.product_count = promise;
     })
-  }
+  };
 
   $scope.recalculateCart = function (item, qty) {
     item.qty = qty;
     this.cart_data.items = _recalculate_rows(this.cart_data.items)
     this.cart_data.subtotal = _recalcultae_grand_total(this.cart_data.items);
-  }
+  };
 
   $scope.$on('currencyChanged', function (event, args) {
     console.log("Currency Changed");
@@ -143,4 +143,4 @@ magento_module.controller("CustomerCart", function ($scope,
   });
 
 
-})
+});
