@@ -91,6 +91,18 @@ magento_module.controller("HomeController", function ($scope,
   $scope.init_new_products = function () {
     return _init_new_products().then(function (promise) {
       $scope.news = promise;
+      for(item in $scope.news) {
+          const current = $scope.news[item];
+          $http.post('/attrsreader/product/' + current['sku'] + '/where_used/').then(function (prom) {
+              current['where_used'] = [];
+              for(var key in prom.data){
+                  current['where_used'].push(parseInt(prom.data[key]['partNumber'], 10));
+              }
+              current['where_used'] = _create_turbo_type_string(current['where_used']);
+
+          });
+      }
+
       return $scope.news;
     }).then(function (products) {
       _init_prices(products);
