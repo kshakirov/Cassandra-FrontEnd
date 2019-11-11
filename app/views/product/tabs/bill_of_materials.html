@@ -6,11 +6,8 @@
         <td title="'Part Type'" filter="{ part_type: 'text'}" sortable="'part_type'">
             {{bom.part_type}}
         </td>
-        <td ng-if="!is_Ti_manufactured()" title="'Part'" filter="{ oe_part_number: 'text'}" sortable="'oe_part_number'">
+        <td title="'Part'" filter="{ oe_part_number: 'text'}" sortable="'oe_part_number'">
             <a href="/part/sku/{{bom.oe_sku}}">{{bom.oe_part_number}}</a>
-        </td>
-        <td ng-if="is_Ti_manufactured()" title="'Part'" filter="{ part_number: 'text'}" sortable="'part_number'">
-            <a href="/part/sku/{{bom.sku}}">{{bom.part_number}}</a>
         </td>
         <td title="'Description'" filter="{ description: 'text'}" sortable="'description'">
             {{bom.description}}
