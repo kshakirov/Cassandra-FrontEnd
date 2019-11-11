@@ -7,7 +7,7 @@
             {{bom.part_type}}
         </td>
         <td title="'Part'" filter="{ oe_part_number: 'text'}" sortable="'oe_part_number'">
-            <a href="/part/sku/{{bom.oe_sku}}">{{bom.oe_part_number}}</a>
+            <a href="/part/sku/{{bom.oe_sku}}">{{bom.oe_part_number}}{{bom.part_number}}</a>
         </td>
         <td title="'Description'" filter="{ description: 'text'}" sortable="'description'">
             {{bom.description}}
