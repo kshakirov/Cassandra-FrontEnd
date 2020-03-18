@@ -6,14 +6,17 @@
         <td title="'Part Type'" filter="{ part_type: 'text'}" sortable="'part_type'">
             {{bom.part_type}}
         </td>
-        <td title="'Part'" filter="{ oe_part_number: 'text'}" sortable="'oe_part_number'">
-            <a href="/part/sku/{{bom.sku ? bom.sku : bom.oe_sku}}">{{bom.part_number ? bom.part_number : bom.oe_part_number}}</a>
+        <td ng-if="is_Ti_manufactured()" title="'Part'" filter="{ oe_part_number: 'text'}" sortable="'oe_part_number'">
+            <a href="/part/sku/{{bom.sku}}">{{bom.part_number}}</a>
+        </td>
+        <td ng-if="!is_Ti_manufactured()" title="'Part'" filter="{ oe_part_number: 'text'}" sortable="'oe_part_number'">
+            <a href="/part/sku/{{bom.oe_sku}}">{{bom.oe_part_number}}</a>
         </td>
         <td title="'Description'" filter="{ description: 'text'}" sortable="'description'">
             {{bom.description}}
         </td>
-        <td ng-if="!is_Ti_manufactured()" title="'TI Part'" filter="{ part_number: 'text'}" sortable="'part_number'">
-            <a href="/part/sku/{{bom.sku ? bom.sku : bom.oe_sku}}">{{bom.part_number ? bom.part_number : bom.oe_part_number}}</a>
+        <td ng-if="!is_Ti_manufactured() && bom.sku" title="'TI Part'" filter="{ part_number: 'text'}" sortable="'part_number'">
+            <a href="/part/sku/{{bom.sku}}">{{bom.part_number}}</a>
         </td>
         <td title="'Interch Part'" filter="{ interchanges_flat: 'text'}" sortable="'interchanges_flat'">
             <span ng-bind-html='bom.interchanges | parts_array_2_urls'></span>
