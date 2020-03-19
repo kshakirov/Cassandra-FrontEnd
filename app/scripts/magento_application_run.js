@@ -43,7 +43,7 @@ magento_module.run(function ($rootScope, $location) {
       }
     };
 
-    $rootScope.elastic_index = 'turbointernational_development'
+    $rootScope.elastic_index = 'turbointernational_production'
 
 
   }
