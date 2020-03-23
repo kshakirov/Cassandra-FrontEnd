@@ -15,7 +15,7 @@
         <td title="'Description'" filter="{ description: 'text'}" sortable="'description'">
             {{bom.description}}
         </td>
-        <td ng-if="!is_Ti_manufactured() && bom.sku" title="'TI Part'" filter="{ part_number: 'text'}" sortable="'part_number'">
+        <td ng-if="!is_Ti_manufactured()" title="'TI Part'" filter="{ part_number: 'text'}" sortable="'part_number'">
             <a href="/part/sku/{{bom.sku}}">{{bom.part_number}}</a>
         </td>
         <td title="'Interch Part'" filter="{ interchanges_flat: 'text'}" sortable="'interchanges_flat'">
